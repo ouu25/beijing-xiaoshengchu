@@ -1,0 +1,286 @@
+{
+  "district": "haidian",
+  "year": 2026,
+  "events": [
+    {
+      "event_name": "新六年级开学，小升初冲刺期正式开始",
+      "event_type": "prep",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2025-09-01",
+      "date_expected_end": null,
+      "date_actual": "2025-09-01",
+      "action_required": "确定目标校，评估孩子水平，制定冲刺计划。了解2025年政策变化，提前掌握核心要点。",
+      "historical_dates": [],
+      "source_confidence": "official",
+      "notes": ""
+    },
+    {
+      "event_name": "体测（四/六/八年级）",
+      "event_type": "exam",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2025-09-15",
+      "date_expected_end": "2025-10-31",
+      "date_actual": null,
+      "action_required": "关注学校通知，确保体测达标。体测成绩是升学参考之一。",
+      "historical_dates": [
+        {"year": 2025, "date": "9-10月"}
+      ],
+      "source_confidence": "verified",
+      "notes": "海淀四年级率先考试，具体时间以学校通知为准"
+    },
+    {
+      "event_name": "部分学校秋季活动/摸底/接触优质生源",
+      "event_type": "exam",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2025-10-01",
+      "date_expected_end": "2025-11-30",
+      "date_actual": null,
+      "action_required": "关注目标校动态和机构群消息，主动了解开放日、冬令营等活动信息",
+      "historical_dates": [],
+      "source_confidence": "reported",
+      "notes": "部分学校在秋季学期有非公开的摸底活动"
+    },
+    {
+      "event_name": "机构杯赛/模拟排名考试",
+      "event_type": "exam",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2025-11-01",
+      "date_expected_end": "2025-12-31",
+      "date_actual": null,
+      "action_required": "参加主流机构排名考试，成绩可能被部分学校参考。整理竞赛证书和荣誉。",
+      "historical_dates": [],
+      "source_confidence": "reported",
+      "notes": "奥数、英语、科技等竞赛证书是MD的重要参考"
+    },
+    {
+      "event_name": "期末考试（上学期）",
+      "event_type": "exam",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2026-01-06",
+      "date_expected_end": "2026-01-07",
+      "date_actual": "2026-01-06",
+      "action_required": "全力备考，期末成绩是部分学校筛选的重要参考",
+      "historical_dates": [
+        {"year": 2026, "date": "01-06至01-07"}
+      ],
+      "source_confidence": "official",
+      "notes": "海淀3-6年级期末考试时间已确认为1月6-7日"
+    },
+    {
+      "event_name": "寒假冲刺备考",
+      "event_type": "prep",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2026-01-15",
+      "date_expected_end": "2026-02-15",
+      "date_actual": null,
+      "action_required": "寒假集中突破薄弱环节，准备简历材料（学科成绩、竞赛证书、综合素质材料）",
+      "historical_dates": [],
+      "source_confidence": "estimated",
+      "notes": ""
+    },
+    {
+      "event_name": "春季选拔/开放日/简历投递期",
+      "event_type": "exam",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2026-02-20",
+      "date_expected_end": "2026-03-31",
+      "date_actual": null,
+      "action_required": "主动向目标校投递简历，参加校园开放日、体验课等活动。这是展示孩子和获取信息的重要窗口。",
+      "historical_dates": [],
+      "source_confidence": "reported",
+      "notes": "部分学校3月就开始有开放日活动，需持续关注"
+    },
+    {
+      "event_name": "人大附中早培班报名（预计）",
+      "event_type": "exam",
+      "school_id": "haidian_rdfz",
+      "district": "haidian",
+      "date_expected_start": "2026-03-01",
+      "date_expected_end": "2026-03-15",
+      "date_actual": null,
+      "action_required": "登录人大附中官网报名，准备相关材料",
+      "historical_dates": [
+        {"year": 2025, "date": "3月上旬"},
+        {"year": 2024, "date": "3月上旬"},
+        {"year": 2023, "date": "3月上旬"}
+      ],
+      "source_confidence": "estimated",
+      "notes": "时间基于往年规律推算，以官方通知为准"
+    },
+    {
+      "event_name": "第一批MD/DZ陆续发出",
+      "event_type": "notification",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2026-03-01",
+      "date_expected_end": "2026-04-15",
+      "date_actual": null,
+      "action_required": "保持电话畅通，接到通知后冷静分析学校优劣和离家距离，不要盲目决策",
+      "historical_dates": [],
+      "source_confidence": "reported",
+      "notes": "据家长反馈，部分学校3月就开始接触，持续到5月"
+    },
+    {
+      "event_name": "校园开放日集中期",
+      "event_type": "prep",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2026-03-15",
+      "date_expected_end": "2026-05-15",
+      "date_actual": null,
+      "action_required": "带孩子参加目标校开放日，了解硬件设施、课程特色、作息安排。现场咨询招生老师确认当年招生计划。",
+      "historical_dates": [],
+      "source_confidence": "verified",
+      "notes": "多数初中在4-5月举办，部分提前至3月"
+    },
+    {
+      "event_name": "早培初筛（预计）",
+      "event_type": "exam",
+      "school_id": "haidian_rdfz",
+      "district": "haidian",
+      "date_expected_start": "2026-04-10",
+      "date_expected_end": "2026-04-20",
+      "date_actual": null,
+      "action_required": "按通知参加初筛考试",
+      "historical_dates": [
+        {"year": 2025, "date": "4月中旬"},
+        {"year": 2024, "date": "4月中旬"}
+      ],
+      "source_confidence": "estimated",
+      "notes": ""
+    },
+    {
+      "event_name": "海淀区义务教育入学政策发布",
+      "event_type": "policy",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2026-04-20",
+      "date_expected_end": "2026-05-05",
+      "date_actual": null,
+      "action_required": "仔细阅读政策文件，确认自家适用的入学方式，注意政策有无变化",
+      "historical_dates": [
+        {"year": 2025, "date": "4月下旬"},
+        {"year": 2024, "date": "2024-04-22"},
+        {"year": 2023, "date": "2023-04-22"}
+      ],
+      "source_confidence": "estimated",
+      "notes": "一般4月下旬至5月上旬发布"
+    },
+    {
+      "event_name": "MD高峰期",
+      "event_type": "notification",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2026-04-15",
+      "date_expected_end": "2026-05-31",
+      "date_actual": null,
+      "action_required": "5月是MD密集期，通过家长群、学校官网等渠道及时获取信息。警惕以'内部名额''保录'为名的诈骗。",
+      "historical_dates": [],
+      "source_confidence": "reported",
+      "notes": "据多个来源反馈，5月是MD最集中的月份"
+    },
+    {
+      "event_name": "信息采集（北京市义教入学服务平台）",
+      "event_type": "policy",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2026-05-06",
+      "date_expected_end": "2026-05-31",
+      "date_actual": null,
+      "action_required": "登录 yjrx.bjedu.cn 完成信息采集，如实填写户籍、住址、联系方式。打印《信息采集表》留存。",
+      "historical_dates": [
+        {"year": 2025, "date": "5月6日-5月31日"}
+      ],
+      "source_confidence": "verified",
+      "notes": "所有小学毕业生（含京籍、非京籍）必须完成信息采集"
+    },
+    {
+      "event_name": "跨区入学申请",
+      "event_type": "policy",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2026-05-08",
+      "date_expected_end": "2026-05-14",
+      "date_actual": null,
+      "action_required": "需回户籍或实际居住地所在区升学的，在此期间向目标区教委提交申请",
+      "historical_dates": [
+        {"year": 2025, "date": "5月8日-5月14日"}
+      ],
+      "source_confidence": "estimated",
+      "notes": ""
+    },
+    {
+      "event_name": "早培复筛/试读（预计）",
+      "event_type": "exam",
+      "school_id": "haidian_rdfz",
+      "district": "haidian",
+      "date_expected_start": "2026-05-15",
+      "date_expected_end": "2026-05-31",
+      "date_actual": null,
+      "action_required": "按通知参加复筛和试读",
+      "historical_dates": [],
+      "source_confidence": "estimated",
+      "notes": ""
+    },
+    {
+      "event_name": "一派（登记入学）志愿填报与录取",
+      "event_type": "policy",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2026-06-01",
+      "date_expected_end": "2026-06-15",
+      "date_actual": null,
+      "action_required": "在入学服务平台填报登记入学志愿，结合孩子成绩和家庭住址合理规划志愿顺序",
+      "historical_dates": [],
+      "source_confidence": "estimated",
+      "notes": "一派即公办初中登记入学，海淀分五个区域"
+    },
+    {
+      "event_name": "二派（学区派位）志愿填报与录取",
+      "event_type": "result",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2026-06-15",
+      "date_expected_end": "2026-06-30",
+      "date_actual": null,
+      "action_required": "查询一派结果，未被录取的参加二派志愿填报。查询最终派位结果，按通知到校报到。",
+      "historical_dates": [],
+      "source_confidence": "estimated",
+      "notes": ""
+    },
+    {
+      "event_name": "录取通知发放",
+      "event_type": "result",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2026-06-25",
+      "date_expected_end": "2026-07-10",
+      "date_actual": null,
+      "action_required": "领取录取通知书",
+      "historical_dates": [],
+      "source_confidence": "estimated",
+      "notes": ""
+    },
+    {
+      "event_name": "新初一分班考试与入学报到",
+      "event_type": "result",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2026-07-01",
+      "date_expected_end": "2026-07-20",
+      "date_actual": null,
+      "action_required": "参加分班考试（部分学校有），完成入学报到手续。分班考成绩影响实验班分配。",
+      "historical_dates": [],
+      "source_confidence": "estimated",
+      "notes": "分班考试是进入实验班的最后机会，建议认真准备"
+    }
+  ],
+  "last_updated": "2026-03-26"
+}

@@ -1,0 +1,183 @@
+{
+  "district": "xicheng",
+  "year": 2026,
+  "events": [
+    {
+      "event_name": "新六年级开学",
+      "event_type": "prep",
+      "school_id": null,
+      "district": "xicheng",
+      "date_expected_start": "2025-09-01",
+      "date_expected_end": null,
+      "date_actual": "2025-09-01",
+      "action_required": "了解西城小升初升学批次（全区派位、特色校、学区登记、学区派位等），确定目标校",
+      "historical_dates": [],
+      "source_confidence": "official",
+      "notes": "西城更注重学区划片稳定性，家长需提前了解本学区对口初中"
+    },
+    {
+      "event_name": "八中少儿班/素质班报名（预计）",
+      "event_type": "exam",
+      "school_id": "xicheng_basf",
+      "district": "xicheng",
+      "date_expected_start": "2025-11-01",
+      "date_expected_end": "2025-12-31",
+      "date_actual": null,
+      "action_required": "关注八中官网报名通知",
+      "historical_dates": [],
+      "source_confidence": "reported",
+      "notes": "少儿班面向低龄超常儿童，素质班面向小学高年级"
+    },
+    {
+      "event_name": "期末考试（上学期）",
+      "event_type": "exam",
+      "school_id": null,
+      "district": "xicheng",
+      "date_expected_start": "2026-01-02",
+      "date_expected_end": "2026-01-06",
+      "date_actual": null,
+      "action_required": "全力备考",
+      "historical_dates": [
+        {"year": 2026, "date": "01-02至01-06"}
+      ],
+      "source_confidence": "official",
+      "notes": "西城期末考试集中在1月2日、3日及6日"
+    },
+    {
+      "event_name": "部分学校接触优质生源/DZ",
+      "event_type": "notification",
+      "school_id": null,
+      "district": "xicheng",
+      "date_expected_start": "2026-01-15",
+      "date_expected_end": "2026-03-31",
+      "date_actual": null,
+      "action_required": "关注家长群信息，保持电话畅通",
+      "historical_dates": [],
+      "source_confidence": "reported",
+      "notes": "西城选拔活动总量较海淀少，但核心校仍有非公开渠道"
+    },
+    {
+      "event_name": "校园开放日",
+      "event_type": "prep",
+      "school_id": null,
+      "district": "xicheng",
+      "date_expected_start": "2026-03-15",
+      "date_expected_end": "2026-05-15",
+      "date_actual": null,
+      "action_required": "参加目标校开放日，了解学校特色和招生计划",
+      "historical_dates": [],
+      "source_confidence": "verified",
+      "notes": ""
+    },
+    {
+      "event_name": "西城区义务教育入学政策发布",
+      "event_type": "policy",
+      "school_id": null,
+      "district": "xicheng",
+      "date_expected_start": "2026-04-20",
+      "date_expected_end": "2026-05-05",
+      "date_actual": null,
+      "action_required": "仔细阅读政策，确认学区对应学校，了解各批次入学途径",
+      "historical_dates": [
+        {"year": 2025, "date": "4月下旬"},
+        {"year": 2024, "date": "4月下旬"}
+      ],
+      "source_confidence": "estimated",
+      "notes": "西城入学途径包括：全区派位、特色校招生、对口直升、学区登记入学、学区派位入学等"
+    },
+    {
+      "event_name": "特色校/寄宿校/全市招生校报名",
+      "event_type": "policy",
+      "school_id": null,
+      "district": "xicheng",
+      "date_expected_start": "2026-04-25",
+      "date_expected_end": "2026-05-15",
+      "date_actual": null,
+      "action_required": "符合条件的学生按通知报名",
+      "historical_dates": [],
+      "source_confidence": "estimated",
+      "notes": ""
+    },
+    {
+      "event_name": "信息采集",
+      "event_type": "policy",
+      "school_id": null,
+      "district": "xicheng",
+      "date_expected_start": "2026-05-06",
+      "date_expected_end": "2026-05-31",
+      "date_actual": null,
+      "action_required": "登录 yjrx.bjedu.cn 完成信息采集",
+      "historical_dates": [
+        {"year": 2025, "date": "5月6日-5月31日"}
+      ],
+      "source_confidence": "verified",
+      "notes": "全市统一平台，统一时间"
+    },
+    {
+      "event_name": "外区/外省市回西城小升初申请",
+      "event_type": "policy",
+      "school_id": null,
+      "district": "xicheng",
+      "date_expected_start": "2026-05-08",
+      "date_expected_end": "2026-05-14",
+      "date_actual": null,
+      "action_required": "符合条件的外区/外省市学生提交回西城入学申请",
+      "historical_dates": [],
+      "source_confidence": "estimated",
+      "notes": "需西城户籍或监护人在西城有房产"
+    },
+    {
+      "event_name": "MD密集期",
+      "event_type": "notification",
+      "school_id": null,
+      "district": "xicheng",
+      "date_expected_start": "2026-05-01",
+      "date_expected_end": "2026-05-31",
+      "date_actual": null,
+      "action_required": "保持电话畅通，警惕诈骗",
+      "historical_dates": [],
+      "source_confidence": "reported",
+      "notes": ""
+    },
+    {
+      "event_name": "全区派位/学区登记入学志愿填报",
+      "event_type": "policy",
+      "school_id": null,
+      "district": "xicheng",
+      "date_expected_start": "2026-06-01",
+      "date_expected_end": "2026-06-10",
+      "date_actual": null,
+      "action_required": "在入学服务平台填报志愿",
+      "historical_dates": [],
+      "source_confidence": "estimated",
+      "notes": "西城小升初分多个批次，全区派位是第一批次"
+    },
+    {
+      "event_name": "学区派位结果公布",
+      "event_type": "result",
+      "school_id": null,
+      "district": "xicheng",
+      "date_expected_start": "2026-06-20",
+      "date_expected_end": "2026-06-30",
+      "date_actual": null,
+      "action_required": "查询派位结果",
+      "historical_dates": [],
+      "source_confidence": "estimated",
+      "notes": ""
+    },
+    {
+      "event_name": "录取通知与入学报到",
+      "event_type": "result",
+      "school_id": null,
+      "district": "xicheng",
+      "date_expected_start": "2026-07-01",
+      "date_expected_end": "2026-07-15",
+      "date_actual": null,
+      "action_required": "领取录取通知书，参加分班考试（部分学校），完成报到",
+      "historical_dates": [],
+      "source_confidence": "estimated",
+      "notes": ""
+    }
+  ],
+  "last_updated": "2026-03-26"
+}
