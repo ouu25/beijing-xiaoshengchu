@@ -8,122 +8,157 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#FAF9F6;--bg-card:#FFF;--bg-warm:#F5F0E8;--text-primary:#1A1A18;--text-secondary:#6B6960;--text-tertiary:#9C9A8E;--border:#E5E2D9;--border-light:#EDEAE3;--accent:#B8553A;--accent-light:#F4E8E4;--green:#3D7A4A;--green-light:#E8F0EA;--amber:#8B6914;--amber-light:#FAF0D6;--blue:#2B5F8A;--blue-light:#E4EDF5;--red:#A33D3D;--red-light:#FAE8E8;--purple:#6B4FA0;--purple-light:#F0EBF8;--radius:6px;--radius-lg:10px;--font-display:'Noto Serif SC',serif;--font-body:'Noto Sans SC',sans-serif}
+:root{--bg:#F8F6F1;--bg-card:#FFFEF9;--bg-warm:#F0EBE0;--bg-hero:#E8E2D5;--text-primary:#2C2A25;--text-secondary:#6B6960;--text-tertiary:#9C9A8E;--border:#DDD8CC;--border-light:#EAE6DC;--accent:#C05A3C;--accent-light:#F5E6E0;--accent-dark:#9E432C;--green:#4A8556;--green-light:#E5F0E8;--amber:#9B7518;--amber-light:#FBF1D6;--blue:#3468A0;--blue-light:#E4EDF5;--red:#B04040;--red-light:#FAEAEA;--purple:#7254AA;--purple-light:#F0EBF8;--radius:8px;--radius-lg:14px;--font-display:'Noto Serif SC',serif;--font-body:'Noto Sans SC',sans-serif;--shadow-sm:0 1px 3px rgba(44,42,37,.06);--shadow-md:0 4px 16px rgba(44,42,37,.07);--shadow-lg:0 8px 30px rgba(44,42,37,.1)}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:var(--font-body);background:var(--bg);color:var(--text-primary);line-height:1.7;-webkit-font-smoothing:antialiased}
-.site-header{padding:3rem 1.5rem 2rem;max-width:960px;margin:0 auto;animation:fadeUp .6s ease-out}
-.site-header h1{font-family:var(--font-display);font-size:clamp(1.6rem,4vw,2.2rem);font-weight:700;letter-spacing:-.02em;line-height:1.3;margin-bottom:.5rem}
-.site-header .subtitle{font-size:.95rem;color:var(--text-secondary);font-weight:300;max-width:520px}
-.site-header .principles{display:flex;gap:6px;margin-top:1rem;flex-wrap:wrap}
-.principle-tag{font-size:.72rem;padding:3px 10px;border-radius:20px;border:1px solid var(--border);color:var(--text-secondary)}
-.search-wrap{max-width:960px;margin:0 auto;padding:0 1.5rem}
+
+/* Hero header */
+.site-header{padding:3.5rem 1.5rem 2.5rem;max-width:960px;margin:0 auto}
+.site-header h1{font-family:var(--font-display);font-size:clamp(1.8rem,5vw,2.6rem);font-weight:700;letter-spacing:-.03em;line-height:1.2;margin-bottom:.6rem;opacity:0;animation:fadeUp .7s ease-out forwards}
+.site-header .subtitle{font-size:.95rem;color:var(--text-secondary);font-weight:300;max-width:520px;line-height:1.8;opacity:0;animation:fadeUp .7s ease-out .1s forwards}
+.site-header .principles{display:flex;gap:8px;margin-top:1.2rem;flex-wrap:wrap;opacity:0;animation:fadeUp .7s ease-out .2s forwards}
+.principle-tag{font-size:.72rem;padding:4px 12px;border-radius:20px;border:1px solid var(--border);color:var(--text-secondary);transition:all .2s}
+.principle-tag:hover{background:var(--bg-warm);border-color:var(--text-tertiary)}
+
+/* Search */
+.search-wrap{max-width:960px;margin:0 auto;padding:0 1.5rem;opacity:0;animation:fadeUp .7s ease-out .25s forwards}
 .search-box{position:relative;margin-bottom:4px}
-.search-box input{width:100%;padding:10px 16px 10px 38px;font-size:.88rem;font-family:var(--font-body);border:1px solid var(--border);border-radius:8px;background:var(--bg-card);color:var(--text-primary);outline:none;transition:border-color .2s}
-.search-box input:focus{border-color:var(--accent)}
+.search-box input{width:100%;padding:12px 18px 12px 42px;font-size:.88rem;font-family:var(--font-body);border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--bg-card);color:var(--text-primary);outline:none;transition:all .25s;box-shadow:var(--shadow-sm)}
+.search-box input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(192,90,60,.08)}
 .search-box input::placeholder{color:var(--text-tertiary)}
-.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-tertiary);font-size:.9rem;pointer-events:none}
-.search-results{background:var(--bg-card);border:1px solid var(--border-light);border-radius:8px;max-height:320px;overflow-y:auto;display:none;position:relative;z-index:50;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-tertiary);font-size:1rem;pointer-events:none}
+.search-results{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-lg);max-height:340px;overflow-y:auto;display:none;position:relative;z-index:50;box-shadow:var(--shadow-lg);margin-top:4px}
 .search-results.show{display:block}
-.sr-item{padding:10px 16px;cursor:pointer;border-bottom:1px solid var(--border-light);transition:background .1s}
+.sr-item{padding:12px 18px;cursor:pointer;border-bottom:1px solid var(--border-light);transition:background .15s}
 .sr-item:last-child{border-bottom:none}
 .sr-item:hover{background:var(--bg-warm)}
 .sr-item .sr-name{font-size:.88rem;font-weight:500}
 .sr-item .sr-meta{font-size:.72rem;color:var(--text-tertiary);margin-top:2px}
-.sr-empty{padding:16px;text-align:center;font-size:.82rem;color:var(--text-tertiary)}
-.nav-bar{position:sticky;top:0;z-index:100;background:rgba(250,249,246,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light);padding:0 1.5rem}
+.sr-empty{padding:20px;text-align:center;font-size:.82rem;color:var(--text-tertiary)}
+
+/* Nav */
+.nav-bar{position:sticky;top:0;z-index:100;background:rgba(248,246,241,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border-light);padding:0 1.5rem}
 .nav-inner{max-width:960px;margin:0 auto;display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
 .nav-inner::-webkit-scrollbar{display:none}
-.nav-btn{padding:12px 18px;font-size:.82rem;font-weight:500;color:var(--text-tertiary);background:none;border:none;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s;font-family:var(--font-body)}
+.nav-btn{padding:14px 20px;font-size:.84rem;font-weight:500;color:var(--text-tertiary);background:none;border:none;cursor:pointer;white-space:nowrap;border-bottom:2.5px solid transparent;transition:all .2s;font-family:var(--font-body);letter-spacing:.01em}
 .nav-btn:hover{color:var(--text-primary)}
 .nav-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+
+/* Main */
 .main{max-width:960px;margin:0 auto;padding:1.5rem}
-.section{display:none;animation:fadeUp .4s ease-out}
-.section.active{display:block}
-.stats-bar{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:18px;font-size:.78rem;color:var(--text-tertiary)}
-.stat-num{font-weight:600;color:var(--text-secondary);font-size:.88rem}
-.filter-row{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
-.filter-btn{font-size:.78rem;padding:5px 14px;border-radius:20px;border:1px solid var(--border);background:none;color:var(--text-secondary);cursor:pointer;font-family:var(--font-body);transition:all .15s}
-.filter-btn:hover{border-color:var(--text-secondary)}
-.filter-btn.active{background:var(--text-primary);color:var(--bg);border-color:var(--text-primary)}
-.school-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-.school-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:1.2rem 1.4rem;cursor:pointer;transition:border-color .2s,box-shadow .2s}
-.school-card:hover{border-color:var(--border);box-shadow:0 2px 12px rgba(0,0,0,.04)}
-.badge-row{display:flex;gap:4px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
-.tier{display:inline-block;font-size:.68rem;font-weight:600;padding:2px 8px;border-radius:3px}
+.section{display:none}
+.section.active{display:block;animation:fadeUp .5s ease-out}
+
+/* Stats */
+.stats-bar{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:20px;font-size:.78rem;color:var(--text-tertiary)}
+.stat-num{font-weight:600;color:var(--accent);font-size:.92rem}
+
+/* Filters */
+.filter-row{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.filter-btn{font-size:.78rem;padding:6px 16px;border-radius:20px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-secondary);cursor:pointer;font-family:var(--font-body);transition:all .2s;box-shadow:var(--shadow-sm)}
+.filter-btn:hover{border-color:var(--text-tertiary);background:var(--bg-warm)}
+.filter-btn.active{background:var(--text-primary);color:var(--bg);border-color:var(--text-primary);box-shadow:none}
+
+/* School cards */
+.school-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.school-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:1.3rem 1.5rem;cursor:pointer;transition:all .25s;box-shadow:var(--shadow-sm)}
+.school-card:hover{border-color:var(--border);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.badge-row{display:flex;gap:6px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.tier{display:inline-block;font-size:.68rem;font-weight:600;padding:3px 10px;border-radius:4px;letter-spacing:.02em}
 .tier-T1{background:var(--accent-light);color:var(--accent)}
 .tier-T2{background:var(--blue-light);color:var(--blue)}
-.district-badge{font-size:.68rem;padding:2px 7px;border-radius:3px}
+.district-badge{font-size:.68rem;padding:3px 8px;border-radius:4px}
 .district-haidian{background:var(--blue-light);color:var(--blue)}
 .district-xicheng{background:var(--purple-light);color:var(--purple)}
-.school-card h3{font-family:var(--font-display);font-size:1.05rem;font-weight:600;margin-bottom:2px}
-.school-card .aka{font-size:.78rem;color:var(--text-tertiary);margin-bottom:8px}
-.tags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px}
-.tag{font-size:.68rem;padding:2px 7px;border-radius:3px;background:var(--bg-warm);color:var(--text-secondary)}
-.channel-preview{font-size:.72rem;color:var(--text-tertiary);border-top:1px solid var(--border-light);padding-top:8px;margin-top:4px}
-.channel-list{display:flex;flex-direction:column;gap:12px}
-.channel-item{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:1.2rem 1.4rem}
-.channel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:6px}
+.school-card h3{font-family:var(--font-display);font-size:1.08rem;font-weight:600;margin-bottom:3px}
+.school-card .aka{font-size:.78rem;color:var(--text-tertiary);margin-bottom:10px}
+.tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.tag{font-size:.68rem;padding:3px 8px;border-radius:4px;background:var(--bg-warm);color:var(--text-secondary)}
+.channel-preview{font-size:.72rem;color:var(--text-tertiary);border-top:1px solid var(--border-light);padding-top:10px;margin-top:6px;letter-spacing:.01em}
+
+/* Channels */
+.channel-list{display:flex;flex-direction:column;gap:14px}
+.channel-item{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:1.3rem 1.5rem;box-shadow:var(--shadow-sm)}
+.channel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px}
 .channel-name{font-family:var(--font-display);font-size:.95rem;font-weight:600}
-.transparency-badge{font-size:.68rem;padding:2px 10px;border-radius:20px;font-weight:500}
+.transparency-badge{font-size:.68rem;padding:3px 12px;border-radius:20px;font-weight:500}
 .transparency-open{background:var(--green-light);color:var(--green)}
 .transparency-semi_open{background:var(--amber-light);color:var(--amber)}
 .transparency-hidden{background:var(--red-light);color:var(--red)}
-.channel-method{font-size:.82rem;color:var(--text-secondary);line-height:1.7;margin-bottom:8px}
+.channel-method{font-size:.82rem;color:var(--text-secondary);line-height:1.8;margin-bottom:10px}
 .channel-meta{display:flex;gap:8px;flex-wrap:wrap;font-size:.72rem;color:var(--text-tertiary);align-items:center}
-.confidence-badge{font-size:.68rem;padding:2px 8px;border-radius:3px}
+.confidence-badge{font-size:.68rem;padding:3px 10px;border-radius:4px;font-weight:500}
 .confidence-official{background:var(--green-light);color:var(--green)}
 .confidence-verified{background:var(--blue-light);color:var(--blue)}
 .confidence-reported{background:var(--amber-light);color:var(--amber)}
 .confidence-estimated{background:var(--bg-warm);color:var(--text-secondary)}
-.timeline-legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px;font-size:.72rem;color:var(--text-secondary)}
-.legend-item{display:flex;align-items:center;gap:4px}
+
+/* Timeline */
+.timeline-legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:18px;font-size:.72rem;color:var(--text-secondary)}
+.legend-item{display:flex;align-items:center;gap:5px}
 .legend-dot{width:8px;height:8px;border-radius:50%}
-.timeline-month{display:flex;gap:16px;padding:10px 0;border-bottom:1px solid var(--border-light)}
+.timeline-month{display:flex;gap:18px;padding:12px 0;border-bottom:1px solid var(--border-light)}
 .timeline-month:last-child{border-bottom:none}
-.month-label{width:60px;flex-shrink:0;font-size:.82rem;font-weight:600;color:var(--text-secondary);padding-top:2px}
-.month-events{flex:1;display:flex;flex-wrap:wrap;gap:6px}
-.timeline-event{font-size:.75rem;padding:4px 10px;border-radius:4px;line-height:1.4}
+.month-label{width:72px;flex-shrink:0;font-size:.82rem;font-weight:600;color:var(--text-secondary);padding-top:3px}
+.month-events{flex:1;display:flex;flex-wrap:wrap;gap:8px}
+.timeline-event{font-size:.75rem;padding:5px 12px;border-radius:6px;line-height:1.4;transition:transform .15s}
+.timeline-event:hover{transform:scale(1.03)}
 .event-policy{background:var(--blue-light);color:var(--blue)}
 .event-exam{background:var(--red-light);color:var(--red)}
 .event-notification{background:var(--amber-light);color:var(--amber)}
 .event-result{background:var(--green-light);color:var(--green)}
 .event-prep{background:var(--purple-light);color:var(--purple)}
-.prep-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-.prep-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:1.2rem 1.4rem}
+
+/* Prep/Exam cards */
+.prep-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.prep-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:1.3rem 1.5rem;box-shadow:var(--shadow-sm);transition:all .25s}
+.prep-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
 .prep-card h3{font-family:var(--font-display);font-size:.95rem;font-weight:600;margin-bottom:6px}
 .prep-desc{font-size:.82rem;color:var(--text-secondary);line-height:1.7;margin-bottom:10px}
-.prep-tag-row{display:flex;gap:4px;flex-wrap:wrap}
-.prep-tag{font-size:.68rem;padding:2px 8px;border-radius:3px}
+.prep-tag-row{display:flex;gap:5px;flex-wrap:wrap}
+.prep-tag{font-size:.68rem;padding:3px 8px;border-radius:4px}
 .prep-tag-subject{background:var(--blue-light);color:var(--blue)}
 .prep-tag-level{background:var(--amber-light);color:var(--amber)}
 .prep-tag-type{background:var(--purple-light);color:var(--purple)}
-.difficulty-bar{display:flex;gap:3px;align-items:center;margin-top:6px}
+.difficulty-bar{display:flex;gap:3px;align-items:center;margin-top:8px}
 .diff-dot{width:8px;height:8px;border-radius:50%;background:var(--border)}
 .diff-dot.filled{background:var(--accent)}
 .diff-label{font-size:.68rem;color:var(--text-tertiary);margin-left:6px}
-.back-btn{display:inline-flex;align-items:center;gap:4px;font-size:.82rem;color:var(--text-tertiary);background:none;border:none;cursor:pointer;padding:6px 0;margin-bottom:12px;font-family:var(--font-body);transition:color .15s}
-.back-btn:hover{color:var(--text-primary)}
-.detail-header{margin-bottom:1.5rem}
-.detail-header h2{font-family:var(--font-display);font-size:1.3rem;font-weight:700}
-.detail-header .meta{font-size:.82rem;color:var(--text-secondary);margin-top:4px;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
-.detail-tabs{display:flex;gap:0;margin-bottom:16px;border-bottom:1px solid var(--border-light)}
-.detail-tab{padding:8px 16px;font-size:.82rem;font-weight:500;color:var(--text-tertiary);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;font-family:var(--font-body);transition:all .2s}
+
+/* Detail views */
+.back-btn{display:inline-flex;align-items:center;gap:5px;font-size:.82rem;color:var(--text-tertiary);background:none;border:none;cursor:pointer;padding:8px 0;margin-bottom:14px;font-family:var(--font-body);transition:color .15s}
+.back-btn:hover{color:var(--accent)}
+.detail-header{margin-bottom:1.8rem}
+.detail-header h2{font-family:var(--font-display);font-size:1.4rem;font-weight:700}
+.detail-header .meta{font-size:.82rem;color:var(--text-secondary);margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.detail-tabs{display:flex;gap:0;margin-bottom:18px;border-bottom:1px solid var(--border-light)}
+.detail-tab{padding:10px 18px;font-size:.82rem;font-weight:500;color:var(--text-tertiary);background:none;border:none;cursor:pointer;border-bottom:2.5px solid transparent;font-family:var(--font-body);transition:all .2s}
 .detail-tab:hover{color:var(--text-primary)}
 .detail-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 .detail-panel{display:none}
-.detail-panel.active{display:block;animation:fadeUp .3s ease-out}
-.section-title{font-family:var(--font-display);font-size:1.2rem;font-weight:600;margin-bottom:.5rem}
-.section-desc{font-size:.85rem;color:var(--text-secondary);margin-bottom:1.2rem;max-width:560px}
-.empty-state{text-align:center;padding:3rem 1rem;color:var(--text-tertiary);font-size:.9rem}
-.exam-info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:16px}
-.exam-info-item{background:var(--bg-warm);border-radius:var(--radius);padding:10px 12px}
-.exam-info-label{font-size:.68rem;color:var(--text-tertiary);margin-bottom:2px}
-.exam-info-value{font-size:.88rem;font-weight:500}
-.recall-item{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius);padding:12px 14px;margin-bottom:8px}
-.recall-summary{font-size:.85rem;line-height:1.7;margin-bottom:6px}
-.site-footer{max-width:960px;margin:3rem auto 0;padding:1.5rem;border-top:1px solid var(--border-light);font-size:.75rem;color:var(--text-tertiary);line-height:1.8}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:600px){.site-header{padding:2rem 1rem 1.5rem}.main{padding:1rem}.school-grid,.prep-grid{grid-template-columns:1fr}.timeline-month{flex-direction:column;gap:6px}.month-label{width:auto}.exam-info-grid{grid-template-columns:1fr 1fr}}
+.detail-panel.active{display:block;animation:fadeUp .4s ease-out}
+
+/* Section titles */
+.section-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-bottom:.6rem}
+.section-desc{font-size:.85rem;color:var(--text-secondary);margin-bottom:1.4rem;max-width:560px;line-height:1.8}
+.empty-state{text-align:center;padding:3.5rem 1rem;color:var(--text-tertiary);font-size:.9rem}
+
+/* Exam detail */
+.exam-info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:18px}
+.exam-info-item{background:var(--bg-warm);border-radius:var(--radius);padding:12px 14px}
+.exam-info-label{font-size:.68rem;color:var(--text-tertiary);margin-bottom:3px;text-transform:uppercase;letter-spacing:.03em}
+.exam-info-value{font-size:.9rem;font-weight:500}
+.recall-item{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius);padding:14px 16px;margin-bottom:10px;box-shadow:var(--shadow-sm)}
+.recall-summary{font-size:.85rem;line-height:1.7;margin-bottom:8px}
+
+/* Footer */
+.site-footer{max-width:960px;margin:4rem auto 0;padding:2rem 1.5rem;border-top:1px solid var(--border-light);font-size:.75rem;color:var(--text-tertiary);line-height:1.8;text-align:center}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* Responsive */
+@media(max-width:600px){.site-header{padding:2rem 1rem 1.5rem}.main{padding:1rem}.school-grid,.prep-grid{grid-template-columns:1fr}.timeline-month{flex-direction:column;gap:8px}.month-label{width:auto}.exam-info-grid{grid-template-columns:1fr 1fr}.nav-btn{padding:12px 14px;font-size:.8rem}}
 </style>
 </head>
 <body>
@@ -143,7 +178,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text-primary)
 <div id="sec-schools" class="section active"><div id="school-list-view"><div class="stats-bar" id="school-stats"></div><div class="filter-row" id="school-filters"></div><div class="school-grid" id="school-grid"></div></div><div id="school-detail-view" style="display:none"></div></div>
 <div id="sec-timeline" class="section"><h2 class="section-title">2026 年度时间线</h2><p class="section-desc">基于2025年政策及历年数据整理的2026届关键节点。部分日期已确认（如期末考试），其余为基于往年规律预估，以当年官方通知为准。</p><div class="filter-row" id="timeline-filters"></div><div id="timeline-content"></div></div>
 <div id="sec-exams" class="section"><h2 class="section-title">考试与备考</h2><p class="section-desc">各校选拔考试的形式、难度、回忆题整理，以及备考路径建议。</p><div class="filter-row" id="exam-filters"></div><div id="exam-list-view"><div class="prep-grid" id="exam-grid"></div></div><div id="exam-detail-view" style="display:none"></div></div>
-<div id="sec-about" class="section"><h2 class="section-title">关于这个项目</h2><div style="max-width:600px;font-size:.88rem;color:var(--text-secondary);line-height:1.9"><p style="margin-bottom:1rem">北京小升初的信息生态极度不透明。核心学校的点招、MD等渠道从不公开，培训机构靠信息差赚钱，家长之间信息严重不对等。</p><p style="margin-bottom:1rem">这个项目的目标很简单：<strong style="color:var(--text-primary)">把分散在家长群、机构直播、小红书里的碎片信息，整理成结构化、可验证、可检索的公开数据。</strong></p><p style="margin-bottom:1rem">所有数据托管在 GitHub，任何人可以查阅源数据、提交补充、纠正错误。每条信息都标注可信度等级，让你一眼区分官方数据和家长传言。</p><p style="margin-bottom:1rem">我们不接受任何机构赞助，不做付费推荐，不贩卖焦虑。</p><div style="background:var(--bg-warm);border-radius:var(--radius-lg);padding:1rem 1.2rem;margin-bottom:1.5rem"><p style="font-size:.82rem;font-weight:500;margin-bottom:6px">数据可信度标签说明</p><div style="display:flex;flex-direction:column;gap:4px;font-size:.78rem"><div style="display:flex;gap:8px;align-items:center"><span class="confidence-badge confidence-official">官方公示</span> 来自学校官网或教委文件</div><div style="display:flex;gap:8px;align-items:center"><span class="confidence-badge confidence-verified">多源验证</span> ≥3个独立来源交叉确认</div><div style="display:flex;gap:8px;align-items:center"><span class="confidence-badge confidence-reported">待验证</span> 1-2个来源，尚需更多验证</div><div style="display:flex;gap:8px;align-items:center"><span class="confidence-badge confidence-estimated">推算</span> 基于历年数据或间接推断</div></div></div><div style="display:flex;gap:8px;flex-wrap:wrap"><a href="#" style="font-size:.8rem;padding:6px 16px;border-radius:20px;background:var(--text-primary);color:var(--bg);text-decoration:none">GitHub 仓库</a><a href="#" style="font-size:.8rem;padding:6px 16px;border-radius:20px;border:1px solid var(--border);color:var(--text-secondary);text-decoration:none">提交信息</a><a href="#" style="font-size:.8rem;padding:6px 16px;border-radius:20px;border:1px solid var(--border);color:var(--text-secondary);text-decoration:none">贡献指南</a></div></div></div>
+<div id="sec-about" class="section"><h2 class="section-title">关于这个项目</h2><div style="max-width:600px;font-size:.88rem;color:var(--text-secondary);line-height:1.9"><p style="margin-bottom:1rem">北京小升初的信息生态极度不透明。核心学校的点招、MD等渠道从不公开，培训机构靠信息差赚钱，家长之间信息严重不对等。</p><p style="margin-bottom:1rem">这个项目的目标很简单：<strong style="color:var(--text-primary)">把分散在家长群、机构直播、小红书里的碎片信息，整理成结构化、可验证、可检索的公开数据。</strong></p><p style="margin-bottom:1rem">所有数据托管在 GitHub，任何人可以查阅源数据、提交补充、纠正错误。每条信息都标注可信度等级，让你一眼区分官方数据和家长传言。</p><p style="margin-bottom:1rem">我们不接受任何机构赞助，不做付费推荐，不贩卖焦虑。</p><div style="background:var(--bg-warm);border-radius:var(--radius-lg);padding:1rem 1.2rem;margin-bottom:1.5rem"><p style="font-size:.82rem;font-weight:500;margin-bottom:6px">数据可信度标签说明</p><div style="display:flex;flex-direction:column;gap:4px;font-size:.78rem"><div style="display:flex;gap:8px;align-items:center"><span class="confidence-badge confidence-official">官方公示</span> 来自学校官网或教委文件</div><div style="display:flex;gap:8px;align-items:center"><span class="confidence-badge confidence-verified">多源验证</span> ≥3个独立来源交叉确认</div><div style="display:flex;gap:8px;align-items:center"><span class="confidence-badge confidence-reported">待验证</span> 1-2个来源，尚需更多验证</div><div style="display:flex;gap:8px;align-items:center"><span class="confidence-badge confidence-estimated">推算</span> 基于历年数据或间接推断</div></div></div><div style="display:flex;gap:8px;flex-wrap:wrap"><a href="https://github.com/ouu25/beijing-xiaoshengchu" target="_blank" style="font-size:.8rem;padding:8px 20px;border-radius:20px;background:var(--text-primary);color:var(--bg);text-decoration:none;transition:opacity .2s">GitHub 仓库</a><a href="https://github.com/ouu25/beijing-xiaoshengchu/issues/new/choose" target="_blank" style="font-size:.8rem;padding:8px 20px;border-radius:20px;border:1px solid var(--border);color:var(--text-secondary);text-decoration:none;transition:all .2s">提交信息</a><a href="https://github.com/ouu25/beijing-xiaoshengchu/blob/main/docs/contributing.md" target="_blank" style="font-size:.8rem;padding:8px 20px;border-radius:20px;border:1px solid var(--border);color:var(--text-secondary);text-decoration:none;transition:all .2s">贡献指南</a></div></div></div>
 </main>
 <footer class="site-footer"><p>本项目所有信息仅供参考，入学决策请以各区教委和学校官方通知为准。</p><p>数据采用 CC BY-NC-SA 4.0 许可证 · 不接受机构赞助 · 独立运营</p></footer>
 <script>
