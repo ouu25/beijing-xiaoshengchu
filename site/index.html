@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>北京小升初信息公开</title>
+<meta name="description" content="海淀·西城 — 结构化、可验证、独立于任何机构的北京小升初升学信息数据库">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAF9F6;--bg-card:#FFF;--bg-warm:#F5F0E8;--text-primary:#1A1A18;--text-secondary:#6B6960;--text-tertiary:#9C9A8E;--border:#E5E2D9;--border-light:#EDEAE3;--accent:#B8553A;--accent-light:#F4E8E4;--green:#3D7A4A;--green-light:#E8F0EA;--amber:#8B6914;--amber-light:#FAF0D6;--blue:#2B5F8A;--blue-light:#E4EDF5;--red:#A33D3D;--red-light:#FAE8E8;--purple:#6B4FA0;--purple-light:#F0EBF8;--radius:6px;--radius-lg:10px;--font-display:'Noto Serif SC',serif;--font-body:'Noto Sans SC',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text-primary);line-height:1.7;-webkit-font-smoothing:antialiased}
+.site-header{padding:3rem 1.5rem 2rem;max-width:960px;margin:0 auto;animation:fadeUp .6s ease-out}
+.site-header h1{font-family:var(--font-display);font-size:clamp(1.6rem,4vw,2.2rem);font-weight:700;letter-spacing:-.02em;line-height:1.3;margin-bottom:.5rem}
+.site-header .subtitle{font-size:.95rem;color:var(--text-secondary);font-weight:300;max-width:520px}
+.site-header .principles{display:flex;gap:6px;margin-top:1rem;flex-wrap:wrap}
+.principle-tag{font-size:.72rem;padding:3px 10px;border-radius:20px;border:1px solid var(--border);color:var(--text-secondary)}
+.search-wrap{max-width:960px;margin:0 auto;padding:0 1.5rem}
+.search-box{position:relative;margin-bottom:4px}
+.search-box input{width:100%;padding:10px 16px 10px 38px;font-size:.88rem;font-family:var(--font-body);border:1px solid var(--border);border-radius:8px;background:var(--bg-card);color:var(--text-primary);outline:none;transition:border-color .2s}
+.search-box input:focus{border-color:var(--accent)}
+.search-box input::placeholder{color:var(--text-tertiary)}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-tertiary);font-size:.9rem;pointer-events:none}
+.search-results{background:var(--bg-card);border:1px solid var(--border-light);border-radius:8px;max-height:320px;overflow-y:auto;display:none;position:relative;z-index:50;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.search-results.show{display:block}
+.sr-item{padding:10px 16px;cursor:pointer;border-bottom:1px solid var(--border-light);transition:background .1s}
+.sr-item:last-child{border-bottom:none}
+.sr-item:hover{background:var(--bg-warm)}
+.sr-item .sr-name{font-size:.88rem;font-weight:500}
+.sr-item .sr-meta{font-size:.72rem;color:var(--text-tertiary);margin-top:2px}
+.sr-empty{padding:16px;text-align:center;font-size:.82rem;color:var(--text-tertiary)}
+.nav-bar{position:sticky;top:0;z-index:100;background:rgba(250,249,246,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light);padding:0 1.5rem}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-btn{padding:12px 18px;font-size:.82rem;font-weight:500;color:var(--text-tertiary);background:none;border:none;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s;font-family:var(--font-body)}
+.nav-btn:hover{color:var(--text-primary)}
+.nav-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.main{max-width:960px;margin:0 auto;padding:1.5rem}
+.section{display:none;animation:fadeUp .4s ease-out}
+.section.active{display:block}
+.stats-bar{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:18px;font-size:.78rem;color:var(--text-tertiary)}
+.stat-num{font-weight:600;color:var(--text-secondary);font-size:.88rem}
+.filter-row{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.filter-btn{font-size:.78rem;padding:5px 14px;border-radius:20px;border:1px solid var(--border);background:none;color:var(--text-secondary);cursor:pointer;font-family:var(--font-body);transition:all .15s}
+.filter-btn:hover{border-color:var(--text-secondary)}
+.filter-btn.active{background:var(--text-primary);color:var(--bg);border-color:var(--text-primary)}
+.school-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.school-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:1.2rem 1.4rem;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.school-card:hover{border-color:var(--border);box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.badge-row{display:flex;gap:4px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
+.tier{display:inline-block;font-size:.68rem;font-weight:600;padding:2px 8px;border-radius:3px}
+.tier-T1{background:var(--accent-light);color:var(--accent)}
+.tier-T2{background:var(--blue-light);color:var(--blue)}
+.district-badge{font-size:.68rem;padding:2px 7px;border-radius:3px}
+.district-haidian{background:var(--blue-light);color:var(--blue)}
+.district-xicheng{background:var(--purple-light);color:var(--purple)}
+.school-card h3{font-family:var(--font-display);font-size:1.05rem;font-weight:600;margin-bottom:2px}
+.school-card .aka{font-size:.78rem;color:var(--text-tertiary);margin-bottom:8px}
+.tags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px}
+.tag{font-size:.68rem;padding:2px 7px;border-radius:3px;background:var(--bg-warm);color:var(--text-secondary)}
+.channel-preview{font-size:.72rem;color:var(--text-tertiary);border-top:1px solid var(--border-light);padding-top:8px;margin-top:4px}
+.channel-list{display:flex;flex-direction:column;gap:12px}
+.channel-item{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:1.2rem 1.4rem}
+.channel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:6px}
+.channel-name{font-family:var(--font-display);font-size:.95rem;font-weight:600}
+.transparency-badge{font-size:.68rem;padding:2px 10px;border-radius:20px;font-weight:500}
+.transparency-open{background:var(--green-light);color:var(--green)}
+.transparency-semi_open{background:var(--amber-light);color:var(--amber)}
+.transparency-hidden{background:var(--red-light);color:var(--red)}
+.channel-method{font-size:.82rem;color:var(--text-secondary);line-height:1.7;margin-bottom:8px}
+.channel-meta{display:flex;gap:8px;flex-wrap:wrap;font-size:.72rem;color:var(--text-tertiary);align-items:center}
+.confidence-badge{font-size:.68rem;padding:2px 8px;border-radius:3px}
+.confidence-official{background:var(--green-light);color:var(--green)}
+.confidence-verified{background:var(--blue-light);color:var(--blue)}
+.confidence-reported{background:var(--amber-light);color:var(--amber)}
+.confidence-estimated{background:var(--bg-warm);color:var(--text-secondary)}
+.timeline-legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px;font-size:.72rem;color:var(--text-secondary)}
+.legend-item{display:flex;align-items:center;gap:4px}
+.legend-dot{width:8px;height:8px;border-radius:50%}
+.timeline-month{display:flex;gap:16px;padding:10px 0;border-bottom:1px solid var(--border-light)}
+.timeline-month:last-child{border-bottom:none}
+.month-label{width:60px;flex-shrink:0;font-size:.82rem;font-weight:600;color:var(--text-secondary);padding-top:2px}
+.month-events{flex:1;display:flex;flex-wrap:wrap;gap:6px}
+.timeline-event{font-size:.75rem;padding:4px 10px;border-radius:4px;line-height:1.4}
+.event-policy{background:var(--blue-light);color:var(--blue)}
+.event-exam{background:var(--red-light);color:var(--red)}
+.event-notification{background:var(--amber-light);color:var(--amber)}
+.event-result{background:var(--green-light);color:var(--green)}
+.event-prep{background:var(--purple-light);color:var(--purple)}
+.prep-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.prep-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:1.2rem 1.4rem}
+.prep-card h3{font-family:var(--font-display);font-size:.95rem;font-weight:600;margin-bottom:6px}
+.prep-desc{font-size:.82rem;color:var(--text-secondary);line-height:1.7;margin-bottom:10px}
+.prep-tag-row{display:flex;gap:4px;flex-wrap:wrap}
+.prep-tag{font-size:.68rem;padding:2px 8px;border-radius:3px}
+.prep-tag-subject{background:var(--blue-light);color:var(--blue)}
+.prep-tag-level{background:var(--amber-light);color:var(--amber)}
+.prep-tag-type{background:var(--purple-light);color:var(--purple)}
+.difficulty-bar{display:flex;gap:3px;align-items:center;margin-top:6px}
+.diff-dot{width:8px;height:8px;border-radius:50%;background:var(--border)}
+.diff-dot.filled{background:var(--accent)}
+.diff-label{font-size:.68rem;color:var(--text-tertiary);margin-left:6px}
+.back-btn{display:inline-flex;align-items:center;gap:4px;font-size:.82rem;color:var(--text-tertiary);background:none;border:none;cursor:pointer;padding:6px 0;margin-bottom:12px;font-family:var(--font-body);transition:color .15s}
+.back-btn:hover{color:var(--text-primary)}
+.detail-header{margin-bottom:1.5rem}
+.detail-header h2{font-family:var(--font-display);font-size:1.3rem;font-weight:700}
+.detail-header .meta{font-size:.82rem;color:var(--text-secondary);margin-top:4px;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+.detail-tabs{display:flex;gap:0;margin-bottom:16px;border-bottom:1px solid var(--border-light)}
+.detail-tab{padding:8px 16px;font-size:.82rem;font-weight:500;color:var(--text-tertiary);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;font-family:var(--font-body);transition:all .2s}
+.detail-tab:hover{color:var(--text-primary)}
+.detail-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.detail-panel{display:none}
+.detail-panel.active{display:block;animation:fadeUp .3s ease-out}
+.section-title{font-family:var(--font-display);font-size:1.2rem;font-weight:600;margin-bottom:.5rem}
+.section-desc{font-size:.85rem;color:var(--text-secondary);margin-bottom:1.2rem;max-width:560px}
+.empty-state{text-align:center;padding:3rem 1rem;color:var(--text-tertiary);font-size:.9rem}
+.exam-info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:16px}
+.exam-info-item{background:var(--bg-warm);border-radius:var(--radius);padding:10px 12px}
+.exam-info-label{font-size:.68rem;color:var(--text-tertiary);margin-bottom:2px}
+.exam-info-value{font-size:.88rem;font-weight:500}
+.recall-item{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius);padding:12px 14px;margin-bottom:8px}
+.recall-summary{font-size:.85rem;line-height:1.7;margin-bottom:6px}
+.site-footer{max-width:960px;margin:3rem auto 0;padding:1.5rem;border-top:1px solid var(--border-light);font-size:.75rem;color:var(--text-tertiary);line-height:1.8}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.site-header{padding:2rem 1rem 1.5rem}.main{padding:1rem}.school-grid,.prep-grid{grid-template-columns:1fr}.timeline-month{flex-direction:column;gap:6px}.month-label{width:auto}.exam-info-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header class="site-header">
+<h1>北京小升初信息公开</h1>
+<p class="subtitle">海淀 · 西城 — 结构化、可验证、独立于任何机构的升学信息数据库</p>
+<div class="principles"><span class="principle-tag">事实优先</span><span class="principle-tag">多源交叉验证</span><span class="principle-tag">脱敏保护</span><span class="principle-tag">独立运营</span></div>
+</header>
+<div class="search-wrap"><div class="search-box"><span class="search-icon">⌕</span><input type="text" id="search-input" placeholder="搜索学校、渠道、关键词…" autocomplete="off"></div><div class="search-results" id="search-results"></div></div>
+<nav class="nav-bar"><div class="nav-inner">
+<button class="nav-btn active" data-section="schools">学校档案</button>
+<button class="nav-btn" data-section="timeline">时间线</button>
+<button class="nav-btn" data-section="exams">考试与备考</button>
+<button class="nav-btn" data-section="about">关于项目</button>
+</div></nav>
+<main class="main">
+<div id="sec-schools" class="section active"><div id="school-list-view"><div class="stats-bar" id="school-stats"></div><div class="filter-row" id="school-filters"></div><div class="school-grid" id="school-grid"></div></div><div id="school-detail-view" style="display:none"></div></div>
+<div id="sec-timeline" class="section"><h2 class="section-title">2025 年度时间线</h2><p class="section-desc">基于历年数据整理的关键节点。标注"推算"的日期为基于往年规律预估，以当年官方通知为准。</p><div class="filter-row" id="timeline-filters"></div><div id="timeline-content"></div></div>
+<div id="sec-exams" class="section"><h2 class="section-title">考试与备考</h2><p class="section-desc">各校选拔考试的形式、难度、回忆题整理，以及备考路径建议。</p><div class="filter-row" id="exam-filters"></div><div id="exam-list-view"><div class="prep-grid" id="exam-grid"></div></div><div id="exam-detail-view" style="display:none"></div></div>
+<div id="sec-about" class="section"><h2 class="section-title">关于这个项目</h2><div style="max-width:600px;font-size:.88rem;color:var(--text-secondary);line-height:1.9"><p style="margin-bottom:1rem">北京小升初的信息生态极度不透明。核心学校的点招、MD等渠道从不公开，培训机构靠信息差赚钱，家长之间信息严重不对等。</p><p style="margin-bottom:1rem">这个项目的目标很简单：<strong style="color:var(--text-primary)">把分散在家长群、机构直播、小红书里的碎片信息，整理成结构化、可验证、可检索的公开数据。</strong></p><p style="margin-bottom:1rem">所有数据托管在 GitHub，任何人可以查阅源数据、提交补充、纠正错误。每条信息都标注可信度等级，让你一眼区分官方数据和家长传言。</p><p style="margin-bottom:1rem">我们不接受任何机构赞助，不做付费推荐，不贩卖焦虑。</p><div style="background:var(--bg-warm);border-radius:var(--radius-lg);padding:1rem 1.2rem;margin-bottom:1.5rem"><p style="font-size:.82rem;font-weight:500;margin-bottom:6px">数据可信度标签说明</p><div style="display:flex;flex-direction:column;gap:4px;font-size:.78rem"><div style="display:flex;gap:8px;align-items:center"><span class="confidence-badge confidence-official">官方公示</span> 来自学校官网或教委文件</div><div style="display:flex;gap:8px;align-items:center"><span class="confidence-badge confidence-verified">多源验证</span> ≥3个独立来源交叉确认</div><div style="display:flex;gap:8px;align-items:center"><span class="confidence-badge confidence-reported">待验证</span> 1-2个来源，尚需更多验证</div><div style="display:flex;gap:8px;align-items:center"><span class="confidence-badge confidence-estimated">推算</span> 基于历年数据或间接推断</div></div></div><div style="display:flex;gap:8px;flex-wrap:wrap"><a href="#" style="font-size:.8rem;padding:6px 16px;border-radius:20px;background:var(--text-primary);color:var(--bg);text-decoration:none">GitHub 仓库</a><a href="#" style="font-size:.8rem;padding:6px 16px;border-radius:20px;border:1px solid var(--border);color:var(--text-secondary);text-decoration:none">提交信息</a><a href="#" style="font-size:.8rem;padding:6px 16px;border-radius:20px;border:1px solid var(--border);color:var(--text-secondary);text-decoration:none">贡献指南</a></div></div></div>
+</main>
+<footer class="site-footer"><p>本项目所有信息仅供参考，入学决策请以各区教委和学校官方通知为准。</p><p>数据采用 CC BY-NC-SA 4.0 许可证 · 不接受机构赞助 · 独立运营</p></footer>
+<script>
+const SCHOOLS=[
+{school_id:"haidian_rdfz",name:"中国人民大学附属中学",short_names:["人大附中","RDF"],district:"haidian",tier:"T1",tags:["六小强","早培校"],notes:"海淀六小强之首，早培项目是其最核心的选拔渠道。本部与各分校为不同招生主体。",channels:[{channel_type:"early_talent",name:"早培班",transparency:"semi_open",selection_method:"网上报名 → 初筛（机考，数学+综合）→ 复筛 → 试读（约一周）→ 最终录取",source_confidence:"estimated",notes:"面向五年级学生",requirements:"北京学籍，五年级"},{channel_type:"selection",name:"点招/MD",transparency:"hidden",selection_method:"据家长反馈，存在通过机构推荐或考试成绩筛选的非公开录取渠道",source_confidence:"reported",notes:"信息来源有限，需更多验证"},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区全区派位 + 学区派位，电脑随机",source_confidence:"estimated",notes:"兜底渠道，本部名额占比较小"}]},
+{school_id:"haidian_qhfz",name:"清华大学附属中学",short_names:["清华附中","清附"],district:"haidian",tier:"T1",tags:["六小强"],notes:"海淀六小强之一，创新班为核心选拔项目。",channels:[{channel_type:"selection",name:"创新班选拔",transparency:"semi_open",selection_method:"有公开报名渠道，多轮筛选，具体标准不完全公开",source_confidence:"reported",notes:""},{channel_type:"selection",name:"点招/MD",transparency:"hidden",selection_method:"非公开渠道",source_confidence:"reported",notes:"待验证"},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"haidian_bdfz",name:"北京大学附属中学",short_names:["北大附中","北附"],district:"haidian",tier:"T1",tags:["六小强"],notes:"海淀六小强之一，书院制管理模式。",channels:[{channel_type:"selection",name:"点招/MD",transparency:"hidden",selection_method:"非公开渠道",source_confidence:"reported",notes:""},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"haidian_syzx",name:"十一学校",short_names:["十一学校","十一","BNDS"],district:"haidian",tier:"T1",tags:["六小强"],notes:"走班制改革先锋，2+4项目面向五年级学生。",channels:[{channel_type:"early_talent",name:"2+4项目",transparency:"semi_open",selection_method:"面向五年级的提前招生项目，含考试选拔",source_confidence:"reported",notes:"",requirements:"五年级学生"},{channel_type:"selection",name:"综合优录",transparency:"hidden",selection_method:"非公开渠道",source_confidence:"reported",notes:""},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"haidian_yzcz",name:"北京一零一中学",short_names:["一零一中","101"],district:"haidian",tier:"T1",tags:["六小强"],notes:"海淀六小强之一，坐落于圆明园内。",channels:[{channel_type:"selection",name:"点招/MD",transparency:"hidden",selection_method:"非公开渠道",source_confidence:"reported",notes:""},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"haidian_sffz",name:"首都师范大学附属中学",short_names:["首师附中","首师附"],district:"haidian",tier:"T1",tags:["六小强"],notes:"海淀六小强之一，近年发展势头强劲。",channels:[{channel_type:"selection",name:"点招/MD",transparency:"hidden",selection_method:"非公开渠道",source_confidence:"reported",notes:""},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"xicheng_bjsz",name:"北京市第四中学",short_names:["北京四中","四中"],district:"xicheng",tier:"T1",tags:["西城四金刚"],notes:"西城区顶尖学校，道元班为特色创新项目。",channels:[{channel_type:"selection",name:"点招/MD",transparency:"hidden",selection_method:"非公开渠道",source_confidence:"reported",notes:"待更多验证"},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"西城区学区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"xicheng_sanfan",name:"北京三帆中学",short_names:["三帆中学","三帆"],district:"xicheng",tier:"T1",tags:["西城四金刚"],notes:"北师大实验中学分校，西城区最热门初中之一。",channels:[{channel_type:"selection",name:"点招/MD",transparency:"hidden",selection_method:"非公开渠道",source_confidence:"reported",notes:""},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"西城区学区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"xicheng_shisan",name:"北京市第十三中学分校",short_names:["十三中分校","十三分"],district:"xicheng",tier:"T1",tags:["西城四金刚"],notes:"西城区优质初中，教学质量稳定。",channels:[{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"西城区学区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"xicheng_basf",name:"北京市第八中学",short_names:["北京八中","八中"],district:"xicheng",tier:"T1",tags:["西城四金刚","少儿班/素质班"],notes:"少儿班和素质班面向超常儿童，全北京最早的超常选拔项目之一。",channels:[{channel_type:"early_talent",name:"少儿班/素质班",transparency:"semi_open",selection_method:"公开报名 → 多轮筛选（智力测试+综合评估+试读）",source_confidence:"reported",notes:"面向低龄超常儿童",requirements:"年龄要求以当年通知为准"},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"西城区学区派位",source_confidence:"estimated",notes:""}]}
+];
+const EXAMS=[
+{exam_id:"rdfz_zaopei_2025",school_id:"haidian_rdfz",school_name:"人大附中",exam_name:"早培班选拔",year:2025,channel_type:"early_talent",format:"mixed",subjects:["数学思维","语文阅读","百科常识","逻辑推理"],difficulty:"competition_mid",source_confidence:"estimated",question_recalls:[{subject:"数学",topic_tags:["数论","几何","组合"],summary:"涉及质因数分解、几何计数、逻辑推理等，难度高于课内但低于高联",difficulty_rating:4,similar_resources:["高思导引六年级","华杯赛决赛真题"]},{subject:"语文",topic_tags:["阅读理解","文学常识"],summary:"含古诗文理解、现代文阅读、文学常识判断",difficulty_rating:3,similar_resources:[]},{subject:"百科",topic_tags:["科学","历史","时事"],summary:"天文地理物理生物常识及时事热点",difficulty_rating:3,similar_resources:[]}],prep_recommendations:[{stage:"基础积累期",period:"3-4年级",focus:"课内满分 + 奥数入门",materials:[{name:"举一反三"},{name:"高思导引"}]},{stage:"能力提升期",period:"4-5年级",focus:"系统学习竞赛数学 + 广泛阅读",materials:[{name:"高思导引进阶"},{name:"学而思创新体系"}]},{stage:"冲刺准备期",period:"5年级上",focus:"早培真题训练 + 百科查漏补缺",materials:[{name:"历年早培回忆题汇编"}]}],notes:"以上为基于历年家长回忆整理的概况，每年可能调整。"},
+{exam_id:"syzx_2plus4_2025",school_id:"haidian_syzx",school_name:"十一学校",exam_name:"2+4项目选拔",year:2025,channel_type:"early_talent",format:"mixed",subjects:["数学","英语","综合素质"],difficulty:"competition_intro",source_confidence:"reported",question_recalls:[{subject:"数学",topic_tags:["应用题","逻辑"],summary:"数学思维为主，含较多应用题和逻辑推理",difficulty_rating:3,similar_resources:[]},{subject:"英语",topic_tags:["阅读","口语"],summary:"英语阅读和口语面试",difficulty_rating:3,similar_resources:[]}],prep_recommendations:[{stage:"综合准备",period:"4-5年级",focus:"数学思维 + 英语阅读 + 综合素质",materials:[{name:"高思导引"},{name:"新概念英语2"}]}],notes:"信息基于有限家长反馈，待更多验证。"},
+{exam_id:"basf_shaoner_2025",school_id:"xicheng_basf",school_name:"北京八中",exam_name:"少儿班/素质班选拔",year:2025,channel_type:"early_talent",format:"mixed",subjects:["智力测试","数学","综合"],difficulty:"competition_mid",source_confidence:"reported",question_recalls:[{subject:"智力测试",topic_tags:["图形推理","空间想象","记忆力"],summary:"含大量图形推理、空间旋转、短期记忆测试",difficulty_rating:4,similar_resources:["门萨智力测试题集"]},{subject:"数学",topic_tags:["速算","逻辑"],summary:"速算能力和数学逻辑",difficulty_rating:3,similar_resources:[]}],prep_recommendations:[{stage:"能力评估",period:"低年级",focus:"先评估孩子是否适合超常通道",materials:[]},{stage:"针对训练",period:"报名前3-6个月",focus:"图形推理 + 速算 + 记忆力练习",materials:[{name:"图形推理专项"}]}],notes:"少儿班面向低龄段，素质班面向小学高年级。"}
+];
+const TL={haidian:[{month:"9-10月",events:[{name:"新六年级开学，冲刺期开始",type:"prep",action:"确定目标校，评估水平"},{name:"部分校秋季活动/摸底",type:"exam"}]},{month:"11-12月",events:[{name:"机构杯赛/模拟排名",type:"exam",action:"参加排名考试"},{name:"个别校提前接触",type:"notification"}]},{month:"1月",events:[{name:"寒假前集中考试",type:"exam"},{name:"寒假冲刺备考",type:"prep"}]},{month:"2-3月",events:[{name:"春季密集选拔期",type:"exam",action:"核心考试期"},{name:"人大附早培报名",type:"exam",action:"登录官网报名"},{name:"第一批MD发出",type:"notification",action:"保持电话畅通"}]},{month:"4月",events:[{name:"入学政策发布",type:"policy",action:"仔细阅读政策"},{name:"早培初筛",type:"exam"},{name:"MD高峰期",type:"notification"}]},{month:"5月",events:[{name:"信息采集/志愿填报",type:"policy",action:"登录义教平台填报"},{name:"早培复筛/试读",type:"exam"},{name:"最后一波MD",type:"notification"}]},{month:"6月",events:[{name:"派位结果公布",type:"result",action:"查询结果"},{name:"录取通知发放",type:"result"}]},{month:"7月",events:[{name:"分班考试",type:"result"},{name:"最终报到",type:"result"}]}],xicheng:[{month:"9-10月",events:[{name:"新六年级开学",type:"prep"},{name:"部分校接触优质生源",type:"notification"}]},{month:"11-12月",events:[{name:"八中少儿班/素质班报名",type:"exam",action:"关注八中官网"}]},{month:"1-3月",events:[{name:"选拔活动（较海淀少）",type:"exam"},{name:"零星MD",type:"notification"}]},{month:"4月",events:[{name:"西城区入学政策发布",type:"policy",action:"确认学区对应学校"},{name:"特色校/寄宿校报名",type:"policy"}]},{month:"5月",events:[{name:"信息采集/志愿填报",type:"policy",action:"登录义教平台"},{name:"全区派位",type:"policy"}]},{month:"6月",events:[{name:"学区派位结果",type:"result"},{name:"录取通知",type:"result"}]},{month:"7月",events:[{name:"分班考试与报到",type:"result"}]}]};
+const D={haidian:"海淀区",xicheng:"西城区"},TR={open:"公开",semi_open:"半公开",hidden:"非公开"},CF={official:"官方公示",verified:"多源验证",reported:"待验证",estimated:"推算"},DF={curriculum:"课内",extended:"拓展",competition_intro:"竞赛入门",competition_mid:"竞赛中等",competition_hard:"竞赛高难"},DN={curriculum:1,extended:2,competition_intro:3,competition_mid:4,competition_hard:5},FM={written:"笔试",computer:"机考",interview:"面谈",activity:"综合活动",mixed:"多轮混合"};
+
+// NAV
+document.querySelectorAll('.nav-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.nav-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById('sec-'+b.dataset.section).classList.add('active');if(b.dataset.section==='schools')backToSchoolList();if(b.dataset.section==='exams')backToExamList()}));
+
+// SEARCH
+const sI=document.getElementById('search-input'),sR=document.getElementById('search-results');
+sI.addEventListener('input',()=>{const q=sI.value.trim().toLowerCase();if(q.length<1){sR.classList.remove('show');return}const r=[];SCHOOLS.forEach(s=>{if([s.name,...s.short_names,...s.tags,s.notes,...(s.channels||[]).map(c=>c.name)].join(' ').toLowerCase().includes(q))r.push({type:'school',id:s.school_id,name:s.name,meta:`${D[s.district]} · ${s.tags.join(', ')}`})});EXAMS.forEach(e=>{if([e.exam_name,e.school_name,...e.subjects,...(e.question_recalls||[]).flatMap(x=>x.topic_tags)].join(' ').toLowerCase().includes(q))r.push({type:'exam',id:e.exam_id,name:e.exam_name,meta:`${e.school_name} · ${e.year}`})});sR.innerHTML=r.length===0?'<div class="sr-empty">没有找到匹配结果</div>':r.slice(0,8).map(x=>`<div class="sr-item" data-type="${x.type}" data-id="${x.id}"><div class="sr-name">${x.name}</div><div class="sr-meta">${x.meta}</div></div>`).join('');sR.classList.add('show')});
+sR.addEventListener('click',e=>{const it=e.target.closest('.sr-item');if(!it)return;sR.classList.remove('show');sI.value='';const sec=it.dataset.type==='school'?'schools':'exams';document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));document.querySelector(`[data-section="${sec}"]`).classList.add('active');document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById('sec-'+sec).classList.add('active');if(it.dataset.type==='school')showSchoolDetail(it.dataset.id);else showExamDetail(it.dataset.id)});
+document.addEventListener('click',e=>{if(!e.target.closest('.search-wrap'))sR.classList.remove('show')});
+
+// SCHOOLS
+function renderStats(f){const l=f==='all'?SCHOOLS:SCHOOLS.filter(s=>s.district===f);document.getElementById('school-stats').innerHTML=`<div class="stat-item"><span class="stat-num">${l.length}</span> 所学校</div><div class="stat-item"><span class="stat-num">${l.reduce((a,s)=>a+(s.channels||[]).length,0)}</span> 条渠道</div><div class="stat-item"><span class="stat-num">${EXAMS.length}</span> 场考试</div>`}
+function renderSchoolFilters(){document.getElementById('school-filters').innerHTML=`<button class="filter-btn active" onclick="filterSchools('all',this)">全部</button>${[...new Set(SCHOOLS.map(s=>s.district))].map(d=>`<button class="filter-btn" onclick="filterSchools('${d}',this)">${D[d]}</button>`).join('')}`}
+function renderSchools(f){const g=document.getElementById('school-grid'),l=f==='all'?SCHOOLS:SCHOOLS.filter(s=>s.district===f);g.innerHTML=l.map(s=>{const cp=(s.channels||[]).map(c=>({open:'●',semi_open:'◐',hidden:'○'}[c.transparency]||'·')+' '+c.name).join('　');return`<div class="school-card" onclick="showSchoolDetail('${s.school_id}')"><div class="badge-row"><span class="tier tier-${s.tier}">${s.tier}</span><span class="district-badge district-${s.district}">${D[s.district]}</span></div><h3>${s.name}</h3><div class="aka">${s.short_names.join(' · ')}</div><div class="tags">${s.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div><div class="channel-preview">${cp}</div></div>`}).join('');renderStats(f)}
+function filterSchools(d,b){document.querySelectorAll('#school-filters .filter-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderSchools(d)}
+function showSchoolDetail(id){const s=SCHOOLS.find(x=>x.school_id===id);if(!s)return;document.getElementById('school-list-view').style.display='none';const el=document.getElementById('school-detail-view');el.style.display='block';const se=EXAMS.filter(e=>e.school_id===id);el.innerHTML=`<button class="back-btn" onclick="backToSchoolList()">← 返回列表</button><div class="detail-header"><h2>${s.name}</h2><div class="meta"><span class="tier tier-${s.tier}">${s.tier}</span><span class="district-badge district-${s.district}">${D[s.district]}</span>${s.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div><p style="font-size:.85rem;color:var(--text-secondary);margin-top:10px;max-width:560px">${s.notes}</p></div><div class="detail-tabs"><button class="detail-tab active" onclick="switchTab('channels',this)">入学渠道 (${(s.channels||[]).length})</button><button class="detail-tab" onclick="switchTab('exams',this)">考试记录 (${se.length})</button></div><div class="detail-panel active" id="panel-channels"><div class="channel-list">${(s.channels||[]).map(c=>`<div class="channel-item"><div class="channel-header"><span class="channel-name">${c.name}</span><span class="transparency-badge transparency-${c.transparency}">${TR[c.transparency]}</span></div><div class="channel-method">${c.selection_method}</div>${c.requirements?`<div style="font-size:.78rem;color:var(--text-secondary);margin-bottom:6px">报名条件：${c.requirements}</div>`:''}<div class="channel-meta"><span class="confidence-badge confidence-${c.source_confidence}">${CF[c.source_confidence]}</span>${c.notes?`<span>${c.notes}</span>`:''}</div></div>`).join('')}</div></div><div class="detail-panel" id="panel-exams">${se.length===0?'<div class="empty-state">暂无考试记录，欢迎贡献信息</div>':se.map(e=>examCard(e,true)).join('')}</div>`;el.style.animation='none';el.offsetHeight;el.style.animation='fadeUp .3s ease-out'}
+function switchTab(t,b){document.querySelectorAll('.detail-tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.detail-panel').forEach(p=>p.classList.remove('active'));document.getElementById('panel-'+t).classList.add('active')}
+function backToSchoolList(){document.getElementById('school-detail-view').style.display='none';document.getElementById('school-list-view').style.display='block'}
+
+// TIMELINE
+function renderTLFilters(){document.getElementById('timeline-filters').innerHTML=Object.keys(TL).map((d,i)=>`<button class="filter-btn ${i===0?'active':''}" onclick="filterTL('${d}',this)">${D[d]}</button>`).join('')}
+function renderTL(d){const data=TL[d];if(!data){document.getElementById('timeline-content').innerHTML='<div class="empty-state">暂无数据</div>';return}document.getElementById('timeline-content').innerHTML=`<div class="timeline-legend"><span class="legend-item"><span class="legend-dot" style="background:var(--blue)"></span>政策</span><span class="legend-item"><span class="legend-dot" style="background:var(--red)"></span>考试</span><span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>MD通知</span><span class="legend-item"><span class="legend-dot" style="background:var(--green)"></span>结果</span><span class="legend-item"><span class="legend-dot" style="background:var(--purple)"></span>备考</span></div>${data.map(m=>`<div class="timeline-month"><div class="month-label">${m.month}</div><div class="month-events">${m.events.map(e=>`<span class="timeline-event event-${e.type}"${e.action?` title="需要做：${e.action}" style="cursor:help"`:``}>${e.name}</span>`).join('')}</div></div>`).join('')}`}
+function filterTL(d,b){document.querySelectorAll('#timeline-filters .filter-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderTL(d)}
+
+// EXAMS
+function renderExamFilters(){document.getElementById('exam-filters').innerHTML=`<button class="filter-btn active" onclick="filterExams('all',this)">全部</button><button class="filter-btn" onclick="filterExams('haidian',this)">海淀区</button><button class="filter-btn" onclick="filterExams('xicheng',this)">西城区</button>`}
+function examCard(e,inline){const dn=DN[e.difficulty]||0;return`<div class="prep-card"${!inline?` style="cursor:pointer" onclick="showExamDetail('${e.exam_id}')"`:``}><div style="display:flex;gap:4px;align-items:center;margin-bottom:6px;flex-wrap:wrap"><span class="confidence-badge confidence-${e.source_confidence}">${CF[e.source_confidence]}</span><span style="font-size:.68rem;color:var(--text-tertiary)">${e.year}</span></div><h3>${e.exam_name}</h3><div class="prep-desc">${e.school_name} · ${FM[e.format]||e.format}</div><div class="prep-tag-row">${e.subjects.map(s=>`<span class="prep-tag prep-tag-subject">${s}</span>`).join('')}<span class="prep-tag prep-tag-level">${DF[e.difficulty]||''}</span></div><div class="difficulty-bar">${Array.from({length:5},(_,i)=>`<span class="diff-dot${i<dn?' filled':''}"></span>`).join('')}<span class="diff-label">${DF[e.difficulty]||''}</span></div></div>`}
+function renderExams(f){const l=f==='all'?EXAMS:EXAMS.filter(e=>SCHOOLS.find(s=>s.school_id===e.school_id)?.district===f);document.getElementById('exam-grid').innerHTML=l.length===0?'<div class="empty-state">暂无考试记录</div>':l.map(e=>examCard(e,false)).join('')}
+function filterExams(d,b){document.querySelectorAll('#exam-filters .filter-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderExams(d);backToExamList()}
+function showExamDetail(id){const e=EXAMS.find(x=>x.exam_id===id);if(!e)return;document.getElementById('exam-list-view').style.display='none';const el=document.getElementById('exam-detail-view');el.style.display='block';const dn=DN[e.difficulty]||0;el.innerHTML=`<button class="back-btn" onclick="backToExamList()">← 返回列表</button><div class="detail-header"><h2>${e.exam_name}</h2><div class="meta"><span style="cursor:pointer;text-decoration:underline;color:var(--accent)" onclick="backToExamList();document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));document.querySelector('[data-section=schools]').classList.add('active');document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById('sec-schools').classList.add('active');showSchoolDetail('${e.school_id}')">${e.school_name}</span><span>· ${e.year}</span><span class="confidence-badge confidence-${e.source_confidence}">${CF[e.source_confidence]}</span></div></div><div class="exam-info-grid"><div class="exam-info-item"><div class="exam-info-label">考试形式</div><div class="exam-info-value">${FM[e.format]||e.format}</div></div><div class="exam-info-item"><div class="exam-info-label">难度</div><div class="exam-info-value">${DF[e.difficulty]||'未知'}</div></div><div class="exam-info-item"><div class="exam-info-label">科目</div><div class="exam-info-value">${e.subjects.join('、')}</div></div></div>${e.question_recalls?.length?`<h3 style="font-family:var(--font-display);font-size:1rem;font-weight:600;margin:1.2rem 0 .8rem">题目回忆（非原题）</h3>${e.question_recalls.map(r=>`<div class="recall-item"><div style="display:flex;gap:6px;align-items:center;margin-bottom:4px"><span style="font-size:.82rem;font-weight:500">${r.subject}</span><div class="difficulty-bar" style="margin:0">${Array.from({length:5},(_,i)=>`<span class="diff-dot${i<r.difficulty_rating?' filled':''}"></span>`).join('')}</div></div><div class="recall-summary">${r.summary}</div><div class="prep-tag-row">${r.topic_tags.map(t=>`<span class="prep-tag prep-tag-subject">${t}</span>`).join('')}${r.similar_resources.map(s=>`<span class="prep-tag prep-tag-type">${s}</span>`).join('')}</div></div>`).join('')}`:''}${e.prep_recommendations?.length?`<h3 style="font-family:var(--font-display);font-size:1rem;font-weight:600;margin:1.2rem 0 .8rem">备考路径建议</h3><div style="display:flex;flex-direction:column;gap:8px">${e.prep_recommendations.map((p,i)=>`<div style="display:flex;gap:12px;padding:12px 14px;background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius)"><div style="width:28px;height:28px;border-radius:50%;background:var(--accent-light);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:600;flex-shrink:0">${i+1}</div><div style="flex:1"><div style="font-size:.85rem;font-weight:500;margin-bottom:2px">${p.stage} <span style="font-size:.72rem;color:var(--text-tertiary);font-weight:400">${p.period}</span></div><div style="font-size:.82rem;color:var(--text-secondary);line-height:1.6">${p.focus}</div>${p.materials?.length?`<div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:6px">${p.materials.map(m=>`<span class="prep-tag prep-tag-type">${m.name}</span>`).join('')}</div>`:''}</div></div>`).join('')}</div>`:``}${e.notes?`<p style="font-size:.78rem;color:var(--text-tertiary);margin-top:16px;line-height:1.6;border-top:1px solid var(--border-light);padding-top:12px">${e.notes}</p>`:''}`;el.style.animation='none';el.offsetHeight;el.style.animation='fadeUp .3s ease-out'}
+function backToExamList(){document.getElementById('exam-detail-view').style.display='none';document.getElementById('exam-list-view').style.display='block'}
+
+// INIT
+renderSchoolFilters();renderSchools('all');renderTLFilters();renderTL('haidian');renderExamFilters();renderExams('all');
+</script>
+</body>
+</html>

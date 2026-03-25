@@ -1,0 +1,156 @@
+{
+  "district": "haidian",
+  "year": 2025,
+  "events": [
+    {
+      "event_name": "新六年级开学，小升初冲刺期开始",
+      "event_type": "prep",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2024-09-01",
+      "date_expected_end": null,
+      "date_actual": null,
+      "action_required": "确定目标校，评估孩子水平，制定冲刺计划",
+      "historical_dates": [],
+      "source_confidence": "official",
+      "notes": ""
+    },
+    {
+      "event_name": "部分学校秋季摸底/活动",
+      "event_type": "exam",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2024-10-01",
+      "date_expected_end": "2024-11-30",
+      "date_actual": null,
+      "action_required": "关注目标校动态和机构群消息",
+      "historical_dates": [],
+      "source_confidence": "reported",
+      "notes": "部分学校在秋季学期有非公开的摸底活动，需家长群信息"
+    },
+    {
+      "event_name": "机构杯赛/模拟排名考试",
+      "event_type": "exam",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2024-11-01",
+      "date_expected_end": "2024-12-31",
+      "date_actual": null,
+      "action_required": "参加主流机构的排名考试，成绩可能被部分学校参考",
+      "historical_dates": [],
+      "source_confidence": "reported",
+      "notes": ""
+    },
+    {
+      "event_name": "寒假前集中考试/选拔",
+      "event_type": "exam",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2025-01-01",
+      "date_expected_end": "2025-01-20",
+      "date_actual": null,
+      "action_required": "确保报名并做好考前准备",
+      "historical_dates": [],
+      "source_confidence": "reported",
+      "notes": ""
+    },
+    {
+      "event_name": "春季密集选拔期",
+      "event_type": "exam",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2025-02-15",
+      "date_expected_end": "2025-03-31",
+      "date_actual": null,
+      "action_required": "核心考试密集期，保持信息畅通和考试状态",
+      "historical_dates": [],
+      "source_confidence": "reported",
+      "notes": "这是点招/选拔最集中的时期"
+    },
+    {
+      "event_name": "人大附中早培班报名",
+      "event_type": "exam",
+      "school_id": "haidian_rdfz",
+      "district": "haidian",
+      "date_expected_start": "2025-03-01",
+      "date_expected_end": "2025-03-15",
+      "date_actual": null,
+      "action_required": "登录人大附中官网报名，准备相关材料",
+      "historical_dates": [
+        {"year": 2024, "date": "2024-03-上旬"},
+        {"year": 2023, "date": "2023-03-上旬"}
+      ],
+      "source_confidence": "estimated",
+      "notes": "日期基于往年规律推算"
+    },
+    {
+      "event_name": "第一批 MD 陆续发出",
+      "event_type": "notification",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2025-03-01",
+      "date_expected_end": "2025-03-31",
+      "date_actual": null,
+      "action_required": "保持电话畅通，接到通知后按要求确认",
+      "historical_dates": [],
+      "source_confidence": "reported",
+      "notes": "MD 时间因校而异，部分学校可能更早"
+    },
+    {
+      "event_name": "海淀区义务教育入学政策发布",
+      "event_type": "policy",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2025-04-01",
+      "date_expected_end": "2025-04-30",
+      "date_actual": null,
+      "action_required": "仔细阅读政策文件，确认自家适用的入学方式",
+      "historical_dates": [
+        {"year": 2024, "date": "2024-04-22"},
+        {"year": 2023, "date": "2023-04-22"}
+      ],
+      "source_confidence": "estimated",
+      "notes": ""
+    },
+    {
+      "event_name": "信息采集与志愿填报",
+      "event_type": "policy",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2025-05-01",
+      "date_expected_end": "2025-05-31",
+      "date_actual": null,
+      "action_required": "登录北京市义务教育入学服务平台完成信息采集和志愿填报",
+      "historical_dates": [],
+      "source_confidence": "official",
+      "notes": ""
+    },
+    {
+      "event_name": "派位结果公布",
+      "event_type": "result",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2025-06-15",
+      "date_expected_end": "2025-06-30",
+      "date_actual": null,
+      "action_required": "查询派位结果，按通知到校报到",
+      "historical_dates": [],
+      "source_confidence": "estimated",
+      "notes": ""
+    },
+    {
+      "event_name": "分班考试与最终报到",
+      "event_type": "result",
+      "school_id": null,
+      "district": "haidian",
+      "date_expected_start": "2025-07-01",
+      "date_expected_end": "2025-07-15",
+      "date_actual": null,
+      "action_required": "参加分班考试（部分学校有），完成报到手续",
+      "historical_dates": [],
+      "source_confidence": "estimated",
+      "notes": ""
+    }
+  ],
+  "last_updated": "2026-03-25"
+}

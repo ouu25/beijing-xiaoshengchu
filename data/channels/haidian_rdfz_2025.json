@@ -1,0 +1,49 @@
+{
+  "school_id": "haidian_rdfz",
+  "year": 2025,
+  "channels": [
+    {
+      "channel_type": "early_talent",
+      "transparency": "semi_open",
+      "est_quota": null,
+      "selection_method": "网上报名 → 初筛（机考，数学+综合）→ 复筛 → 试读（约一周）→ 最终录取",
+      "timeline": {
+        "registration_start": "2025-03-01",
+        "registration_end": "2025-03-15",
+        "exam_date": "2025-04-中旬（往年规律）",
+        "notification_date": "2025-05-下旬"
+      },
+      "requirements": "面向五年级学生（以超常儿童为选拔对象），无户籍限制但需北京学籍",
+      "source_count": 0,
+      "source_confidence": "estimated",
+      "notes": "以上时间线基于2023-2024年规律推算，2025年具体安排待官方公布。早培报名通常在学校官网发布通知。"
+    },
+    {
+      "channel_type": "selection",
+      "transparency": "hidden",
+      "est_quota": null,
+      "selection_method": "据家长反馈，存在通过机构推荐或考试成绩筛选的非公开录取渠道",
+      "timeline": {},
+      "requirements": "",
+      "source_count": 0,
+      "source_confidence": "reported",
+      "notes": "此渠道信息来源有限，具体操作方式不明确，需更多家长验证。标注为 reported 待验。"
+    },
+    {
+      "channel_type": "lottery",
+      "transparency": "open",
+      "est_quota": null,
+      "selection_method": "海淀区全区派位 + 学区派位，电脑随机",
+      "timeline": {
+        "registration_start": "2025-05-（跟随区统一安排）",
+        "exam_date": null,
+        "notification_date": "2025-06-中下旬"
+      },
+      "requirements": "海淀区学籍或户籍",
+      "source_count": 0,
+      "source_confidence": "estimated",
+      "notes": "派位为兜底渠道，人大附本部派位名额历年占比较小，具体数字需官方公示后更新。"
+    }
+  ],
+  "last_updated": "2026-03-25"
+}

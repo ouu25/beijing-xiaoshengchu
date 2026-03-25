@@ -1,0 +1,28 @@
+{
+  "school_id": "haidian_rdfz",
+  "name": "中国人民大学附属中学",
+  "short_names": ["人大附中", "RDF", "人大附"],
+  "district": "haidian",
+  "school_type": "public",
+  "tier": "T1",
+  "tags": ["六小强", "早培校"],
+  "address": "北京市海淀区中关村大街37号",
+  "website": "http://www.rdfz.cn",
+  "enrollment_data": [
+    {
+      "year": 2024,
+      "total_enrollment": null,
+      "class_count": null,
+      "class_types": [
+        {"name": "早培班", "size": null, "description": "超常儿童培养项目，五年级可报名，一贯制培养"},
+        {"name": "实验班", "size": null, "description": "通过选拔进入的重点班型"},
+        {"name": "普通班", "size": null, "description": "派位和其他渠道入学"}
+      ],
+      "source_confidence": "estimated",
+      "source_notes": "班型信息基于历年家长反馈汇总，具体人数未获得可靠来源"
+    }
+  ],
+  "exit_data": [],
+  "notes": "海淀六小强之首，早培项目是其最核心的选拔渠道。本部与分校（人大附中分校、人大附中翠微学校等）为不同招生主体，本档案仅记录本部。",
+  "last_updated": "2026-03-25"
+}

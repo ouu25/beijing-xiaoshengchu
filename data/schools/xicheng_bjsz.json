@@ -1,0 +1,28 @@
+{
+  "school_id": "xicheng_bjsz",
+  "name": "北京市第四中学",
+  "short_names": ["北京四中", "四中"],
+  "district": "xicheng",
+  "school_type": "public",
+  "tier": "T1",
+  "tags": ["西城四金刚"],
+  "address": "北京市西城区西黄城根北街甲2号",
+  "website": "http://www.bhsf.cn",
+  "enrollment_data": [
+    {
+      "year": 2024,
+      "total_enrollment": null,
+      "class_count": null,
+      "class_types": [
+        {"name": "道元班", "size": null, "description": "创新人才培养项目"},
+        {"name": "实验班", "size": null, "description": "重点班型"},
+        {"name": "普通班", "size": null, "description": "派位入学"}
+      ],
+      "source_confidence": "estimated",
+      "source_notes": "基于家长反馈，待更多来源验证"
+    }
+  ],
+  "exit_data": [],
+  "notes": "西城区顶尖学校，初中部近年招生规模和渠道变化较大，需持续追踪。",
+  "last_updated": "2026-03-25"
+}
