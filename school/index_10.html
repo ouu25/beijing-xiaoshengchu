@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>北京小升初升学索引</title>
+<meta name="description" content="海淀·西城小升初学校、入学渠道、成绩数据、备考指南的结构化索引">
+<meta property="og:title" content="北京小升初升学索引">
+<meta property="og:description" content="海淀·西城 36所学校 · 入学渠道 · 高考中考数据 · 备考指南">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://xiaoshengchu.org">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f7fa;
+  --card: #ffffff;
+  --card-hover: #fafbfc;
+  --text: #1e293b;
+  --text2: #475569;
+  --text3: #94a3b8;
+  --border: #e2e8f0;
+  --accent: #e16b3a;
+  --accent-light: #fff4ef;
+  --green: #16a34a;
+  --green-bg: #f0fdf4;
+  --blue: #2563eb;
+  --blue-bg: #eff6ff;
+  --amber: #d97706;
+  --amber-bg: #fffbeb;
+  --red: #dc2626;
+  --red-bg: #fef2f2;
+  --purple: #7c3aed;
+  --purple-bg: #f5f3ff;
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(0,0,0,.04), 0 4px 12px rgba(0,0,0,.03);
+  --shadow-hover: 0 2px 8px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.06);
+  --serif: 'Noto Serif SC', Georgia, serif;
+  --sans: 'Noto Sans SC', -apple-system, sans-serif;
+  --transition: .25s cubic-bezier(.4,0,.2,1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font: 400 15px/1.7 var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Header ── */
+.header {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 24px 8px;
+}
+.header h1 {
+  font: 700 28px/1.3 var(--serif);
+  letter-spacing: -.02em;
+  color: var(--text);
+}
+.header .tagline {
+  font-size: 14px;
+  color: var(--text3);
+  margin-top: 4px;
+}
+
+/* ── Search ── */
+.search-bar {
+  max-width: 960px;
+  margin: 16px auto 0;
+  padding: 0 24px;
+}
+.search-bar .wrap {
+  position: relative;
+}
+.search-bar input {
+  width: 100%;
+  padding: 14px 16px 14px 44px;
+  font: 400 15px var(--sans);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  outline: none;
+  box-shadow: var(--shadow);
+  transition: border var(--transition), box-shadow var(--transition);
+}
+.search-bar input:focus {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-hover);
+}
+.search-bar .ico {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text3);
+  font-size: 16px;
+  pointer-events: none;
+}
+.sr {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  max-height: 320px;
+  overflow-y: auto;
+  display: none;
+  position: absolute;
+  width: 100%;
+  z-index: 50;
+  box-shadow: var(--shadow-hover);
+  margin-top: 4px;
+}
+.sr.show { display: block; }
+.sr-i { padding: 12px 16px; cursor: pointer; border-bottom: 1px solid var(--border); }
+.sr-i:hover { background: var(--bg); }
+.sr-i:last-child { border: none; }
+.sr-n { font-weight: 500; font-size: 15px; }
+.sr-m { font-size: 13px; color: var(--text3); }
+
+/* ── Nav ── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(245,247,250,.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  margin-top: 16px;
+}
+.nav-in {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0;
+  padding: 0 24px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-in::-webkit-scrollbar { display: none; }
+.nb {
+  padding: 14px 20px;
+  font: 500 15px var(--sans);
+  color: var(--text3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition);
+}
+.nb:hover { color: var(--text); }
+.nb.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ── Main ── */
+.main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px 24px;
+}
+.sec { display: none; }
+.sec.active { display: block; }
+
+/* ── Stats + Filters ── */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.stats {
+  font-size: 14px;
+  color: var(--text3);
+  margin-right: auto;
+}
+.stats b { color: var(--accent); font-weight: 600; }
+.frow { display: flex; gap: 6px; flex-wrap: wrap; }
+.fb {
+  font: 500 13px var(--sans);
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text2);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.fb:hover { border-color: var(--text3); }
+.fb.active { background: var(--text); color: #fff; border-color: var(--text); }
+.zone-filter {
+  font-size: 13px;
+  color: var(--text3);
+}
+.zone-filter select {
+  font: 400 13px var(--sans);
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--text2);
+}
+
+/* ── School Cards ── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.school-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  cursor: pointer;
+  transition: all var(--transition);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.school-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+  border-color: #d5d0c6;
+}
+.school-card .card-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.tier {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: .03em;
+}
+.tier-T1 { background: var(--accent-light); color: var(--accent); }
+.tier-T2 { background: var(--blue-bg); color: var(--blue); }
+.tier-T3 { background: var(--bg); color: var(--text3); }
+.dist-badge {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.dist-haidian { background: #eef4fb; color: var(--blue); }
+.dist-xicheng { background: var(--purple-bg); color: var(--purple); }
+.school-card .card-name {
+  font: 600 17px/1.4 var(--serif);
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.school-card .card-aka {
+  font-size: 13px;
+  color: var(--text3);
+  margin-bottom: 10px;
+}
+.school-card .card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 10px;
+}
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text3);
+  font-weight: 500;
+}
+.school-card .card-channels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text3);
+}
+.ch-dot {
+  white-space: nowrap;
+}
+
+/* ── Detail Overlay ── */
+.detail-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,.35);
+  z-index: 200;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px 24px;
+  overflow-y: auto;
+}
+.detail-overlay.show {
+  display: flex;
+}
+.detail-panel {
+  background: var(--card);
+  border-radius: 12px;
+  max-width: 680px;
+  width: 100%;
+  padding: 32px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.15);
+  animation: slideUp .3s ease;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.close-btn {
+  float: right;
+  font-size: 22px;
+  cursor: pointer;
+  color: var(--text3);
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background var(--transition);
+}
+.close-btn:hover { background: var(--bg); color: var(--text); }
+
+.detail-panel h2 {
+  font: 700 22px/1.3 var(--serif);
+  margin-bottom: 4px;
+}
+.detail-panel .detail-meta {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 6px 0 16px;
+}
+.detail-panel .detail-notes {
+  font-size: 15px;
+  color: var(--text2);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+.detail-panel .detail-zone {
+  font-size: 13px;
+  color: var(--text3);
+  margin-bottom: 4px;
+}
+.detail-panel .detail-honors {
+  font-size: 13px;
+  color: var(--amber);
+  margin-bottom: 4px;
+}
+.detail-section-title {
+  font: 600 15px var(--sans);
+  margin: 24px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+.ch-item {
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+}
+.ch-name { font-weight: 600; font-size: 14px; }
+.ch-method { font-size: 13px; color: var(--text2); margin-top: 4px; line-height: 1.7; }
+
+.cf {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.cf-official { background: var(--green-bg); color: var(--green); }
+.cf-verified { background: var(--blue-bg); color: var(--blue); }
+.cf-reported { background: var(--amber-bg); color: var(--amber); }
+.cf-estimated { background: var(--bg); color: var(--text3); border: 1px solid var(--border); }
+
+/* ── Timeline ── */
+.tl-container {
+  position: relative;
+  padding-left: 32px;
+}
+.tl-container::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), var(--blue), var(--green));
+  border-radius: 1px;
+}
+.tl-row {
+  position: relative;
+  padding: 0 0 28px 0;
+  opacity: 0;
+  animation: tlFadeIn .4s ease forwards;
+}
+.tl-row::before {
+  content: '';
+  position: absolute;
+  left: -29px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 2px solid var(--accent);
+  z-index: 1;
+}
+.tl-row:last-child { padding-bottom: 0; }
+.tl-month {
+  font: 600 15px var(--serif);
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.tl-events {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tl-ev {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
+  transition: transform var(--transition), box-shadow var(--transition);
+  cursor: default;
+  box-shadow: var(--shadow);
+}
+.tl-ev:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-hover);
+}
+.tl-ev .ev-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+.tl-ev .ev-name { font-weight: 500; }
+.tl-ev .ev-action {
+  font-size: 12px;
+  color: var(--text3);
+  margin-top: 2px;
+}
+.ev-policy { background: var(--blue-bg); }
+.ev-policy .ev-dot { background: var(--blue); }
+.ev-policy .ev-name { color: var(--blue); }
+.ev-exam { background: var(--red-bg); }
+.ev-exam .ev-dot { background: var(--red); }
+.ev-exam .ev-name { color: var(--red); }
+.ev-notification { background: var(--amber-bg); }
+.ev-notification .ev-dot { background: var(--amber); }
+.ev-notification .ev-name { color: var(--amber); }
+.ev-result { background: var(--green-bg); }
+.ev-result .ev-dot { background: var(--green); }
+.ev-result .ev-name { color: var(--green); }
+.ev-prep { background: var(--purple-bg); }
+.ev-prep .ev-dot { background: var(--purple); }
+.ev-prep .ev-name { color: var(--purple); }
+.tl-legend {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  font-size: 12px;
+  color: var(--text3);
+}
+.tl-legend span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.tl-legend .lg-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+@keyframes tlFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Exams ── */
+.exam-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+}
+.exam-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: all var(--transition);
+}
+.exam-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-1px);
+}
+.exam-card h3 { font: 600 15px var(--sans); margin-bottom: 4px; }
+.exam-meta { font-size: 13px; color: var(--text2); }
+.diff-bar { display: flex; gap: 3px; align-items: center; margin-top: 6px; }
+.dd { width: 7px; height: 7px; border-radius: 50%; background: var(--border); }
+.dd.f { background: var(--accent); }
+
+/* ── Prep ── */
+.prep-section {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 8px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.prep-header {
+  padding: 14px 20px;
+  cursor: pointer;
+  font: 600 15px var(--sans);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background var(--transition);
+}
+.prep-header:hover { background: var(--bg); }
+.prep-header .arrow { transition: transform .2s; font-size: 12px; color: var(--text3); }
+.prep-body {
+  display: none;
+  padding: 0 20px 16px;
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.9;
+}
+.prep-body p { margin-bottom: 8px; }
+.prep-body table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }
+.prep-body th { text-align: left; padding: 8px 10px; background: var(--bg); border: 1px solid var(--border); font-weight: 600; font-size: 12px; color: var(--text2); }
+.prep-body td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; line-height: 1.7; }
+.prep-section.open .prep-body { display: block; }
+.prep-section.open .arrow { transform: rotate(90deg); }
+.prep-cat-label {
+  font: 600 13px var(--sans);
+  color: var(--accent);
+  margin: 24px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+  letter-spacing: .03em;
+}
+
+/* ── About ── */
+.about {
+  max-width: 600px;
+  font-size: 15px;
+  color: var(--text2);
+  line-height: 1.9;
+}
+.about p { margin-bottom: 12px; }
+.about-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin: 16px 0;
+  font-size: 14px;
+  line-height: 1.8;
+  box-shadow: var(--shadow);
+}
+
+/* ── Footer ── */
+.ft {
+  max-width: 960px;
+  margin: 48px auto 0;
+  padding: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text3);
+  text-align: center;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .header { padding: 32px 16px 8px; }
+  .header h1 { font-size: 22px; }
+  .search-bar { padding: 0 16px; }
+  .nav-in { padding: 0 16px; }
+  .main { padding: 16px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .detail-overlay { padding: 24px 12px; }
+  .detail-panel { padding: 24px 20px; }
+  .school-card .card-name { font-size: 16px; }
+}
+
+/* ── Section titles ── */
+.sec-title {
+  font: 700 20px/1.3 var(--serif);
+  margin-bottom: 4px;
+}
+.sec-desc {
+  font-size: 13px;
+  color: var(--text3);
+  margin-bottom: 16px;
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <h1>北京小升初升学索引</h1>
+</header>
+
+<div class="search-bar">
+  <div class="wrap">
+    <span class="ico">⌕</span>
+    <input type="text" id="si" placeholder="搜索学校、学区、关键词… (Ctrl+K)" autocomplete="off">
+    <div class="sr" id="sr"></div>
+  </div>
+</div>
+
+<nav class="nav"><div class="nav-in">
+  <button class="nb active" data-s="schools">学校档案</button>
+  <button class="nb" data-s="timeline">时间线</button>
+  <button class="nb" data-s="exams">考试与备考</button>
+  <button class="nb" data-s="prep">备考指南</button>
+  <button class="nb" data-s="about">关于项目</button>
+</div></nav>
+
+<main class="main">
+  <div id="sec-schools" class="sec active">
+    <div class="toolbar">
+      <div class="stats" id="stats"></div>
+      <div class="frow" id="sf"></div>
+    </div>
+    <div style="margin-bottom:16px" class="zone-filter">按学区：<select id="zf" onchange="filterZone(this.value)"><option value="all">全部学区</option></select></div>
+    <div class="card-grid" id="card-grid"></div>
+  </div>
+
+  <div id="sec-timeline" class="sec">
+    <h2 class="sec-title">2026 年度时间线</h2>
+    <p class="sec-desc">基于2025年政策整理，以当年官方通知为准</p>
+    <div class="tl-legend">
+      <span><span class="lg-dot" style="background:var(--purple)"></span>备考准备</span>
+      <span><span class="lg-dot" style="background:var(--red)"></span>考试选拔</span>
+      <span><span class="lg-dot" style="background:var(--blue)"></span>政策节点</span>
+      <span><span class="lg-dot" style="background:var(--amber)"></span>通知/MD</span>
+      <span><span class="lg-dot" style="background:var(--green)"></span>录取结果</span>
+    </div>
+    <div class="frow" id="tf" style="margin-bottom:20px"></div>
+    <div class="tl-container" id="tc"></div>
+  </div>
+
+  <div id="sec-exams" class="sec">
+    <h2 class="sec-title">考试与备考</h2>
+    <p class="sec-desc">选拔考试形式、难度、回忆题整理</p>
+    <div class="frow" id="ef" style="margin-bottom:16px"></div>
+    <div class="exam-grid" id="eg"></div>
+  </div>
+
+  <div id="sec-prep" class="sec">
+    <h2 class="sec-title">备考指南</h2>
+    <p class="sec-desc">涵盖政策解读、能力储备、申请策略三大板块</p>
+    <div class="frow" id="pf" style="margin-bottom:20px"></div>
+    <div id="prep-content"></div>
+  </div>
+
+  <div id="sec-about" class="sec">
+    <h2 class="sec-title">关于项目</h2>
+    <div class="about">
+      <p>本站致力于将北京市海淀区、西城区小升初的学校信息、入学渠道、成绩数据和备考经验进行结构化整理，为家长提供一个公开、可查证的信息索引平台。</p>
+      <p>所有数据均来自区教委官方网站、学校公告及家长社区的公开信息，每条信息标注了数据可信度等级（官方公示、多源验证、待验证、推算）。本站不代表任何学校或培训机构立场。</p>
+
+      <div class="about-box">
+        <b>数据说明</b>
+        <p>高考与中考成绩数据主要基于学校官方发布及家长社区验证信息，部分数据为推算值，仅供参考。入学渠道中标注为「非公开」或「待验证」的信息，来源有限，可能存在偏差。</p>
+      </div>
+
+      <div class="about-box" style="margin-top:12px">
+        <b>免责声明</b>
+        <p>入学政策每年调整，本站信息仅供参考，不构成升学建议。所有入学决策请以各区教委和学校当年官方通知为准。</p>
+      </div>
+
+      <div style="margin-top:20px">
+        <p style="font-size:14px;font-weight:600;margin-bottom:8px">联系方式</p>
+        <p>如发现数据错误或希望补充信息，欢迎通过以下方式联系：</p>
+        <p style="margin-top:6px">邮箱：<a href="mailto:contact@xiaoshengchu.org">contact@xiaoshengchu.org</a></p>
+        <p>GitHub：<a href="https://github.com/ouu25/beijing-xiaoshengchu/issues/new/choose" target="_blank">提交 Issue</a></p>
+      </div>
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:20px">
+        <a href="https://github.com/ouu25/beijing-xiaoshengchu" target="_blank" style="font-size:13px;padding:8px 20px;border-radius:20px;background:var(--text);color:var(--bg);text-decoration:none">GitHub 仓库</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="detail-overlay" id="overlay" onclick="if(event.target===this)closeDetail()">
+  <div class="detail-panel" id="dpanel"></div>
+</div>
+
+<footer class="ft">入学决策请以各区教委和学校官方通知为准 · 数据最后更新 2026年3月 · <a href="https://github.com/ouu25/beijing-xiaoshengchu" style="color:var(--text3)">GitHub</a></footer>
+
+<script>
+// ── Data ──
+const SCHOOLS=[
+{school_id:"haidian_rdfz",name:"中国人民大学附属中学",short_names:["人大附中","RDF"],district:"haidian",tier:"T1",tags:["六小强","早培校"],notes:"海淀六小强之首。早培班为核心选拔渠道。高考：【2025】盲盒8人，700+21人，698+25人，686+80人；【2024】高中招生863人（不含国际班），本校直升270人。登记入学面向全区招80人。核心班型：早培班、基础科学班。2025年网报取消。六小强都有集团内拔尖创新人才选拔，非集团校学生也可参与。",website:"https://www.rdfz.cn",zone:"海淀全区（登记入学80人）",honors:"金帆合唱团、金帆舞蹈团、金帆交响乐团、金鹏科技团",channels:[{channel_type:"early_talent",name:"早培班",transparency:"semi_open",selection_method:"7月上旬网上报名（约2天窗口）→ 全真模拟（必须参加）→ 在线初筛（ClassIn公益课+答题）→ 线下复筛 → 线下入营（试读2天）→ 通知录取。全程约3周，7月底前完成。",source_confidence:"verified",notes:"官方要求海淀五年级京籍，实际报名无严格限制（三至五年级、非海淀非京籍均可报名），录取仅限符合条件学生",requirements:"官方：北京市户籍海淀区五年级学生"},{channel_type:"selection",name:"点招/MD",transparency:"hidden",selection_method:"据家长反馈，存在通过机构推荐或考试成绩筛选的非公开录取渠道",source_confidence:"reported",notes:"信息来源有限，需更多验证"},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区全区派位 + 学区派位，电脑随机",source_confidence:"estimated",notes:"兜底渠道，本部名额占比较小"}]},
+{school_id:"haidian_qhfz",name:"清华大学附属中学",short_names:["清华附中","清附"],district:"haidian",tier:"T1",tags:["六小强"],notes:"海淀六小强之一。高考：【2025】盲盒4人，700+16人，686+58人，650+250人，近700人参考，清北录取预计破百。2024年高中招生614人。创新班为核心选拔项目。集团内拔尖创新人才选拔覆盖非集团校。2025年清华附属实验学校登记入学新增20人。",website:"https://www.qhfz.edu.cn",zone:"海淀全区（区域内招生）",honors:"金帆民乐团、金帆管乐团",channels:[{channel_type:"selection",name:"创新班选拔",transparency:"semi_open",selection_method:"有公开报名渠道，多轮筛选，具体标准不完全公开",source_confidence:"reported",notes:""},{channel_type:"selection",name:"点招/MD",transparency:"hidden",selection_method:"非公开渠道",source_confidence:"reported",notes:"待验证"},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"haidian_bdfz",name:"北京大学附属中学",short_names:["北大附中","北附"],district:"haidian",tier:"T1",tags:["六小强"],notes:"海淀六小强之一。高考：【2025】竞赛2人进国家集训队，5人国银；686+14人，全校均分比上年提升20分，各段人数平均提升10%。2024年高中招生620人。书院制管理（弘毅书院、明德书院），注重学生自主选择。",website:"https://www.pkuschool.edu.cn",zone:"海淀全区（区域内招生）",honors:"金帆民乐团",channels:[{channel_type:"selection",name:"点招/MD",transparency:"hidden",selection_method:"非公开渠道",source_confidence:"reported",notes:""},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"haidian_syzx",name:"十一学校",short_names:["十一学校","十一","BNDS"],district:"haidian",tier:"T1",tags:["六小强"],notes:"海淀六小强之一。高考：【2025】盲盒1人，698+8人，686+35人，670+110人，650+240人，另有8人提前通过新领军/英才进入清北。走班制改革先锋。2024年高中招生536人，实验班直升240人。登记入学面向全区招150人。核心班型：直升班、科学实验班。2+4项目面向五年级。2025年网报取消。",website:"https://www.bnds.cn",zone:"海淀全区（登记入学150人）；二派：万寿路学区",honors:"金帆管乐团、金鹏科技团",channels:[{channel_type:"early_talent",name:"2+4项目",transparency:"semi_open",selection_method:"面向五年级的提前招生项目，含考试选拔",source_confidence:"reported",notes:"",requirements:"五年级学生"},{channel_type:"selection",name:"综合优录",transparency:"hidden",selection_method:"非公开渠道",source_confidence:"reported",notes:""},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"haidian_yzcz",name:"北京一零一中学",short_names:["一零一中","101"],district:"haidian",tier:"T1",tags:["六小强"],notes:"海淀六小强之一。高考：【2025】707分3人，700+5人，685+19人，650+147人，600+462人。2024年高中招生645人，集团直升110人。坐落于圆明园内。核心班型：钱学森班、人文实验班、理工强基班。",website:"https://www.beijing101.com",zone:"海淀全区（区域内招生）；二派：上地学区、青龙桥学区",honors:"金奥田径队、金奥排球队、金奥冰雪队",channels:[{channel_type:"selection",name:"点招/MD",transparency:"hidden",selection_method:"非公开渠道",source_confidence:"reported",notes:""},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"haidian_sffz",name:"首都师范大学附属中学",short_names:["首师附中","首师附"],district:"haidian",tier:"T1",tags:["六小强"],notes:"海淀六小强之一。2024年高中招生527人。近年发展势头强劲，有赶超趋势。核心班型：成达部、创新部。首师附育新高考一本率80%，600分以上35人。",website:"https://www.cnuschool.org",zone:"海淀全区（区域内招生）；二派：八里庄学区",honors:"金帆舞蹈团、金帆书画院、金鹏科技团",channels:[{channel_type:"selection",name:"点招/MD",transparency:"hidden",selection_method:"非公开渠道",source_confidence:"reported",notes:""},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"xicheng_bjsz",name:"北京市第四中学",short_names:["北京四中","四中"],district:"xicheng",tier:"T1",tags:["西城四金刚"],notes:"西城区顶尖学校，道元班为特色创新项目。高考：【2024】市前20名4人，700+4人，685+40人。初中部年级前20-30%可进西城五金刚高中。",website:"https://www.bhsf.cn",zone:"西城全区派位+学区派位（德胜、金融街、什刹海、西长安街等学区）",honors:"金帆民乐团、金帆话剧团",channels:[{channel_type:"selection",name:"点招/MD",transparency:"hidden",selection_method:"非公开渠道",source_confidence:"reported",notes:"待更多验证"},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"西城区学区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"xicheng_sanfan",name:"北京三帆中学",short_names:["三帆中学","三帆"],district:"xicheng",tier:"T1",tags:["西城四金刚"],notes:"北师大实验中学分校，西城区最热门初中之一。2025年新增为寄宿学校。中考出口：【2024】西城裸分最高出自三帆，约50+人录取四中；【2021】全区不公布成绩的前20人中5人出自三帆，645+19人（本部）。中考均分长期西城前二，达示范校线近80%。",zone:"西城全区派位+学区派位（德胜、什刹海学区）",website:"https://www.sanfan.com.cn",channels:[{channel_type:"selection",name:"点招/MD",transparency:"hidden",selection_method:"非公开渠道",source_confidence:"reported",notes:""},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"西城区学区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"xicheng_shisan",name:"北京市第十三中学分校",short_names:["十三中分校","十三分"],district:"xicheng",tier:"T1",tags:["西城四金刚"],notes:"西城区优质纯初中校，中考均分稳居西城前三。中考出口：【2024】380人毕业，均分620，650+10人，640+81人，四中44人+实验30人，近六成进区重点；【2023】380人毕业，均分620，650+10人，640+81人，四中44人+实验30人，成绩稳定。全区派位100人。",zone:"学区派位（德胜、什刹海、西长安街、新街口、展览路学区）",website:"https://www.xsssfz.com",channels:[{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"西城区学区派位",source_confidence:"estimated",notes:""},{channel_type:"lottery",name:"全区派位",transparency:"open",selection_method:"西城区全区派位（100人）",source_confidence:"verified",notes:""},{channel_type:"direct_feed",name:"对口直升",transparency:"open",selection_method:"雷锋小学80%可对口直升十三分或三帆",source_confidence:"verified",notes:""}]},
+{school_id:"xicheng_basf",name:"北京市第八中学",short_names:["北京八中","八中"],district:"xicheng",tier:"T1",tags:["西城四金刚","少儿班/素质班"],notes:"少儿班和素质班面向超常儿童，全北京最早的超常选拔项目之一。高中除八少八素和直升班外，大部分学生通过中考考入。初中偏素质教育，管得不严，靠学生自律。2025年新增八中四存校区参与全区派位（100人）。寄宿校。",website:"https://www.no8ms.bj.cn",zone:"西城全区派位+学区派位+少儿班/素质班（寄宿校）",honors:"金帆管乐团",channels:[{channel_type:"early_talent",name:"少儿班/素质班",transparency:"semi_open",selection_method:"公开报名 → 多轮筛选（智力测试+综合评估+试读）",source_confidence:"reported",notes:"面向低龄超常儿童",requirements:"年龄要求以当年通知为准"},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"西城区学区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"haidian_lgfz",name:"北京理工大学附属中学",short_names:["理工附中","理工附"],district:"haidian",tier:"T2",tags:["海淀优质校"],notes:"海淀区老牌优质校，首批科技高中。高考：【2025】英才班均分661，600+占38%，一本率89%；【2024】英才班最高698（全市133名），班均660，实验班均626。多所小学有30-50%直升比例。",website:"https://www.lgfzschool.cn",zone:"区域三/四（登记入学）；二派：八里庄学区（东校区）、万寿路学区（南校区）",honors:"金帆行进管乐团、金鹏科技团（机器人）",channels:[{channel_type:"selection",name:"点招/MD",transparency:"hidden",selection_method:"非公开渠道",source_confidence:"reported",notes:""},{channel_type:"direct_feed",name:"对口直升",transparency:"open",selection_method:"万泉小学50%、定慧里小学40%等直升理工附中",source_confidence:"verified",notes:"直升比例以当年政策为准"},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"haidian_jdfz",name:"北京交通大学附属中学",short_names:["交大附中","交大附"],district:"haidian",tier:"T2",tags:["海淀优质校"],notes:"海淀区优质校，茅以升班为特色实验班。高考：【2025】最高705，700+2人，690+6人，650+58人，600+258人。分南北两校区，共16个班。初二可通过1+3直升高中部。",website:"https://www.bjjtfz.cn",zone:"区域二（登记入学）；二派：北太平庄学区",honors:"金鹏科技团",channels:[{channel_type:"selection",name:"点招/MD",transparency:"hidden",selection_method:"非公开渠道",source_confidence:"reported",notes:""},{channel_type:"direct_feed",name:"对口直升",transparency:"open",selection_method:"民族小学40%直升交大附中本部",source_confidence:"verified",notes:""},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"haidian_bayi",name:"北京市八一学校",short_names:["八一学校","八一"],district:"haidian",tier:"T2",tags:["海淀优质校","九年一贯"],notes:"海淀区知名校，前身为聂荣臻元帅创办的荣臻子弟学校。100%直升初中部。高考：【2025】最高707（完全自主培养），特招线过线率90%，650+20人，600+近200人，一类实验班均645，二类实验班均615；【2024】670+4人，660+14人，650+30人，统招均605，资优班均653。",website:"https://www.bayims.cn",zone:"区域三/四/五（登记入学）；二派：中关村学区、海淀学区、四季青C",channels:[{channel_type:"direct_feed",name:"九年一贯直升",transparency:"open",selection_method:"八一学校小学部100%直升初中部",source_confidence:"verified",notes:""},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"haidian_yying",name:"育英学校",short_names:["育英学校","育英"],district:"haidian",tier:"T2",tags:["海淀优质校","九年一贯"],notes:"九年一贯制学校，近年崛起迅速。100%直升初中。高考：【2025】最高695，690+3人，650+45人（16%），985录取率61%，一本率98%，本科100%；【2024】育英中学本科100%，一本90%。",website:"https://www.yuyingschool.cn",zone:"区域一（登记入学）；二派：万寿路学区（航天校区）",honors:"金帆管乐团",channels:[{channel_type:"direct_feed",name:"九年一贯直升",transparency:"open",selection_method:"育英学校小学部100%直升初中部",source_confidence:"verified",notes:""},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"haidian_sdsy",name:"上地实验学校",short_names:["上地实验","上实"],district:"haidian",tier:"T2",tags:["海淀优质校"],notes:"清华附中教育集团成员校，上地学区核心初中。高考（首届自主培养）：【2025】均分600+，670+3人，600+占45%，京内985占20%，京内211占55%。中考出口：【2024】最高656，六小强171人（35%），示范校391人（80%）；【2023】约500人，640+49人；【2022】最高663，655+41人。",zone:"区域五（登记入学）；二派：上地学区、清河学区、西三旗学区、青龙桥学区",website:"https://www.sdsy.com.cn",channels:[{channel_type:"selection",name:"拔尖创新选拔",transparency:"semi_open",selection_method:"集团内拔尖创新人才选拔",source_confidence:"reported",notes:""},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区登记入学+学区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"haidian_ershi",name:"北京市第二十中学",short_names:["二十中","20中"],district:"haidian",tier:"T2",tags:["海淀优质校","公办寄宿"],notes:"海淀北部强校。高考：【2024】最高691（全市279名），650+15人，600+125人。公办寄宿招60人（2024年报名367人，中签率16.4%）。",website:"https://www.bj20z.com",zone:"区域五（登记入学+公办寄宿60人）；二派：清河学区、西三旗学区",channels:[{channel_type:"lottery",name:"公办寄宿",transparency:"open",selection_method:"公办寄宿招生60人，摇号录取",source_confidence:"verified",notes:"竞争激烈，中签率约16%"},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"haidian_zgc",name:"中关村中学",short_names:["中关村中学","ZGC"],district:"haidian",tier:"T2",tags:["海淀优质校"],notes:"中关村学区内重要初中。高考：【2025】最高689，680+2人，660+7人，650+13人，六科选考均有满分。",zone:"区域三（登记入学）；二派：中关村学区、海淀学区、花园路学区",website:"https://www.zgczx.cn",channels:[{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""},{channel_type:"selection",name:"拔尖创新选拔",transparency:"semi_open",selection_method:"集团内拔尖创新人才选拔",source_confidence:"reported",notes:""}]},
+{school_id:"haidian_syjy",name:"十一学校龙樾实验中学",short_names:["十一龙樾","龙樾"],district:"haidian",tier:"T2",tags:["十一系","新秀校"],notes:"十一学校教育集团成员校，2019年开始招生。硬件一流，管理严格。初一13个导师班，12-18人小班。分层教学（数一/数二/数三）。热度堪比小强，第一年中考近三分之一学生考入六小强。",zone:"区域五（登记入学）；二派：西三旗学区、清河学区",website:"https://www.shlongyu.com",channels:[{channel_type:"lottery",name:"小区业主子女",transparency:"open",selection_method:"龙樾配套小区业主子女有一定招生名额",source_confidence:"verified",notes:""},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"haidian_hdsyzx",name:"海淀实验中学",short_names:["海淀实验","海实"],district:"haidian",tier:"T2",tags:["海淀优质校","公办寄宿"],notes:"高考：【2025】最高679（市686名），670+2人，600+27人；【2024】钱学森班均630，650+6人，600+37人。公办寄宿招40人（报名236人，中签率17%）。",zone:"区域四（登记入学+公办寄宿40人）；二派：八里庄C、紫竹院学区",website:"https://www.hdsyzx.bjedu.cn",channels:[{channel_type:"lottery",name:"公办寄宿",transparency:"open",selection_method:"公办寄宿招生40人，摇号录取",source_confidence:"verified",notes:"中签率约17%"},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"xicheng_bsdsyfz",name:"北京师范大学附属实验中学",short_names:["北师大实验","实验中学"],district:"xicheng",tier:"T1",tags:["西城顶尖校"],notes:"西城区顶尖学校，与三帆中学为同一集团。高中部实力极强，高考平均分与四中不相上下。竞赛比四中厉害，理科培养是优势。初中部（三帆）为西城最热门初中。全区派位中签率约10%。",website:"https://www.sdsz.com.cn",zone:"西城全区派位+学区派位（西长安街学区）",honors:"金帆交响乐团",channels:[{channel_type:"selection",name:"点招/MD",transparency:"hidden",selection_method:"非公开渠道",source_confidence:"reported",notes:""},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"西城区学区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"xicheng_161",name:"北京市第一六一中学",short_names:["161中学","161"],district:"xicheng",tier:"T2",tags:["西城优质校"],notes:"西城区老牌优质校，加工能力强，老师负责。高考一本率85%以上，西城第二梯队。2025年新增161中学广安分校参与全区派位招生（160人）。",zone:"西城全区派位+学区派位；2025新增广安分校160人",website:"https://www.bj161.com",channels:[{channel_type:"lottery",name:"全区派位",transparency:"open",selection_method:"西城区全区派位",source_confidence:"verified",notes:""},{channel_type:"lottery",name:"学区派位",transparency:"open",selection_method:"西城区学区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"xicheng_tie2",name:"北京市铁路第二中学",short_names:["铁二中","铁二"],district:"xicheng",tier:"T2",tags:["西城优质校"],notes:"西城区老牌优质校。中考出口：【2024】全区第六，五金刚125人（四中35、实验30、八中22、师大二附31、师大附7）。2025年铁二中右安门校区新增参与全区派位（240人）。",zone:"西城全区派位+学区派位；2025新增右安门校区240人",website:"https://www.bjtez.com",channels:[{channel_type:"lottery",name:"全区派位",transparency:"open",selection_method:"西城区全区派位",source_confidence:"verified",notes:""},{channel_type:"lottery",name:"学区派位",transparency:"open",selection_method:"西城区学区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"xicheng_shiwu",name:"北京市第十五中学",short_names:["十五中","15中"],district:"xicheng",tier:"T2",tags:["西城优质校"],notes:"西城区老牌优质校。2024年十五中学分校新增参与全区派位。中考录取线稳定在西城中游水平，高考一本率稳定在85%以上。",zone:"西城全区派位+学区派位",website:"https://www.bj15.com",channels:[{channel_type:"lottery",name:"全区派位",transparency:"open",selection_method:"西城区全区派位",source_confidence:"verified",notes:""},{channel_type:"lottery",name:"学区派位",transparency:"open",selection_method:"西城区学区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"xicheng_desheng",name:"北京德胜中学",short_names:["德胜中学","德胜"],district:"xicheng",tier:"T2",tags:["西城优质校","新建校"],notes:"西城区德胜学区新建校。中考出口：【2024·首届】6个班227人参考，均分631+（西城第一）。五金刚录取127人（56%）：四中43人、实验22人、八中15人、师大二附42人、师大附5人。区重点合计169人（75%）。全区派位最热门学校之一。",zone:"学区派位（德胜学区）",channels:[{channel_type:"lottery",name:"学区派位",transparency:"open",selection_method:"西城区学区派位",source_confidence:"verified",notes:""},{channel_type:"lottery",name:"全区派位",transparency:"open",selection_method:"西城区全区派位",source_confidence:"verified",notes:"全区派位最热门学校之一"}]},
+{school_id:"haidian_rdcw",name:"人大附中翠微学校",short_names:["人翠","人大附翠微"],district:"haidian",tier:"T2",tags:["海淀优质校","人大附系"],notes:"人大附中教育集团成员校。高考：【2025】160人参考，最高681，650+5人，600+52人，一本率82%，本科100%；【2024】最高681，670+2人，660+7人，650+11人，600+40人。近年进步明显。",zone:"区域一（登记入学）；二派：羊坊店学区",website:"https://www.rdfzcw.cn",channels:[{channel_type:"selection",name:"集团内选拔",transparency:"semi_open",selection_method:"人大附中集团内拔尖创新人才选拔",source_confidence:"reported",notes:"非集团校学生也可参与"},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"haidian_hdjxsy",name:"海淀进修实验学校",short_names:["海淀进修实验","进修实验"],district:"haidian",tier:"T2",tags:["海淀优质校"],notes:"海淀区教师进修学校附属实验学校。高考：【2025】昆玉书院最高分待更新，本部共290人；【2024】最高688，600+106人，本部一本率88%。昆玉书院为核心班型（区排前3500可进）。教研资源丰富，近年崛起为海淀优普代表校。",zone:"区域一/四（登记入学）；二派：八里庄学区（南校区）、永定路学区",website:"https://www.hdjxsyxx.com",channels:[{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""},{channel_type:"selection",name:"点招/MD",transparency:"hidden",selection_method:"非公开渠道，昆玉书院为核心选拔班型",source_confidence:"reported",notes:""}]},
+{school_id:"haidian_bhsy",name:"北航实验学校",short_names:["北航实验","北航附中"],district:"haidian",tier:"T2",tags:["海淀优质校","高校附属"],notes:"北京航空航天大学附属，人大附中联合总校成员校。高考：【2025】数据待更新；【2024】600+比例30%，通航班均分超特招线100分。通用航空科技教育实验班30个名额。在区重点初中部里成绩相对突出。",zone:"区域二（登记入学）；二派：花园路学区、学院路学区",website:"https://www.beihangsyxx.com",channels:[{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""},{channel_type:"direct_feed",name:"对口直升",transparency:"open",selection_method:"北航实验学校小学部直升",source_confidence:"verified",notes:""}]},
+{school_id:"haidian_57sc",name:"五十七中上庄分校",short_names:["57中上庄","五十七中上庄"],district:"haidian",tier:"T3",tags:["海淀北部","公办寄宿"],notes:"海淀北部校区。高考（含57中整体）：【2025】最高700，650+69人（30%），600+253人，实验班均665，全年级均629，共270+人；【2024】上庄分校105人参考，最高672，600+40人，一本90%。公办寄宿招300人，全寄宿管理。",zone:"区域一/五（登记入学+公办寄宿300人）；二派：上庄西北旺学区",website:"https://www.bj57.com",channels:[{channel_type:"lottery",name:"公办寄宿",transparency:"open",selection_method:"公办寄宿招生300人",source_confidence:"verified",notes:"全寄宿管理"},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"haidian_ndfz",name:"中国农业大学附属中学",short_names:["农大附中","农大附"],district:"haidian",tier:"T2",tags:["海淀优质校","高校附属"],notes:"中国农业大学附属。2024年扩招至100人。地处学院路学区，高校资源丰富。中考成绩相对普通，但有校额到校名额（六小强指标），适合走校额路线的家庭。",zone:"区域五（登记入学）；二派：青龙桥学区、上庄西北旺学区",website:"https://www.caufsz.com",channels:[{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""},{channel_type:"lottery",name:"校额到校",transparency:"open",selection_method:"享受校额到校政策，有六小强指标",source_confidence:"verified",notes:"校额到校是普校核心通道"}]},
+{school_id:"haidian_ssfyq",name:"首师大附中玉泉学校",short_names:["首师附玉泉","玉泉学校"],district:"haidian",tier:"T2",tags:["海淀优质校","六小强系"],notes:"首师附中教育集团成员校。2024年扩招至100人。2023年起与人分合作成立人分班（人分师资全面支持），吸引优质生源，人分班高考成绩值得期待。",zone:"区域四/五（登记入学）；二派：四季青B学区",website:"https://www.yqxx.com.cn",channels:[{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""},{channel_type:"direct_feed",name:"人分班",transparency:"semi_open",selection_method:"与人分合作的人分班，人分师资支持",source_confidence:"reported",notes:"2023年起新设"}]},
+{school_id:"haidian_sybxq",name:"十一学校北校区",short_names:["十一北校区","十一北"],district:"haidian",tier:"T2",tags:["十一系","新建校"],notes:"十一学校教育集团新建校区，全寄宿。2024年新增，登记入学招300人（全区最多）。2025年减招60人。可一同参加十一本部2+4选拔，一票难求。首届中考最高分660。",zone:"区域五（登记入学300人→2025减招60人）",website:"https://www.bnds.cn",channels:[{channel_type:"lottery",name:"登记入学",transparency:"open",selection_method:"海淀区登记入学，面向全区招生",source_confidence:"verified",notes:"2024年招300人，全区最多"},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"xicheng_bsdfz",name:"北京师范大学附属中学",short_names:["北师大附中","师大附中"],district:"xicheng",tier:"T1",tags:["西城顶尖校","特色校"],notes:"西城区顶尖学校，百年名校（1901年建校）。2025年为西城特色校之一，面向全区招生。2024年中考四中录取13人，前80名基本留校高中部。西城第二梯队头部。",website:"https://www.bjsdfz.com",zone:"特色校面向全区+学区派位",honors:"金帆舞蹈团",channels:[{channel_type:"selection",name:"特色校招生",transparency:"semi_open",selection_method:"特色校面向全区招生",source_confidence:"verified",notes:""},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"西城区学区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"xicheng_xcwgy",name:"北京市西城外国语学校",short_names:["西城外国语","西外"],district:"xicheng",tier:"T2",tags:["西城优质校","特色校"],notes:"西城区特色校中最知名，外语教育突出。2025年作为特色校面向全区招生。曾出过中考状元，中考有校额到校资格的240名考生中130人超550分（2020年数据）。",zone:"特色校面向全区+学区派位",website:"https://www.xwschool.com",channels:[{channel_type:"selection",name:"特色校招生",transparency:"semi_open",selection_method:"特色校面向全区招生",source_confidence:"verified",notes:""},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"西城区学区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"xicheng_shisi",name:"北京市第十四中学",short_names:["十四中","14中"],district:"xicheng",tier:"T2",tags:["西城优质校"],notes:"西城区优质校。新桥校区2024年中考重点率78%。高考一本率85%以上，均分预估630左右。西城第三梯队中表现突出。",zone:"西城全区派位+学区派位",website:"https://www.bj14.com.cn",channels:[{channel_type:"lottery",name:"全区派位",transparency:"open",selection_method:"西城区全区派位",source_confidence:"verified",notes:""},{channel_type:"lottery",name:"学区派位",transparency:"open",selection_method:"西城区学区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"xicheng_sanshiwu",name:"北京市第三十五中学",short_names:["三十五中","35中"],district:"xicheng",tier:"T2",tags:["西城优质校"],notes:"西城区优质校，科技教育特色，西城唯一有2+4班的学校。近年提升最大，中考录取线已超过十三中。鲁迅曾在此任教。金鹏科技团承办校。",website:"https://www.bj35.com",zone:"西城全区派位+学区派位",honors:"金鹏科技团",channels:[{channel_type:"lottery",name:"全区派位",transparency:"open",selection_method:"西城区全区派位",source_confidence:"verified",notes:""},{channel_type:"lottery",name:"学区派位",transparency:"open",selection_method:"西城区学区派位",source_confidence:"estimated",notes:""}]},
+{school_id:"haidian_mdfz",name:"中央民族大学附属中学",short_names:["民大附中","民附"],district:"haidian",tier:"T2",tags:["海淀优质校","高校附属"],notes:"中央民族大学附属。原只有高中且口碑不错（高考实验班均分600+），近年开设初中部。2025年登记入学新增100人。面向全区招生，唯一非六小强但享全区登记入学的学校。",website:"https://www.mdfz.com.cn",zone:"海淀全区（登记入学，2025新增100人）；二派：北太平庄学区",channels:[{channel_type:"lottery",name:"登记入学",transparency:"open",selection_method:"海淀区登记入学，2025年新增100人",source_confidence:"verified",notes:""},{channel_type:"lottery",name:"派位入学",transparency:"open",selection_method:"海淀区派位",source_confidence:"estimated",notes:""}]}
+];
+const EXAMS=[
+{exam_id:"rdfz_zaopei_2025",school_id:"haidian_rdfz",school_name:"人大附中",exam_name:"早培班选拔",year:2025,channel_type:"early_talent",format:"mixed",subjects:["数学思维","人文综合","英语","地理","百科"],difficulty:"competition_mid",source_confidence:"reported",question_recalls:[{subject:"初筛（ClassIn公益课形式）",topic_tags:["人文","英语","地理","综合"],summary:"7.14下午14:30-16:50，ClassIn线上约47分钟公益课，不休息。可用一张A4纸记笔记（后续考试可保留作为草稿纸）。桌上仅允许铅笔、格尺、橡皮。内容：①人文：介绍千年古都大同，云冈石窟、龙门石窟、佛教文化、佛龛/佛塔/柱式分类；②英语：视频15分钟后转为纯英文介绍，What is Datong famous for等；③地理：大同刀削面引入，讨论小麦种植条件、影响植物生长的5个因素",difficulty_rating:4,similar_resources:[]},{subject:"线下复筛",topic_tags:["综合","笔试"],summary:"7.19日8:30-16:00全天，具体科目待更多回忆信息",difficulty_rating:4,similar_resources:[]},{subject:"线下入营",topic_tags:["试读","综合评估"],summary:"7.23-7.24日连续两天，9:00-16:30，试读观察",difficulty_rating:4,similar_resources:[]}],prep_recommendations:[{stage:"基础积累期",period:"3-4年级",focus:"课内满分 + 奥数入门 + 广泛阅读",materials:[{name:"举一反三"},{name:"高思导引"}]},{stage:"能力提升期",period:"4-5年级",focus:"系统学习竞赛数学 + 人文百科积累 + 英语听说读写",materials:[{name:"高思导引进阶"},{name:"学而思创新体系"}]},{stage:"冲刺准备期",period:"5年级上",focus:"早培真题训练 + 百科查漏补缺 + 英语FCE水平",materials:[{name:"历年早培回忆题汇编"}]}],notes:"2025年完整流程：7.9-7.10报名→7.12全真模拟（必须参加）→7.14在线初筛→7.18复筛通知→7.19线下复筛→7.22复筛结果→7.23-7.24线下入营→7.28通知录取。官方要求海淀五年级京籍，实际报名无严格限制（三四五年级、非海淀非京籍均可报名），但录取仅限符合条件学生。"},
+{exam_id:"syzx_2plus4_2025",school_id:"haidian_syzx",school_name:"十一学校",exam_name:"2+4项目选拔",year:2025,channel_type:"early_talent",format:"mixed",subjects:["数学","英语","综合素质"],difficulty:"competition_intro",source_confidence:"reported",question_recalls:[{subject:"数学",topic_tags:["应用题","逻辑"],summary:"数学思维为主，含较多应用题和逻辑推理",difficulty_rating:3,similar_resources:[]},{subject:"英语",topic_tags:["阅读","口语"],summary:"英语阅读和口语面试",difficulty_rating:3,similar_resources:[]}],prep_recommendations:[{stage:"综合准备",period:"4-5年级",focus:"数学思维 + 英语阅读 + 综合素质",materials:[{name:"高思导引"},{name:"新概念英语2"}]}],notes:"信息基于有限家长反馈，待更多验证。"},
+{exam_id:"syzx_kechuang_2025",school_id:"haidian_syzx",school_name:"十一学校",exam_name:"科学创新人才基础培养项目（第二期）",year:2025,channel_type:"early_talent",format:"mixed",subjects:["科学素养","综合评估"],difficulty:"extended",source_confidence:"verified",question_recalls:[{subject:"项目概况",topic_tags:["科创","拔尖培养"],summary:"2023年12月获批首批北京青少年拔尖创新人才培养基地，联合中国科学院大学及北大、清华、北航等高校专家共同设计课程。第二期招募不超过150人，面向十一学校联盟校小学高年级和新初一学生。利用周末及寒暑假开展，不收取费用。",difficulty_rating:2,similar_resources:[]}],prep_recommendations:[{stage:"关注报名",period:"小学高年级",focus:"关注十一学校官网通知，培养科学探究兴趣",materials:[]}],notes:"2025年报名截止10月10日12:00，网上扫码报名。考察时间和方式单独通知。不收费。"},
+{exam_id:"basf_shaoner_2025",school_id:"xicheng_basf",school_name:"北京八中",exam_name:"少儿班/素质班选拔",year:2025,channel_type:"early_talent",format:"mixed",subjects:["智力测试","数学","综合"],difficulty:"competition_mid",source_confidence:"reported",question_recalls:[{subject:"智力测试",topic_tags:["图形推理","空间想象","记忆力"],summary:"海选85题：卷一35题图形推理（8选项），卷二50题含不规则图形、立体展开图。答错可能倒扣。",difficulty_rating:4,similar_resources:["门萨智力测试题集"]},{subject:"数学",topic_tags:["速算","逻辑"],summary:"速算能力和数学逻辑",difficulty_rating:3,similar_resources:[]}],prep_recommendations:[{stage:"能力评估",period:"低年级",focus:"先评估孩子是否适合超常通道",materials:[]},{stage:"针对训练",period:"报名前3-6个月",focus:"图形推理 + 速算 + 记忆力练习",materials:[{name:"图形推理专项"}]}],notes:"海选每场约2000人，总人数约10000人。少儿班面向低龄段，素质班面向小学高年级。复试含808测试和心理健康测试，之后试读。"},
+{exam_id:"rdfz_zaopei_2020",school_id:"haidian_rdfz",school_name:"人大附中",exam_name:"早培班网考（2020年回忆）",year:2020,channel_type:"early_talent",format:"computer",subjects:["语文综合","数学推理","百科","英语"],difficulty:"competition_mid",source_confidence:"reported",question_recalls:[{subject:"语综",topic_tags:["传统文化","一带一路","观察力","记忆力"],summary:"观看40分钟视频后答题40分钟。视频涵盖历史/地理/英语/政治，考点含一带一路、丝绸之路、张骞出使西域等",difficulty_rating:4,similar_resources:[]},{subject:"理综",topic_tags:["材料阅读","推理","行程问题"],summary:"材料阅读+推理题，如坐电梯主题给出限定条件后作答；行程问题考统筹协调能力",difficulty_rating:4,similar_resources:[]},{subject:"复选",topic_tags:["概率","计数","北斗","疫情"],summary:"复选含炉石传说概率、蒙特卡洛实验、肺炎群体免疫计算、北斗定位原理、追及问题，语文以'斗'字出题，英语考中国传统文化",difficulty_rating:5,similar_resources:[]}],prep_recommendations:[{stage:"综合积累",period:"3-5年级",focus:"广泛阅读+数学思维+百科知识+英语FCE水平",materials:[{name:"高思导引"},{name:"FCE备考"}]}],notes:"2020年因疫情首次网考，后续年份形式可能调整。考察极其综合，需上知天文下知地理。"},
+{exam_id:"syzx_activity_2019",school_id:"haidian_syzx",school_name:"十一学校",exam_name:"小升初综合能力考察（2019年回忆）",year:2019,channel_type:"selection",format:"mixed",subjects:["数学","语文","英语"],difficulty:"competition_intro",source_confidence:"reported",question_recalls:[{subject:"数学",topic_tags:["排列组合","最优路线"],summary:"设计十一学校景点最优参观路线；圆桌会议安排座位使相邻人有共同话题（排列组合）",difficulty_rating:3,similar_resources:[]},{subject:"语文",topic_tags:["AI","信息提取","演讲稿"],summary:"阅读几篇AI文章（硅谷大佬观点），提取关键信息，写演讲稿：人工智能是否对人类构成威胁",difficulty_rating:3,similar_resources:[]},{subject:"英语",topic_tags:["AI","写作"],summary:"看人工智能海报，用英文写对AI看法的作文",difficulty_rating:3,similar_resources:[]}],prep_recommendations:[{stage:"综合准备",period:"5年级",focus:"数学思维+阅读写作+英语写作，关注科技时事",materials:[{name:"高思导引"},{name:"新概念英语2"}]}],notes:"考点遍布全北京，预计参考人数破万。以AI为主题，注重灵活运用。不同考点内容不完全一致。"},
+{exam_id:"rdfz_fenbankao_2025",school_id:"haidian_rdfz",school_name:"人大附中",exam_name:"新高一分班考试",year:2025,channel_type:"selection",format:"written",subjects:["语文","数学","英语","物理","化学","生物","史地政"],difficulty:"competition_intro",source_confidence:"reported",question_recalls:[{subject:"语文",topic_tags:["文言文","现代诗","议论文"],summary:"三篇阅读（文言文《辨奸论》、余光中《水仙操》、蒋勋《屈原的最后一天》），议论文写作'固有印象如何影响个体评价'",difficulty_rating:4,similar_resources:[]},{subject:"数学",topic_tags:["初高衔接","函数","充要条件"],summary:"初高中知识混合，涉及充分必要条件、函数定义、对数定义，核心围绕函数展开，需预习高中半学期内容",difficulty_rating:5,similar_resources:[]},{subject:"英语",topic_tags:["长篇阅读","文化自信"],summary:"7-8篇阅读，篇幅长时间紧，作文主题'手机使用对人际关系的影响'",difficulty_rating:4,similar_resources:[]},{subject:"物理",topic_tags:["电路","浮力"],summary:"以初中内容为主，电路和浮力难度大，时间紧",difficulty_rating:3,similar_resources:[]}],prep_recommendations:[{stage:"暑假预习",period:"中考后暑假",focus:"高中数学预习（函数为主）+长篇英语阅读+古文积累",materials:[]}],notes:"2025年分班考呈'高考化'趋势，两天考完全部科目。"},
+{exam_id:"qhfz_fenbankao_2025",school_id:"haidian_qhfz",school_name:"清华附中",exam_name:"新高一分班考试",year:2025,channel_type:"selection",format:"written",subjects:["语文","数学","英语","物理","AI（科特班）"],difficulty:"competition_mid",source_confidence:"reported",question_recalls:[{subject:"语文",topic_tags:["基础","古诗文","作文"],summary:"22道选择题（标点、语病、名著、笔顺），古诗文默写课外七成课内三成，作文'成为一道光照亮他人'",difficulty_rating:3,similar_resources:[]},{subject:"数学",topic_tags:["二次函数","新定义题"],summary:"弱化统计和几何，强化二次函数，多道'新定义'题要求现场学习理解应用",difficulty_rating:5,similar_resources:[]},{subject:"物理",topic_tags:["浮力","杠杆","电路","竞赛入门"],summary:"远超中考难度，接近竞赛入门。15道选择约10道达中考压轴及以上，含恒流源、未知电阻推导",difficulty_rating:5,similar_resources:[]},{subject:"AI",topic_tags:["贝叶斯","CNN","逻辑"],summary:"科技创新特长班专场：材料阅读引入贝叶斯公式和卷积神经网络概念，7道非虚数题，考生普遍反映挑战极大",difficulty_rating:5,similar_resources:[]}],prep_recommendations:[{stage:"暑假预习",period:"中考后暑假",focus:"数学摆脱套路培养灵活思维+物理拓展到竞赛入门+英语长文本阅读",materials:[]}],notes:"科特班选拔独立测试，聚焦AI理论基础。"}
+];
+const TL={haidian:[{month:"2025年9-10月",events:[{name:"新六年级开学，冲刺期开始",type:"prep",action:"确定目标校，评估水平，制定计划"},{name:"体测（四/六/八年级）",type:"exam",action:"确保体测达标"},{name:"部分校秋季活动/摸底",type:"exam"},{name:"十一学校科创项目第二期报名（截止10.10）",type:"exam",action:"面向联盟校小学高年级和初一，招募≤150人，不收费"}]},{month:"2025年11-12月",events:[{name:"机构杯赛/模拟排名",type:"exam",action:"参加排名考试，整理竞赛证书"},{name:"个别校提前接触",type:"notification"}]},{month:"2026年1月",events:[{name:"期末考试（1月6-7日已确认）",type:"exam",action:"全力备考，期末成绩是重要筛选参考"},{name:"寒假冲刺备考",type:"prep",action:"集中突破薄弱环节，准备简历材料"}]},{month:"2-3月",events:[{name:"春季选拔/开放日/简历投递",type:"exam",action:"主动向目标校投递简历，参加开放日"},{name:"第一批MD/DZ发出",type:"notification",action:"保持电话畅通，冷静分析"}]},{month:"4月",events:[{name:"入学政策发布（预计4月下旬）",type:"policy",action:"仔细阅读政策，确认入学方式"},{name:"校园开放日集中期",type:"prep",action:"带孩子参加，现场咨询招生计划"},{name:"MD持续进行",type:"notification"}]},{month:"5月",events:[{name:"信息采集（5月6-31日）",type:"policy",action:"登录yjrx.bjedu.cn完成采集"},{name:"跨区申请（5月8-14日）",type:"policy",action:"需跨区的按时提交申请"},{name:"MD密集期",type:"notification",action:"警惕'保录'诈骗"}]},{month:"6月",events:[{name:"一派（登记入学）志愿填报",type:"policy",action:"合理规划志愿顺序"},{name:"二派（学区派位）结果公布",type:"result",action:"查询结果，按通知报到"},{name:"录取通知发放",type:"result"}]},{month:"7月",events:[{name:"早培报名（7.9-7.10，仅2天窗口）",type:"exam",action:"登录人大附官网报名，官方要求海淀五年级京籍，实际报名限制较宽"},{name:"早培全真模拟（7.12晚，必须参加）",type:"exam",action:"线上ClassIn平台，熟悉操作流程"},{name:"早培在线初筛（7.14下午14:30-16:50）",type:"exam",action:"ClassIn公益课形式，约47分钟，涵盖人文/英语/地理等综合内容"},{name:"早培线下复筛（7.19全天）",type:"exam",action:"7.18下午通知复筛名单，7.19日8:30-16:00"},{name:"早培线下入营/试读（7.23-7.24）",type:"exam",action:"7.22下午公布复筛结果，连续两天试读观察"},{name:"早培通知录取（7.28）",type:"result",action:"下午16:00左右通知"},{name:"分班考试",type:"result",action:"认真准备，影响实验班分配"},{name:"新初一入学报到",type:"result"}]}],xicheng:[{month:"2025年9-10月",events:[{name:"新六年级开学",type:"prep",action:"了解西城入学批次，确定目标校"},{name:"部分校接触优质生源",type:"notification"}]},{month:"2025年11-12月",events:[{name:"八中少儿班/素质班报名",type:"exam",action:"关注八中官网通知"}]},{month:"2026年1月",events:[{name:"期末考试（1月2-6日已确认）",type:"exam",action:"全力备考"},{name:"部分校DZ接触",type:"notification",action:"关注家长群信息"}]},{month:"2-3月",events:[{name:"选拔活动（较海淀少）",type:"exam"},{name:"校园开放日开始",type:"prep",action:"参加目标校开放日"},{name:"零星MD",type:"notification"}]},{month:"4月",events:[{name:"西城区入学政策发布",type:"policy",action:"确认学区对应学校和各批次途径"},{name:"特色校/寄宿校/全市招生校报名",type:"policy",action:"符合条件的按通知报名"}]},{month:"5月",events:[{name:"信息采集（5月6-31日）",type:"policy",action:"登录yjrx.bjedu.cn"},{name:"外区回西城申请（5月8-14日）",type:"policy"},{name:"全区派位志愿填报",type:"policy"},{name:"MD密集期",type:"notification",action:"保持电话畅通"}]},{month:"6月",events:[{name:"各批次派位结果公布",type:"result",action:"查询结果"},{name:"录取通知",type:"result"}]},{month:"7月",events:[{name:"分班考试与入学报到",type:"result",action:"完成报到手续"}]}]};
+const D={haidian:"海淀",xicheng:"西城"},TR={open:"公开",semi_open:"半公开",hidden:"非公开"},CF={official:"官方公示",verified:"多源验证",reported:"待验证",estimated:"推算"},DF={curriculum:"课内",extended:"拓展",competition_intro:"竞赛入门",competition_mid:"竞赛中等",competition_hard:"竞赛高难"},DN={curriculum:1,extended:2,competition_intro:3,competition_mid:4,competition_hard:5},FM={written:"笔试",computer:"机考",interview:"面谈",activity:"综合活动",mixed:"多轮混合"};
+const PREP_DATA={
+"policy":{label:"政策与入学规则",items:[
+{title:"海淀区入学方式：一派与二派",body:"<p><b>一派（登记入学）</b>：面向全区或特定区域招生，涵盖公办登记入学、对口直升、公办寄宿及民办校四种途径。家长可自愿填报1至10个志愿，由电脑随机派位录取，未被录取不影响后续环节。六小强在一派阶段面向全区招生。</p><p><b>二派（学区派位）</b>：依据小学所属学区对应初中校，志愿必须填满，电脑随机派位，属于兜底录取环节。</p><p><b>策略建议</b>：一派与二派应联动规划。建议先评估二派对应学校中最弱的是否可接受，以此为基础决定一派的冲击力度与保守程度。</p>"},
+{title:"西城区入学方式与批次顺序",body:"<p>西城区采取统一填报、分批录取模式，各批次依次为：全区派位→特色校/寄宿校→对口直升→学区登记入学→学区派位。</p><p><b>2025年变化</b>：学区登记入学名额由50人调整为30人；新增3所参与全区派位的学校。</p>"},
+{title:"志愿填报策略",body:"<p><b>逆向选择</b>：同层次学校中优先选择热度较低的，以提高录取概率。</p><p><b>已获MD的情况</b>：六小强级别学校应严格按校方要求填报志愿；非六小强学校可尝试在更高层次学校补录。</p><p><b>补录机制</b>：一派结束后进入第一批补录；出码后进入第二批补录。</p>"},
+{title:"1+3贯通培养实验项目",body:"<p>面向初二学生，录取后无需参加中考，直接进入高中阶段完成1+3贯通培养。名额分配为本校70%、外校30%。</p><p>海淀区共有22所区级项目校参与，包括五十七中、人大附翠微、海淀实验、交大附中等。五十七中学员中考均分652+，交大附工程班毕业生全部进入985高校。需注意：参加1+3项目后可自愿退出，但不再享有校额到校资格。</p>"},
+{title:"校额到校政策",body:"<p>海淀区51所一般公办初中的学生（优质高中初中部和民办校除外），享有进入人大附中、北大附中、清华附中等15所优质高中的校额到校录取资格。</p><p><b>基本条件</b>：须在同一学校具有连续三年学籍，且中考录取总分达到相应要求。</p><p><b>录取方式</b>：校额到校名额按初中校分配，依据校内排名录取，是一般公办初中学生进入优质高中的重要通道。</p><p><b>策略意义</b>：对于未能进入六小强初中部的学生，选择拥有校额到校名额的一般公办初中，通过校内排名竞争进入优质高中，是一条值得重视的升学路径。</p>"}
+]},
+"ability":{label:"能力储备与竞赛",items:[
+{title:"英语能力：KET / PET / FCE",body:"<p>PET卓越级（160分以上）是小升初中具备竞争力的基准线，人大附早培复选难度约相当于FCE水平。</p><table><tr><th>阶段</th><th>目标</th><th>说明</th></tr><tr><td>三年级</td><td>备考KET</td><td>建立应试框架，熟悉题型</td></tr><tr><td>四年级</td><td>通过PET</td><td>目标卓越级（160+）</td></tr><tr><td>五年级</td><td>冲刺FCE</td><td>匹配早培及六小强选拔难度</td></tr></table><p>北京地区KET/PET考位供应已恢复正常。</p>"},
+{title:"数学竞赛与证书体系",body:"<table><tr><th>赛事（暗语）</th><th>含金量</th><th>现状与说明</th></tr><tr><td>AS（奥数）</td><td>一等奖为六小强核心筛选标准</td><td>目前最受认可的数学竞赛成绩，AS一等奖 + PET/FCE 是最常见上岸组合</td></tr><tr><td>华杯赛 / 华数之星（HB）</td><td>一、二等奖含金量最高</td><td>华杯赛2018年后停办，华数之星为其延续，以研学营形式举办，难度最高。未列入教育部白名单</td></tr><tr><td>华数国际</td><td>金奖认可度较高</td><td>华数之星的国际版本，近年在境外举办决赛，通知不公开，需通过机构渠道获取信息</td></tr><tr><td>希望杯（XWB）</td><td>与华杯含金量相当</td><td>英文名IHC，线上机考（20题/60分钟/单选），参与人数最多（10万+人次），以「思维挑战营」等形式存续</td></tr><tr><td>走美杯（ZM）</td><td>一、二等奖认可度较高</td><td>2017年停办后近年恢复，以研学活动形式举办，未列入教育部白名单</td></tr><tr><td>迎春杯（YCB/YMO）</td><td>含金量相对较低</td><td>北京传统赛事，2019年起停办，以「数学花园探秘」等名义存续</td></tr></table><p><b>难度排序</b>：HB（华杯）&gt; XWB（希望杯）&gt; ZM（走美）&gt; YMO（迎春杯）</p><p><b>含金量排序</b>：HB = XWB = ZM &gt; YMO</p><p>需注意：除AS外，上述多数赛事均未列入教育部「面向中小学生的全国性竞赛活动名单」，属于非官方认可赛事，但在实际小升初选拔中仍具有参考价值。家长圈中通常以暗语代称（BS=杯赛，DZ=点招，MD=密电，DSS=大师赛）。</p>"},
+{title:"荣誉称号：市三好与区三好",body:"<p><b>市级三好学生</b>：具有较高含金量，部分学校（如101中学）可凭此直升高中部。持有市三好称号的学生基本均能获得目标校活动邀请。</p><p><b>区级三好学生</b>：连续三年获评区三好是多数学校筛选简历的基本门槛。</p>"},
+{title:"金帆 / 金鹏 / 金奥团队",body:"<p>2025年认定数量：金帆126个、金鹏90个、金奥63个。2019年起小升初已正式取消特长生招生，上述团队资质目前主要影响中考阶段的特长生录取通道。</p>"}
+]},
+"apply":{label:"申请与实战准备",items:[
+{title:"备考时间规划（四至六年级）",body:"<table><tr><th>阶段</th><th>时间</th><th>核心任务</th></tr><tr><td>基础积累期</td><td>四年级全年</td><td>系统学习奥数、备考KET/PET、争取获评区三好</td></tr><tr><td>能力冲刺期</td><td>五年级上学期</td><td>冲刺AS/华杯一等奖、备考FCE、关注早培报名</td></tr><tr><td>成果收获期</td><td>五下至六上</td><td>集中出成绩、准备升学简历、全力冲刺期末考试</td></tr><tr><td>申请投递期</td><td>六年级1-3月</td><td>向目标校投递简历、参加校园开放日</td></tr><tr><td>政策与录取期</td><td>4-5月</td><td>关注入学政策发布、MD密集发放期</td></tr><tr><td>志愿与派位</td><td>6月</td><td>填报志愿、等待派位结果</td></tr><tr><td>分班与入学</td><td>7月</td><td>参加分班考试、完成入学报到</td></tr></table>"},
+{title:"升学简历制作规范",body:"<p><b>封面要素</b>：学生近期照片、核心获奖信息、家长联系方式。</p><p><b>内容结构</b>：基本信息→在校成绩（四至六年级评价手册）→荣誉称号→竞赛获奖→兴趣特长。</p><p><b>注意事项</b>：突出与目标校选拔方向匹配的核心成果，避免罗列无关奖项。简历投递后应保持手机畅通，及时接听来自学校的通知电话。</p>"},
+{title:"面试常见考查内容",body:"<p><b>学生环节</b>：自我评价与家庭介绍、英文自我介绍、数学口述解题、古诗词积累、小组合作任务。</p><p><b>家长环节</b>：对孩子的客观评价、是否将该校作为第一志愿、当前已获得的其他录取机会。部分学校（如人大附系）要求父母双方同时到场。</p>"},
+{title:"六小强选拔渠道概览",body:"<table><tr><th>学校</th><th>主要渠道</th><th>特点</th></tr><tr><td>人大附中</td><td>早培入营、机构推荐</td><td>早培为核心选拔通道</td></tr><tr><td>清华附中</td><td>机构推荐、「顶牛」活动</td><td>创新班选拔为主</td></tr><tr><td>十一学校</td><td>综合素质评估、网上报名</td><td>2+4项目面向五年级</td></tr><tr><td>一零一中学</td><td>坑班、综合评估</td><td>集团直升为重要途径</td></tr><tr><td>北大附中</td><td>信息学方向为主</td><td>偏重信息学竞赛背景</td></tr><tr><td>首师大附中</td><td>渠道不确定性较高</td><td>选拔方式年度变化较大</td></tr></table>"},
+{title:"典型上岸案例参考",body:"<table><tr><th>学生背景</th><th>录取结果</th></tr><tr><td>AS一等奖</td><td>十一学校2+4项目</td></tr><tr><td>AS二等奖 + PET通过</td><td>十一龙樾实验中学</td></tr><tr><td>连续三年区三好 + AS二等奖</td><td>十一学校</td></tr><tr><td>市三好 + PET + AS一等奖</td><td>清华附中（获五校录取通知）</td></tr><tr><td>无三好称号 + AS二等奖</td><td>晋元中学</td></tr></table><p>以上案例基于家长社区分享信息整理，仅供参考。</p>"}
+]}
+};
+var curPrepCat='all';
+function renderPrepFilter(){
+  document.getElementById('pf').innerHTML='<button class="fb active" onclick="filterPrep(\'all\',this)">全部</button>'+Object.entries(PREP_DATA).map(([k,v])=>'<button class="fb" onclick="filterPrep(\''+k+'\',this)">'+v.label+'</button>').join('');
+}
+function filterPrep(cat,btn){
+  curPrepCat=cat;
+  document.querySelectorAll('#pf .fb').forEach(x=>x.classList.remove('active'));
+  btn.classList.add('active');
+  renderPrep(cat);
+}
+function renderPrep(cat){
+  cat=cat||'all';
+  const container=document.getElementById('prep-content');
+  let html='';
+  let idx=0;
+  const cats=cat==='all'?Object.entries(PREP_DATA):[[cat,PREP_DATA[cat]]];
+  cats.forEach(([key,section])=>{
+    if(cat==='all') html+='<div class="prep-cat-label">'+section.label+'</div>';
+    section.items.forEach(p=>{
+      html+='<div class="prep-section" id="ps'+idx+'"><div class="prep-header" onclick="togglePrep('+idx+')"><span>'+p.title+'</span><span class="arrow">▸</span></div><div class="prep-body">'+p.body+'</div></div>';
+      idx++;
+    });
+  });
+  container.innerHTML=html;
+}
+function togglePrep(i){document.getElementById('ps'+i).classList.toggle('open')}
+
+// ── Helpers ──
+function extractHighlight(notes) {
+  // Extract key gaokao/zhongkao numbers as a short summary line
+  const m = notes.match(/高考：(【\d{4}】[^。]+)/);
+  if (m) {
+    let s = m[1];
+    if (s.length > 80) s = s.substring(0, 80) + '…';
+    return s;
+  }
+  const m2 = notes.match(/中考出口：(【\d{4}[^。]+)/);
+  if (m2) {
+    let s = m2[1];
+    if (s.length > 80) s = s.substring(0, 80) + '…';
+    return s;
+  }
+  // fallback: first sentence
+  const first = notes.split('。')[0];
+  return first.length > 80 ? first.substring(0, 80) + '…' : first;
+}
+
+// ── Nav ──
+document.querySelectorAll('.nb').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.nb').forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-' + b.dataset.s).classList.add('active');
+}));
+
+// ── Search ──
+const si = document.getElementById('si'), sr = document.getElementById('sr');
+si.addEventListener('input', () => {
+  const q = si.value.trim().toLowerCase();
+  if (q.length < 1) { sr.classList.remove('show'); return; }
+  const r = [];
+  SCHOOLS.forEach(s => {
+    const str = [s.name, ...s.short_names, ...s.tags, s.notes, s.zone || '', s.tier, s.honors || '', ...(s.channels || []).map(c => c.name)].join(' ').toLowerCase();
+    if (str.includes(q)) r.push({ type: 'school', id: s.school_id, name: s.name, meta: D[s.district] + ' · ' + s.tier + ' · ' + s.tags.join(', ') });
+  });
+  EXAMS.forEach(e => {
+    const str = [e.exam_name, e.school_name, ...e.subjects].join(' ').toLowerCase();
+    if (str.includes(q)) r.push({ type: 'exam', id: e.school_id, name: e.exam_name, meta: e.school_name + ' · ' + e.year });
+  });
+  sr.innerHTML = r.length === 0 ? '<div class="sr-i"><span class="sr-m">无结果</span></div>' : r.slice(0, 8).map(x => '<div class="sr-i" data-id="' + x.id + '"><span class="sr-n">' + x.name + '</span><br><span class="sr-m">' + x.meta + '</span></div>').join('');
+  sr.classList.add('show');
+});
+sr.addEventListener('click', e => { const it = e.target.closest('.sr-i'); if (!it) return; sr.classList.remove('show'); si.value = ''; showDetail(it.dataset.id); });
+document.addEventListener('click', e => { if (!e.target.closest('.search-bar')) sr.classList.remove('show'); });
+
+// ── School Cards ──
+var curDist = 'all';
+function renderSF() {
+  document.getElementById('sf').innerHTML = '<button class="fb active" onclick="filterS(\'all\',this)">全部</button><button class="fb" onclick="filterS(\'haidian\',this)">海淀</button><button class="fb" onclick="filterS(\'xicheng\',this)">西城</button>';
+}
+function filterS(d, b) {
+  curDist = d;
+  document.querySelectorAll('#sf .fb').forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  document.getElementById('zf').value = 'all';
+  renderSchools(d);
+}
+function filterZone(z) { renderSchools(curDist, z); }
+function initZoneFilter() {
+  // 海淀一派5大区域 → 对应学区的映射
+  const areaToZones = {
+    '区域一': ['羊坊店', '万寿路', '永定路'],
+    '区域二': ['北太平庄', '花园路', '学院路'],
+    '区域三': ['中关村', '海淀'],
+    '区域四': ['八里庄', '紫竹院', '四季青'],
+    '区域五': ['西三旗', '清河', '青龙桥', '上地', '上庄西北旺', '温泉苏坨']
+  };
+  const sel = document.getElementById('zf');
+  // 海淀一派：按区域分组，每个区域显示对应学区
+  const og1 = document.createElement('optgroup');
+  og1.label = '海淀·一派登记入学区域';
+  Object.entries(areaToZones).forEach(([area, zones]) => {
+    const o = document.createElement('option');
+    o.value = area;
+    o.textContent = area + '（' + zones.join('、') + '）';
+    og1.appendChild(o);
+  });
+  sel.appendChild(og1);
+  // 海淀二派：按学区筛选
+  const haidianZones = new Set();
+  Object.values(areaToZones).flat().forEach(z => haidianZones.add(z));
+  const og2 = document.createElement('optgroup');
+  og2.label = '海淀·二派学区';
+  [...haidianZones].sort().forEach(z => { const o = document.createElement('option'); o.value = z; o.textContent = z + '学区'; og2.appendChild(o); });
+  sel.appendChild(og2);
+  // 西城学区
+  const xichengZones = new Set();
+  SCHOOLS.forEach(s => {
+    if (s.district !== 'xicheng' || !s.zone) return;
+    const m = s.zone.match(/德胜|什刹海|西长安街|金融街|新街口|展览路|月坛|广外|广内|陶白|大椿天/g);
+    if (m) m.forEach(z => xichengZones.add(z));
+  });
+  if (xichengZones.size) {
+    const og3 = document.createElement('optgroup');
+    og3.label = '西城·学区';
+    [...xichengZones].sort().forEach(z => { const o = document.createElement('option'); o.value = z; o.textContent = z + '学区'; og3.appendChild(o); });
+    sel.appendChild(og3);
+  }
+}
+
+function renderSchools(f, zf) {
+  const l0 = f === 'all' ? SCHOOLS : SCHOOLS.filter(s => s.district === f);
+  const l = zf && zf !== 'all' ? l0.filter(s => {
+    const z = s.zone || '';
+    if (z.includes(zf)) return true;
+    // Handle "区域三/四/五" notation: extract the Chinese numeral from filter
+    const numMatch = zf.match(/^区域([一二三四五])$/);
+    if (numMatch) {
+      // Match patterns like 区域三/四, 区域一/四/五, etc.
+      const re = new RegExp('区域[一二三四五/]*' + numMatch[1]);
+      return re.test(z);
+    }
+    return false;
+  }) : l0;
+  const grid = document.getElementById('card-grid');
+  grid.innerHTML = l.map((s, i) => {
+    const distClass = s.district === 'haidian' ? 'dist-haidian' : 'dist-xicheng';
+    const distLabel = D[s.district] + '区';
+    // Build zone snippet for aka line
+    const zoneShort = s.zone ? s.zone.split('；')[0] : '';
+    const akaLine = s.short_names.join(' · ') + (zoneShort ? ' · ' + zoneShort : '');
+    // Channel dots: transparency -> dot style
+    const channelDots = (s.channels || []).map(c => {
+      let dot = '●';
+      if (c.transparency === 'semi_open') dot = '◐';
+      else if (c.transparency === 'hidden') dot = '○';
+      return '<span class="ch-dot">' + dot + ' ' + c.name + '</span>';
+    }).join('');
+    return '<div class="school-card" onclick="showDetail(\'' + s.school_id + '\')" style="animation-delay:' + (i * 30) + 'ms">' +
+      '<div class="card-top"><span class="tier tier-' + s.tier + '">' + s.tier + '</span><span class="dist-badge ' + distClass + '">' + distLabel + '</span></div>' +
+      '<div class="card-name">' + s.name + '</div>' +
+      '<div class="card-aka">' + akaLine + '</div>' +
+      '<div class="card-tags">' + s.tags.map(t => '<span class="tag">' + t + '</span>').join('') + '</div>' +
+      '<div class="card-channels">' + channelDots + '</div>' +
+      '</div>';
+  }).join('');
+  renderStats(f);
+}
+
+function renderStats(f) {
+  const l = f === 'all' ? SCHOOLS : SCHOOLS.filter(s => s.district === f);
+  document.getElementById('stats').innerHTML = '<b>' + l.length + '</b> 所学校 · <b>' + l.reduce((a, s) => a + (s.channels || []).length, 0) + '</b> 条渠道 · <b>' + EXAMS.length + '</b> 场考试';
+}
+
+// ── Detail Panel ──
+function showDetail(id) {
+  const s = SCHOOLS.find(x => x.school_id === id);
+  if (!s) return;
+  document.body.style.overflow = 'hidden';
+  const se = EXAMS.filter(e => e.school_id === id);
+  const o = document.getElementById('overlay');
+  const p = document.getElementById('dpanel');
+  p.innerHTML =
+    '<button class="close-btn" onclick="closeDetail()">&times;</button>' +
+    '<h2>' + s.name + '</h2>' +
+    '<div class="detail-meta"><span class="tier tier-' + s.tier + '">' + s.tier + '</span>' +
+    '<span class="dist-badge ' + (s.district === 'haidian' ? 'dist-haidian' : 'dist-xicheng') + '">' + D[s.district] + '区</span>' +
+    s.tags.map(t => '<span class="tag">' + t + '</span>').join('') + '</div>' +
+    '<div class="detail-notes">' + s.notes + '</div>' +
+    (s.zone ? '<div class="detail-zone">📍 ' + s.zone + '</div>' : '') +
+    (s.honors ? '<div class="detail-honors">🏆 ' + s.honors + '</div>' : '') +
+    (s.website ? '<p style="margin:8px 0"><a href="' + s.website + '" target="_blank" style="font-size:13px">学校官网 →</a></p>' : '') +
+    '<div class="detail-section-title">入学渠道（' + (s.channels || []).length + '）</div>' +
+    (s.channels || []).map(c =>
+      '<div class="ch-item"><div style="display:flex;justify-content:space-between;align-items:center"><span class="ch-name">' + c.name + '</span><span class="cf cf-' + c.source_confidence + '">' + CF[c.source_confidence] + '</span></div>' +
+      '<div class="ch-method">' + c.selection_method + '</div>' +
+      (c.notes ? '<div style="font-size:12px;color:var(--text3);margin-top:4px">' + c.notes + '</div>' : '') + '</div>'
+    ).join('') +
+    (se.length ? '<div class="detail-section-title">考试记录（' + se.length + '）</div>' +
+      se.map(e =>
+        '<div class="ch-item"><div class="ch-name">' + e.exam_name + '（' + e.year + '）</div>' +
+        '<div style="font-size:13px;color:var(--text2);margin-top:4px">' + e.subjects.join('、') + ' · ' + (FM[e.format] || e.format) + ' · ' + (DF[e.difficulty] || '') + '</div>' +
+        (e.question_recalls ? e.question_recalls.map(r => '<div style="font-size:13px;margin-top:6px;padding:8px 12px;background:var(--bg);border-radius:6px;line-height:1.7"><b>' + r.subject + '</b>：' + r.summary + '</div>').join('') : '') +
+        '</div>'
+      ).join('') : '');
+  o.classList.add('show');
+}
+function closeDetail() { document.body.style.overflow = ''; document.getElementById('overlay').classList.remove('show'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
+
+// ── Timeline ──
+function renderTF() {
+  document.getElementById('tf').innerHTML = Object.keys(TL).map((d, i) => '<button class="fb ' + (i === 0 ? 'active' : '') + '" onclick="filterTL(\'' + d + '\',this)">' + D[d] + '</button>').join('');
+}
+function renderTL(d) {
+  const data = TL[d];
+  if (!data) { document.getElementById('tc').innerHTML = '<div style="padding:20px;color:var(--text3)">暂无数据</div>'; return; }
+  document.getElementById('tc').innerHTML = data.map((m, i) =>
+    '<div class="tl-row" style="animation-delay:' + (i * 80) + 'ms">' +
+    '<div class="tl-month">' + m.month + '</div>' +
+    '<div class="tl-events">' +
+    m.events.map(e =>
+      '<div class="tl-ev ev-' + e.type + '">' +
+      '<span class="ev-dot"></span>' +
+      '<div><div class="ev-name">' + e.name + '</div>' +
+      (e.action ? '<div class="ev-action">' + e.action + '</div>' : '') +
+      '</div></div>'
+    ).join('') +
+    '</div></div>'
+  ).join('');
+}
+function filterTL(d, b) { document.querySelectorAll('#tf .fb').forEach(x => x.classList.remove('active')); b.classList.add('active'); renderTL(d); }
+
+// ── Exams ──
+function renderEF() {
+  document.getElementById('ef').innerHTML = '<button class="fb active" onclick="filterE(\'all\',this)">全部</button><button class="fb" onclick="filterE(\'haidian\',this)">海淀</button><button class="fb" onclick="filterE(\'xicheng\',this)">西城</button>';
+}
+function renderExams(f) {
+  const l = f === 'all' ? EXAMS : EXAMS.filter(e => SCHOOLS.find(s => s.school_id === e.school_id)?.district === f);
+  document.getElementById('eg').innerHTML = l.map(e => {
+    const dn = DN[e.difficulty] || 0;
+    return '<div class="exam-card" onclick="showDetail(\'' + e.school_id + '\')">' +
+      '<div style="margin-bottom:6px"><span class="cf cf-' + e.source_confidence + '">' + CF[e.source_confidence] + '</span> <span style="font-size:12px;color:var(--text3)">' + e.year + '</span></div>' +
+      '<h3>' + e.exam_name + '</h3>' +
+      '<div class="exam-meta">' + e.school_name + ' · ' + (FM[e.format] || e.format) + '</div>' +
+      '<div style="display:flex;gap:4px;margin-top:6px;flex-wrap:wrap">' + e.subjects.map(s => '<span class="tag">' + s + '</span>').join('') + '</div>' +
+      '<div class="diff-bar">' + Array.from({ length: 5 }, (_, i) => '<span class="dd' + (i < dn ? ' f' : '') + '"></span>').join('') +
+      '<span style="font-size:11px;color:var(--text3);margin-left:6px">' + (DF[e.difficulty] || '') + '</span></div>' +
+      '</div>';
+  }).join('');
+}
+function filterE(d, b) { document.querySelectorAll('#ef .fb').forEach(x => x.classList.remove('active')); b.classList.add('active'); renderExams(d); }
+
+// ── Init ──
+renderSF(); renderSchools('all'); initZoneFilter();
+renderTF(); renderTL('haidian');
+renderEF(); renderExams('all');
+renderPrepFilter(); renderPrep('all');
+document.addEventListener('keydown', e => { if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); document.getElementById('si').focus(); } });
+
+</script>
+</body>
+</html>

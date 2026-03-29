@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>海外升学路线规划 | Nalukea</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Noto+Sans+SC:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#F8F9FA;--bg2:#F1F3F5;--bg3:#FFFFFF;--bg-acc:#EDF2F7;
+  --border:#DEE2E6;--border-l:#E9ECEF;
+  --t1:#212529;--t2:#495057;--t3:#868E96;--t4:#ADB5BD;
+  --o1:#2B6CB0;--o2:#3182CE;--o3:#4299E1;--o4:#63B3ED;--o5:#90CDF4;--o6:#EBF4FF;
+  --blue:#2B6CB0;--blue-bg:#EBF4FF;
+  --green:#276749;--green-bg:#F0FFF4;
+  --amber:#C05621;--amber-bg:#FFFAF0;
+  --red:#C53030;--red-bg:#FFF5F5;
+  --purple:#6B46C1;--purple-bg:#FAF5FF;
+  --r:10px;--rl:16px;
+  --shadow-xs:0 1px 2px rgba(0,0,0,.05);--shadow-sm:0 1px 4px rgba(0,0,0,.07);--shadow-md:0 4px 20px rgba(0,0,0,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;-webkit-font-smoothing:antialiased}
+
+/* ═══ TOP NAV ═══ */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border-l);
+}
+.topbar-inner{
+  max-width:1120px;margin:0 auto;
+  display:flex;align-items:center;height:56px;padding:0 24px;gap:8px;
+}
+.logo{display:flex;align-items:center;gap:0;text-decoration:none;margin-right:32px;flex-shrink:0;cursor:pointer;}
+.logo svg{height:26px;width:auto}
+
+.top-tabs{display:flex;gap:2px;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none;flex:1;}
+.top-tabs::-webkit-scrollbar{display:none}
+.top-tab{
+  padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;
+  color:var(--t3);cursor:pointer;white-space:nowrap;transition:all .15s;
+  display:flex;align-items:center;gap:6px;
+}
+.top-tab:hover{background:var(--bg2);color:var(--t2)}
+.top-tab.active{background:var(--bg-acc);color:var(--o1)}
+.top-tab .tt-badge{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 6px;
+  border-radius:4px;font-weight:600;
+}
+.tb-us{background:var(--blue-bg);color:var(--blue)}
+.tb-on{background:var(--purple-bg);color:var(--purple)}
+.tb-uk{background:var(--red-bg);color:var(--red)}
+.tb-cn{background:var(--amber-bg);color:var(--amber)}
+
+.gh-link{
+  margin-left:auto;flex-shrink:0;
+  font-size:12px;color:var(--t4);text-decoration:none;
+  display:flex;align-items:center;gap:4px;transition:color .2s;
+}
+.gh-link:hover{color:var(--o1)}
+
+/* mobile menu */
+.mob-menu{display:none;background:none;border:none;font-size:20px;color:var(--t2);cursor:pointer;padding:4px;margin-left:auto}
+.mob-dropdown{
+  display:none;position:absolute;top:56px;left:0;right:0;
+  background:#fff;border-bottom:1px solid var(--border);
+  padding:8px 16px 16px;z-index:99;
+  flex-direction:column;gap:2px;
+}
+.mob-dropdown.open{display:flex}
+.mob-dropdown .top-tab{width:100%;justify-content:flex-start}
+
+/* ═══ CONTENT ═══ */
+.content{padding:40px 48px 80px}
+.view{display:none;animation:vIn .3s ease both}
+.view.active{display:block}
+@keyframes vIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══ HERO ═══ */
+.hero{padding:0;position:relative;overflow:hidden}
+
+/* animated gradient background */
+.hero-bg{
+  position:relative;
+  padding:72px 48px 56px;
+  text-align:center;
+  background:linear-gradient(160deg,#EBF4FF 0%,#F8F9FA 35%,#EDF2F7 65%,#E2E8F0 100%);
+  overflow:hidden;
+}
+.hero-bg::before{
+  content:'';position:absolute;top:-120px;right:-80px;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(66,153,225,.08) 0%,transparent 70%);
+  animation:float 8s ease-in-out infinite;
+}
+.hero-bg::after{
+  content:'';position:absolute;bottom:-100px;left:-60px;
+  width:350px;height:350px;border-radius:50%;
+  background:radial-gradient(circle,rgba(43,108,176,.06) 0%,transparent 70%);
+  animation:float 10s ease-in-out infinite reverse;
+}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-20px)}}
+
+/* decorative grid dots */
+.hero-dots{
+  position:absolute;top:20px;right:40px;
+  width:120px;height:120px;
+  background-image:radial-gradient(circle,var(--o4) 1px,transparent 1px);
+  background-size:16px 16px;
+  opacity:.15;
+}
+
+.hero-over{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--o2);margin-bottom:16px;
+  position:relative;z-index:1;
+  opacity:0;animation:fadeUp .6s ease .1s both;
+}
+.hero h1{
+  font-family:'Fraunces',serif;font-size:clamp(2.2rem,5vw,3.2rem);
+  font-weight:700;line-height:1.15;margin-bottom:20px;letter-spacing:-0.5px;
+  position:relative;z-index:1;
+  opacity:0;animation:fadeUp .6s ease .2s both;
+}
+.hero h1 span{
+  background:linear-gradient(135deg,var(--o1),var(--o3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-desc{
+  font-size:15.5px;color:var(--t3);font-weight:300;line-height:1.85;
+  margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;
+  position:relative;z-index:1;
+  opacity:0;animation:fadeUp .6s ease .3s both;
+}
+.hero-nums{
+  display:flex;gap:0;justify-content:center;margin-bottom:0;
+  position:relative;z-index:1;
+  opacity:0;animation:fadeUp .6s ease .4s both;
+}
+.hn{
+  padding:0 32px;position:relative;
+}
+.hn+.hn::before{
+  content:'';position:absolute;left:0;top:4px;bottom:4px;
+  width:1px;background:var(--border);
+}
+.hn .hv{font-family:'Fraunces',serif;font-size:34px;font-weight:700;color:var(--o1)}
+.hn .hl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--t4);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── route highlight cards ── */
+.hero-routes{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+  padding:0 48px;
+  margin:-28px auto 0;
+  position:relative;z-index:2;
+}
+.hr-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--rl);
+  padding:22px 20px;text-align:left;cursor:pointer;
+  transition:all .25s;position:relative;overflow:hidden;
+  opacity:0;animation:fadeUp .5s ease both;
+}
+.hr-card:nth-child(1){animation-delay:.35s}
+.hr-card:nth-child(2){animation-delay:.42s}
+.hr-card:nth-child(3){animation-delay:.49s}
+.hr-card:nth-child(4){animation-delay:.56s}
+
+.hr-card::before{
+  content:'';position:absolute;top:0;left:0;width:100%;height:2.5px;
+  transition:opacity .2s;
+}
+.hr-card:hover{
+  transform:translateY(-3px);box-shadow:var(--shadow-md);
+  border-color:var(--o4);
+}
+.hr-card:hover::before{opacity:1}
+
+.hr-card:nth-child(1)::before{background:linear-gradient(90deg,var(--blue),#60A5FA)}
+.hr-card:nth-child(2)::before{background:linear-gradient(90deg,var(--purple),#A78BFA)}
+.hr-card:nth-child(3)::before{background:linear-gradient(90deg,var(--red),#F87171)}
+.hr-card:nth-child(4)::before{background:linear-gradient(90deg,var(--amber),#FBBF24)}
+
+.hr-flag{font-size:20px;margin-bottom:10px;display:block}
+.hr-title{font-family:'Fraunces',serif;font-size:15px;font-weight:600;margin-bottom:4px;color:var(--t1)}
+.hr-sub{font-size:12px;color:var(--t3);font-weight:300;line-height:1.5;margin-bottom:10px}
+.hr-meta{display:flex;gap:6px;flex-wrap:wrap}
+.hr-tag{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;
+  padding:3px 8px;border-radius:5px;
+}
+.hr-tag.t-cost{background:var(--amber-bg);color:var(--amber)}
+.hr-tag.t-time{background:var(--blue-bg);color:var(--blue)}
+.hr-tag.t-cert{background:var(--green-bg);color:var(--green)}
+.hr-tag.t-no{background:var(--red-bg);color:var(--red)}
+
+/* ── comparison strip ── */
+.hero-compare{
+  margin:28px 48px 0;padding:0;
+  opacity:0;animation:fadeUp .5s ease .65s both;
+}
+.compare-bar{
+  display:flex;align-items:stretch;
+  background:#fff;border:1px solid var(--border);border-radius:var(--rl);
+  overflow:hidden;
+}
+.cb-item{
+  flex:1;padding:18px 20px;text-align:center;
+  border-right:1px solid var(--border-l);
+  transition:background .2s;
+}
+.cb-item:last-child{border-right:none}
+.cb-item:hover{background:var(--bg-acc)}
+.cb-label{font-size:11px;color:var(--t4);margin-bottom:4px;font-weight:500}
+.cb-val{font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:600;color:var(--t1)}
+.cb-note{font-size:10.5px;color:var(--t3);margin-top:2px}
+
+/* ── cta ── */
+.hero-cta{
+  text-align:center;margin-top:36px;
+  opacity:0;animation:fadeUp .5s ease .75s both;
+}
+.hero-cta-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 28px;border-radius:100px;
+  background:linear-gradient(135deg,var(--o1),var(--o3));
+  color:#fff;font-size:13.5px;font-weight:500;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:all .25s;box-shadow:0 4px 16px rgba(0,119,182,.15);
+}
+.hero-cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,119,182,.25)}
+.hero-cta-btn svg{width:14px;height:14px;transition:transform .2s}
+.hero-cta-btn:hover svg{transform:translateX(3px)}
+
+/* ═══ VIEW HEADER ═══ */
+.vh{margin-bottom:32px}
+.vh .over{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--o2);margin-bottom:6px;font-weight:500}
+.vh h2{font-family:'Fraunces',serif;font-size:24px;font-weight:700;letter-spacing:-0.3px;margin-bottom:6px}
+.vh p{font-size:14px;color:var(--t3);font-weight:300;max-width:560px}
+
+/* ═══ SUB TABS ═══ */
+.stabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:28px;overflow-x:auto}
+.stab{
+  padding:10px 18px;font-size:13px;font-weight:500;color:var(--t3);
+  cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .15s;
+}
+.stab:hover{color:var(--t2)}
+.stab.active{color:var(--o1);border-bottom-color:var(--o1)}
+.spanel{display:none;animation:vIn .25s ease both}
+.spanel.active{display:block}
+
+/* ═══ CONTENT BLOCKS ═══ */
+.blk{margin-bottom:32px}
+.blk-t{
+  font-family:'Fraunces',serif;font-size:17px;font-weight:600;margin-bottom:12px;
+  display:flex;align-items:center;gap:9px;color:var(--t1);
+}
+.blk-t .bi{
+  width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;
+  font-size:12px;flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-weight:700;
+}
+.bi-b{background:var(--blue-bg);color:var(--blue)}
+.bi-g{background:var(--green-bg);color:var(--green)}
+.bi-a{background:var(--amber-bg);color:var(--amber)}
+.bi-r{background:var(--red-bg);color:var(--red)}
+.bi-p{background:var(--purple-bg);color:var(--purple)}
+.bi-o{background:var(--o6);color:var(--o1)}
+
+.blk p,.blk li{font-size:14px;color:var(--t2);line-height:1.8}
+
+/* school cards */
+.sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.sc{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;transition:all .2s}
+.sc:hover{border-color:var(--o4);box-shadow:var(--shadow-sm)}
+.sc .sn{font-weight:600;font-size:14px;margin-bottom:1px}
+.sc .sa{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--o2);font-weight:500;margin-bottom:5px}
+.sc .sd{font-size:13px;color:var(--t3);font-weight:300}
+
+/* steps */
+.steps{display:flex;flex-direction:column}
+.step{display:grid;grid-template-columns:44px 1fr;position:relative}
+.sl{display:flex;flex-direction:column;align-items:center;padding-top:2px}
+.sd2{width:9px;height:9px;border-radius:50%;background:var(--o1);flex-shrink:0;z-index:1}
+.sd2.h{background:#fff;border:2px solid var(--o3)}
+.ss{width:1.5px;flex:1;background:var(--border-l);margin-top:4px}
+.step:last-child .ss{display:none}
+.sb{padding-bottom:24px}
+.slb{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;color:var(--o1);letter-spacing:1px;margin-bottom:3px}
+.stt{font-weight:600;font-size:14.5px;margin-bottom:5px}
+.sdt{font-size:13px;color:var(--t2);line-height:1.8}
+.sdt ul{list-style:none;padding:0;margin-top:4px}
+.sdt li{font-size:13px;padding:2px 0;color:var(--t2);display:flex;align-items:baseline;gap:8px}
+.sdt li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--o3);flex-shrink:0;margin-top:8px}
+
+/* cost table */
+.cw{border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.ct{width:100%;border-collapse:collapse;font-size:13.5px}
+.ct th{text-align:left;padding:10px 16px;font-weight:600;font-size:11px;letter-spacing:.5px;color:var(--t3);background:var(--bg2);border-bottom:1px solid var(--border)}
+.ct td{padding:10px 16px;border-bottom:1px solid var(--border-l);color:var(--t2)}
+.ct .cv{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--t1)}
+.ct tr:last-child td{border-bottom:none}
+.ct .cttl td{font-weight:700;color:var(--o1);border-top:2px solid var(--o1);background:var(--o6)}
+
+/* callout */
+.co{padding:14px 18px;border-radius:var(--r);font-size:13px;line-height:1.75;margin-top:12px}
+.co-i{background:var(--blue-bg);color:var(--blue);border-left:3px solid var(--blue)}
+.co-w{background:var(--amber-bg);color:var(--amber);border-left:3px solid var(--amber)}
+.co-d{background:var(--red-bg);color:var(--red);border-left:3px solid var(--red)}
+.co-t{font-weight:600;margin-bottom:3px}
+
+/* tags */
+.tl{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tg{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:6px;font-size:12px;font-weight:500}
+.tg-y{background:var(--green-bg);color:var(--green)}
+.tg-n{background:var(--red-bg);color:var(--red)}
+.tg-w{background:var(--amber-bg);color:var(--amber)}
+
+/* alerts */
+.al{display:flex;flex-direction:column;gap:8px}
+.ai{display:flex;gap:10px;align-items:flex-start;padding:12px 16px;border-radius:var(--r);background:#fff;border:1px solid var(--border)}
+.ad{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:7px}
+.ad-r{background:var(--red)}.ad-a{background:var(--amber)}
+.at{font-size:13px;color:var(--t2)}.at strong{color:var(--t1)}
+
+/* tips */
+.tpg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.tp{padding:16px 18px;border-radius:var(--r);background:var(--green-bg);border:1px solid rgba(5,150,105,.08)}
+.tp .tw{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px}
+.tp .txw{font-size:13px;color:var(--t2)}
+.tp .tsv{font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:600;color:var(--green);margin-top:5px}
+
+/* ═══ TABLE (overview) ═══ */
+.tbw{border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;background:#fff;box-shadow:var(--shadow-xs)}
+.tbw-s{overflow-x:auto}
+.tbw table{width:100%;border-collapse:collapse;font-size:13px;min-width:760px}
+.tbw thead{background:var(--bg2)}
+.tbw th{padding:11px 14px;text-align:left;font-weight:600;font-size:10.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--t3);font-family:'IBM Plex Mono',monospace;white-space:nowrap}
+.tbw td{padding:11px 14px;border-top:1px solid var(--border-l);color:var(--t2);vertical-align:middle}
+.tbw tbody tr{cursor:pointer;transition:background .15s}
+.tbw tbody tr:hover{background:var(--bg-acc)}
+.rn{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--o1)}
+.rname{font-weight:600;color:var(--t1)}
+.cv2{font-family:'IBM Plex Mono',monospace;font-weight:500}
+.tag{display:inline-block;padding:3px 9px;border-radius:100px;font-size:10px;font-weight:600}
+.tag-y{background:var(--green-bg);color:var(--green)}
+.tag-w{background:var(--amber-bg);color:var(--amber)}
+.tag-n{background:var(--red-bg);color:var(--red)}
+
+/* ═══ ROUTE CARDS ═══ */
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px}
+.rc{background:#fff;border:1px solid var(--border);border-radius:var(--rl);padding:22px;transition:all .2s;position:relative;overflow:hidden}
+.rc::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;opacity:0;transition:opacity .2s}
+.rc:hover{border-color:var(--o4);box-shadow:var(--shadow-md);transform:translateY(-1px)}
+.rc:hover::before{opacity:1}
+.rc.c-us::before{background:var(--blue)}.rc.c-on::before{background:var(--purple)}.rc.c-uk::before{background:var(--red)}.rc.c-cn::before{background:var(--amber)}
+.rc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.rc-num{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center}
+.c-us .rc-num{background:var(--blue-bg);color:var(--blue)}.c-on .rc-num{background:var(--purple-bg);color:var(--purple)}.c-uk .rc-num{background:var(--red-bg);color:var(--red)}.c-cn .rc-num{background:var(--amber-bg);color:var(--amber)}
+.rc-qs{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--t4)}
+.rc h3{font-family:'Fraunces',serif;font-size:15.5px;font-weight:600;margin-bottom:7px;line-height:1.35}
+.rc-d{font-size:13px;color:var(--t3);line-height:1.7;font-weight:300;margin-bottom:12px}
+.rc-m{display:flex;flex-wrap:wrap;gap:5px}
+.mc{font-size:11px;padding:4px 9px;border-radius:5px;font-weight:500;background:var(--bg2);color:var(--t3);border:1px solid var(--border-l)}
+.mc.price{font-family:'IBM Plex Mono',monospace;background:var(--amber-bg);color:var(--amber);border-color:transparent}
+
+/* ═══ RECOMMEND ═══ */
+.rg{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.rec-c{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:18px;display:flex;gap:12px;align-items:flex-start;transition:border-color .2s}
+.rec-c:hover{border-color:var(--o4)}
+.rec-i{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;background:var(--o6)}
+.rec-t h4{font-size:13.5px;font-weight:600;margin-bottom:2px}
+.rec-t p{font-size:12px;color:var(--t3);font-weight:300}
+.rec-t .rr{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--o2);font-weight:500;margin-top:4px;display:inline-block}
+
+/* ═══ GLOSSARY ═══ */
+.gg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
+.gi{padding:14px 16px;border-radius:var(--r);background:#fff;border:1px solid var(--border-l);transition:border-color .2s}
+.gi:hover{border-color:var(--border)}
+.gi .gm{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;color:var(--o1);margin-bottom:1px}
+.gi .gf{font-size:11px;color:var(--t4);margin-bottom:3px}
+.gi .gd{font-size:12.5px;color:var(--t3);font-weight:300}
+
+/* ═══ WARNINGS ═══ */
+.wg{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.wc{padding:22px;border-radius:var(--rl);background:var(--amber-bg);border:1px solid rgba(217,119,6,.1)}
+.wc .wn{font-family:'Fraunces',serif;font-size:32px;font-weight:700;color:var(--amber);opacity:.2;line-height:1;margin-bottom:6px}
+.wc h4{font-size:14.5px;font-weight:600;margin-bottom:5px}
+.wc p{font-size:13px;color:var(--t2);font-weight:300;line-height:1.8}
+
+/* ═══ FOOTER ═══ */
+footer{border-top:1px solid var(--border-l);padding:24px;text-align:center;font-size:11px;color:var(--t4)}
+footer a{color:var(--o2);text-decoration:none}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:768px){
+  .top-tabs{display:none}
+  .mob-menu{display:block}
+  .content{padding:28px 16px 60px}
+  .hero-bg{padding:48px 20px 40px}
+  .hero-nums{gap:20px;flex-wrap:wrap}
+  .hero-routes{grid-template-columns:1fr 1fr;gap:10px;margin-top:-16px;padding:0 16px}
+  .hero-compare{margin:20px 16px 0}
+  .hn{padding:0 20px}
+  .cg,.rg,.wg,.gg,.sg,.tpg{grid-template-columns:1fr}
+  .stabs{gap:0}.stab{padding:9px 12px;font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topbar">
+  <div class="topbar-inner">
+    <div class="logo" onclick="go('hero')">
+      <svg width="120" height="26" viewBox="0 0 230 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="w1" x1="0" y1="0" x2="42" y2="36" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#2B6CB0"/><stop offset="50%" stop-color="#3182CE"/><stop offset="100%" stop-color="#4299E1"/></linearGradient><linearGradient id="w2" x1="0" y1="0" x2="42" y2="36" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#4299E1"/><stop offset="100%" stop-color="#90CDF4"/></linearGradient><linearGradient id="tg2" x1="58" y1="0" x2="230" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#2B6CB0"/><stop offset="35%" stop-color="#3182CE"/><stop offset="100%" stop-color="#4299E1"/></linearGradient></defs>
+        <path d="M2 21.6 C5.46 5.76,12.6 3.6,19.74 12.96 C26.46 21.6,33.6 18.72,39.06 11.52" stroke="url(#w1)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+        <path d="M2.94 28.8 C9.66 23.04,16.8 23.04,23.94 28.8 C29.4 33.12,36.54 30.24,39.06 25.92" stroke="url(#w2)" stroke-width="1.8" stroke-linecap="round" fill="none" opacity=".28"/>
+        <text x="58" y="30" font-family="'Fraunces',serif" font-weight="500" font-size="36" letter-spacing="1.5" fill="url(#tg2)">Nalukea</text>
+      </svg>
+    </div>
+    <div class="top-tabs" id="topTabs">
+      <div class="top-tab active" data-v="hero" onclick="go('hero',this)">首页</div>
+      <div class="top-tab" data-v="overview" onclick="go('overview',this)">速查总表</div>
+      <div class="top-tab" data-v="us" onclick="go('us',this)">美国CC转学 <span class="tt-badge tb-us">①②⑪</span></div>
+      <div class="top-tab" data-v="online" onclick="go('online',this)">全程在线 <span class="tt-badge tb-on">③④</span></div>
+      <div class="top-tab" data-v="uk" onclick="go('uk',this)">英澳Top-up <span class="tt-badge tb-uk">⑤⑥⑦</span></div>
+      <div class="top-tab" data-v="cn" onclick="go('cn',this)">中外合作 <span class="tt-badge tb-cn">⑧⑨⑩</span></div>
+      <div class="top-tab" data-v="rec" onclick="go('rec',this)">推荐</div>
+      <div class="top-tab" data-v="gloss" onclick="go('gloss',this)">术语</div>
+      <div class="top-tab" data-v="warn" onclick="go('warn',this)">提醒</div>
+    </div>
+    <button class="mob-menu" onclick="toggleMob()">☰</button>
+    <a class="gh-link" href="https://github.com" target="_blank">GitHub →</a>
+  </div>
+  <div class="mob-dropdown" id="mobDrop">
+    <div class="top-tab active" onclick="go('hero',this);toggleMob()">首页</div>
+    <div class="top-tab" onclick="go('overview',this);toggleMob()">速查总表</div>
+    <div class="top-tab" onclick="go('us',this);toggleMob()">美国CC转学</div>
+    <div class="top-tab" onclick="go('online',this);toggleMob()">全程在线</div>
+    <div class="top-tab" onclick="go('uk',this);toggleMob()">英澳Top-up</div>
+    <div class="top-tab" onclick="go('cn',this);toggleMob()">中外合作</div>
+    <div class="top-tab" onclick="go('rec',this);toggleMob()">推荐</div>
+    <div class="top-tab" onclick="go('gloss',this);toggleMob()">术语</div>
+    <div class="top-tab" onclick="go('warn',this);toggleMob()">提醒</div>
+  </div>
+</nav>
+
+<div class="content">
+
+<!-- HERO -->
+<div class="view active" id="v-hero">
+  <div class="hero">
+    <div class="hero-bg">
+      <div class="hero-dots"></div>
+      <div class="hero-over">Nalukea · 海外升学指南</div>
+      <h1><span>海外升学路线规划</span></h1>
+      <p class="hero-desc">中国高中毕业生的 11 条非高考升学路径全解析<br>覆盖费用、时长、留服认证、学校清单与省钱技巧</p>
+      <div class="hero-nums">
+        <div class="hn"><div class="hv">11</div><div class="hl">升学路线</div></div>
+        <div class="hn"><div class="hv">12–150</div><div class="hl">万RMB 跨度</div></div>
+        <div class="hn"><div class="hv">0–4</div><div class="hl">年出境时长</div></div>
+      </div>
+    </div>
+
+    <div class="hero-routes">
+      <div class="hr-card" onclick="go('us')">
+        <span class="hr-flag">🇺🇸</span>
+        <div class="hr-title">美国 CC 转学</div>
+        <div class="hr-sub">社区大学2年 → 转入UC Berkeley、Cornell等名校</div>
+        <div class="hr-meta">
+          <span class="hr-tag t-cost">¥125-150万</span>
+          <span class="hr-tag t-time">4年</span>
+          <span class="hr-tag t-cert">留服可认证</span>
+        </div>
+      </div>
+      <div class="hr-card" onclick="go('online')">
+        <span class="hr-flag">🌐</span>
+        <div class="hr-title">全程在线学位</div>
+        <div class="hr-sub">Sophia→ASU 或 UoL在线，全程不出境</div>
+        <div class="hr-meta">
+          <span class="hr-tag t-cost">¥12-18万</span>
+          <span class="hr-tag t-time">0出境</span>
+          <span class="hr-tag t-no">留服不认证</span>
+        </div>
+      </div>
+      <div class="hr-card" onclick="go('uk')">
+        <span class="hr-flag">🇬🇧</span>
+        <div class="hr-title">英澳 Top-up</div>
+        <div class="hr-sub">在线拿Level 5 → 英澳大学Top-up，曲线进QS100硕士</div>
+        <div class="hr-meta">
+          <span class="hr-tag t-cost">¥15-40万</span>
+          <span class="hr-tag t-time">1-3年</span>
+          <span class="hr-tag t-cert">有条件认证</span>
+        </div>
+      </div>
+      <div class="hr-card" onclick="go('cn')">
+        <span class="hr-flag">🇨🇳</span>
+        <div class="hr-title">中外合作办学</div>
+        <div class="hr-sub">3+1/2+2/4+0，不看高考，自主招生录取</div>
+        <div class="hr-meta">
+          <span class="hr-tag t-cost">¥24-70万</span>
+          <span class="hr-tag t-time">0-2年</span>
+          <span class="hr-tag t-cert">需查备案</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-compare">
+      <div class="compare-bar">
+        <div class="cb-item">
+          <div class="cb-label">最低预算</div>
+          <div class="cb-val">¥12万</div>
+          <div class="cb-note">Sophia→ASU</div>
+        </div>
+        <div class="cb-item">
+          <div class="cb-label">最短时间</div>
+          <div class="cb-val">~2年</div>
+          <div class="cb-note">OTHM→Top-up</div>
+        </div>
+        <div class="cb-item">
+          <div class="cb-label">最高QS</div>
+          <div class="cb-val">Top 10</div>
+          <div class="cb-note">CC→UCB/UCLA</div>
+        </div>
+        <div class="cb-item">
+          <div class="cb-label">不出境+留服</div>
+          <div class="cb-val">4+0</div>
+          <div class="cb-note">需查教育部备案</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-cta">
+      <button class="hero-cta-btn" onclick="go('overview')">
+        查看速查总表
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<div class="view" id="v-overview">
+  <div class="vh"><div class="over">Overview</div><h2>11 条路线速查总表</h2><p>费用为人民币万元估算，点击行可跳转至对应路线。</p></div>
+  <div class="tbw-s"><div class="tbw"><table>
+    <thead><tr><th>#</th><th>路线</th><th>概要</th><th>QS</th><th>费用(万)</th><th>出境</th><th>留服</th></tr></thead>
+    <tbody>
+      <tr onclick="go('us')"><td><span class="rn">①</span></td><td class="rname">加州CC→UC</td><td>CC 2年→UCB/UCLA 2年</td><td>10-20</td><td class="cv2">125-150</td><td>4年</td><td><span class="tag tag-y">可认证</span></td></tr>
+      <tr onclick="go('us')"><td><span class="rn">②</span></td><td class="rname">纽约CC→Cornell</td><td>CC 2年→Cornell/NYU 2年</td><td>~13</td><td class="cv2">125-150</td><td>4年</td><td><span class="tag tag-y">可认证</span></td></tr>
+      <tr onclick="go('online')"><td><span class="rn">③</span></td><td class="rname">Sophia→ASU</td><td>Sophia刷学分→ASU完成</td><td>~220</td><td class="cv2">12-18</td><td>0</td><td><span class="tag tag-n">不可</span></td></tr>
+      <tr onclick="go('online')"><td><span class="rn">④</span></td><td class="rname">UoL在线BSc</td><td>全程在线 UoL+LSE</td><td>~250</td><td class="cv2">~15</td><td>0</td><td><span class="tag tag-n">不可</span></td></tr>
+      <tr onclick="go('uk')"><td><span class="rn">⑤</span></td><td class="rname">SQA→UQ</td><td>在线SQA→UQ 2年</td><td>~42</td><td class="cv2">~40</td><td>2年</td><td><span class="tag tag-w">有条件</span></td></tr>
+      <tr onclick="go('uk')"><td><span class="rn">⑥</span></td><td class="rname">OTHM→Top-up→硕</td><td>在线→Top-up→QS100硕</td><td>硕50-100</td><td class="cv2">30-40</td><td>2-3年</td><td><span class="tag tag-y">可认证</span></td></tr>
+      <tr onclick="go('uk')"><td><span class="rn">⑦</span></td><td class="rname">OTHM→Top-up</td><td>在线→英国1年</td><td>500+</td><td class="cv2">15-20</td><td>1年</td><td><span class="tag tag-w">有条件</span></td></tr>
+      <tr onclick="go('cn')"><td><span class="rn">⑧</span></td><td class="rname">SQA 3+1</td><td>国内3年→英国1年</td><td>500+</td><td class="cv2">33-50</td><td>1年</td><td><span class="tag tag-y">可认证</span></td></tr>
+      <tr onclick="go('cn')"><td><span class="rn">⑨</span></td><td class="rname">2+2合作</td><td>国内2年→国外2年</td><td>50-550</td><td class="cv2">42-70</td><td>2年</td><td><span class="tag tag-y">可认证</span></td></tr>
+      <tr onclick="go('cn')"><td><span class="rn">⑩</span></td><td class="rname">4+0合作</td><td>国内4年不出国</td><td>500+</td><td class="cv2">24-40</td><td>0</td><td><span class="tag tag-w">有条件</span></td></tr>
+      <tr onclick="go('us')"><td><span class="rn">⑪</span></td><td class="rname">CC省钱组合</td><td>AP+CLEP+跨校</td><td>同①②</td><td class="cv2">省3-5</td><td>4年</td><td><span class="tag tag-y">可认证</span></td></tr>
+    </tbody>
+  </table></div></div>
+</div>
+
+<!-- ═══ US ═══ -->
+<div class="view" id="v-us">
+  <div class="vh"><div class="over">Pathways ①②⑪</div><h2>美国 CC 转学路线</h2><p>社区大学2年 → 转入四年制名校，性价比最高的Top校路线。</p></div>
+  <div class="stabs"><div class="stab active" onclick="stab(this,'us')">加州CC → UC</div><div class="stab" onclick="stab(this,'us')">纽约CC → Cornell</div><div class="stab" onclick="stab(this,'us')">省钱组合技</div></div>
+
+  <div class="spanel active" id="us-0">
+    <div class="blk"><div class="blk-t"><span class="bi bi-b">①</span>加州 CC → UC Berkeley / UCLA</div><p>最经典的省钱转学路线。加州CC门槛极低（TOEFL 45-61），开放招生，GPA 3.5+ 即可竞争UCB/UCLA。TAG协议可保录6所UC。学位证与直接申请完全一样。</p></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-b">◇</span>推荐CC学校</div><div class="sg"><div class="sc"><div class="sn">Santa Monica College</div><div class="sa">SMC</div><div class="sd">转UCLA人数最多的CC，位于洛杉矶，国际生支持完善</div></div><div class="sc"><div class="sn">Diablo Valley College</div><div class="sa">DVC</div><div class="sd">转UC伯克利人数最多，位于旧金山东湾</div></div><div class="sc"><div class="sn">De Anza College</div><div class="sa">De Anza</div><div class="sd">硅谷地区，地理位置优越，STEM专业强</div></div><div class="sc"><div class="sn">Pasadena City College</div><div class="sa">PCC</div><div class="sd">南加州强校，临近Caltech，转学录取率高</div></div></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-g">→</span>操作步骤</div><div class="steps"><div class="step"><div class="sl"><div class="sd2"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 1</div><div class="stt">申请CC</div><div class="sdt"><ul><li>托福45-61分即可（部分CC接受Duolingo 85+）</li><li>开放招生，基本都能录取</li><li>学费约 $8,000-12,000/年</li><li>建议选择目标UC对应的 Feeder CC</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 2</div><div class="stt">CC读2年（核心阶段）</div><div class="sdt"><ul><li>修满60学分</li><li>完成 UC 7-course pattern（通识必修）</li><li>完成目标专业的先修课程</li><li>GPA冲到3.5+（转学的关键）</li><li>用 ASSIST.org 查课程对等关系</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 3</div><div class="stt">申请UC转学</div><div class="sdt"><ul><li>每年11月提交 UC Application</li><li>次年3-4月出结果</li><li>秋季入学UC大三</li><li>可同时申请多个UC校区</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div></div><div class="sb"><div class="slb">STEP 4</div><div class="stt">UC读2年，毕业</div><div class="sdt"><ul><li>完成大三大四课程</li><li>拿完整UC学位</li><li>学位证和直接申请的完全一样</li></ul></div></div></div></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-a">$</span>费用明细</div><div class="cw"><table class="ct"><thead><tr><th>项目</th><th>金额（美元）</th><th>备注</th></tr></thead><tbody><tr><td>CC学费（2年）</td><td class="cv">$16,000 – $24,000</td><td>含学杂费，国际生费率</td></tr><tr><td>UC学费（2年）</td><td class="cv">$88,000 – $96,000</td><td>含学杂费，国际生费率</td></tr><tr><td>生活费（4年）</td><td class="cv">$60,000 – $100,000</td><td>住房+餐饮+交通+保险</td></tr><tr class="cttl"><td>合计</td><td class="cv">约 $170,000 – $220,000</td><td>约 125-150万人民币</td></tr></tbody></table></div><div class="co co-i" style="margin-top:14px"><div class="co-t">对比直接申UC四年</div>直接申请UC四年总费用约 220-280万人民币。通过CC转学，可节省近100万。</div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-p">★</span>录取数据</div><p style="margin-bottom:10px">UCB/UCLA国际生转学录取率约 5-10%，平均GPA要求 3.5+，工程学院最低 3.5。竞争激烈但可行。</p><div class="blk-t" style="font-size:15px;margin-top:16px"><span class="bi bi-g">✓</span>TAG保录项目（6校）</div><div class="tl"><span class="tg tg-y">UC Davis</span><span class="tg tg-y">UC Santa Barbara</span><span class="tg tg-y">UC Irvine</span><span class="tg tg-y">UC San Diego</span><span class="tg tg-y">UC Merced</span><span class="tg tg-y">UC Riverside</span><span class="tg tg-n">UCB 不含</span><span class="tg tg-n">UCLA 不含</span></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-r">!</span>关键注意事项</div><div class="al"><div class="ai"><div class="ad ad-r"></div><div class="at"><strong>UC不接受CLEP学分</strong> — 只接受AP考试学分。CLEP仅适用于纽约路线。</div></div><div class="ai"><div class="ad ad-r"></div><div class="at"><strong>F-1签证限制</strong> — 每学期最多1门在线课程，其余必须面授。</div></div><div class="ai"><div class="ad ad-a"></div><div class="at"><strong>课程对等查询</strong> — 用 ASSIST.org 查CC课程是否可转UC，选课前务必确认。</div></div><div class="ai"><div class="ad ad-a"></div><div class="at"><strong>竞争激烈</strong> — UCB/UCLA不保录，需要GPA 3.5+才有竞争力。TAG只保录其他6所UC。</div></div></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-g">↓</span>省钱技巧</div><div class="tpg"><div class="tp"><div class="tw">出国前</div><div class="txw">在中国考4-5门AP，到校后直接转学分</div><div class="tsv">节省 ¥2-4万</div></div><div class="tp"><div class="tw">暑假</div><div class="txw">去更便宜的CC跨校选课（如内陆地区CC）</div><div class="tsv">节省 ¥1-2万</div></div><div class="tp"><div class="tw">选校时</div><div class="txw">北加CC（DVC等）生活成本比洛杉矶低很多</div><div class="tsv">节省 ¥2-3万/年</div></div></div></div>
+  </div>
+
+  <div class="spanel" id="us-1">
+    <div class="blk"><div class="blk-t"><span class="bi bi-b">②</span>纽约 CC → Cornell / NYU</div><p>Cornell是Ivy League中最友好的转学校，每年录取800+转学生，约1/4来自CC。转学录取率约10-15%。SUNY系统有Transfer Path直接对接Cornell。NYU有CCTOP专项奖学金（GPA 3.0+即可申请）。</p></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-b">◇</span>推荐CC学校</div><div class="sg"><div class="sc"><div class="sn">SUNY系统社区大学</div><div class="sa">SUNY CC</div><div class="sd">纽约州立系统，有Transfer Path对接Cornell，接受CLEP学分（最多30学分）</div></div><div class="sc"><div class="sn">CUNY系统社区大学</div><div class="sa">CUNY CC</div><div class="sd">纽约市立系统，学费更低，适合NYC地区学生</div></div></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-g">→</span>操作步骤</div><div class="steps"><div class="step"><div class="sl"><div class="sd2"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 1</div><div class="stt">申请SUNY/CUNY CC</div><div class="sdt"><ul><li>托福要求类似加州CC（45-61）</li><li>开放招生，门槛低</li><li>学费约 $8,000-10,000/年</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 2</div><div class="stt">CC读2年 + 利用CLEP</div><div class="sdt"><ul><li>修满60学分</li><li>SUNY CC接受CLEP学分（最多30学分，$90/门）</li><li>暑假可考CLEP加速积累学分</li><li>GPA冲3.5+</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 3</div><div class="stt">申请转学</div><div class="sdt"><ul><li>Cornell通过Common App申请，转学录取率10-15%</li><li>NYU有CCTOP社区大学转学专项奖学金</li><li>SUNY Transfer Path可增加Cornell录取概率</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div></div><div class="sb"><div class="slb">STEP 4</div><div class="stt">完成学位</div><div class="sdt"><ul><li>在Cornell/NYU完成大三大四</li><li>拿完整学位，留服可认证</li></ul></div></div></div></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-a">$</span>费用明细</div><div class="cw"><table class="ct"><thead><tr><th>项目</th><th>金额（美元）</th><th>备注</th></tr></thead><tbody><tr><td>CC学费（2年）</td><td class="cv">$16,000 – $20,000</td><td>SUNY/CUNY国际生费率</td></tr><tr><td>Cornell/NYU学费（2年）</td><td class="cv">$120,000 – $140,000</td><td>私立大学费率</td></tr><tr><td>生活费（4年）</td><td class="cv">$60,000 – $100,000</td><td>纽约生活费较高</td></tr><tr class="cttl"><td>合计</td><td class="cv">约 $200,000 – $260,000</td><td>约 125-150万人民币</td></tr></tbody></table></div><div class="co co-i" style="margin-top:14px"><div class="co-t">NYU CCTOP奖学金</div>GPA 3.0+的CC转学生可申请，大幅降低NYU费用。</div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-r">!</span>关键注意事项</div><div class="al"><div class="ai"><div class="ad ad-a"></div><div class="at"><strong>CLEP仅限纽约路线</strong> — UC系统不接受CLEP，仅SUNY CC接受（最多30学分）</div></div><div class="ai"><div class="ad ad-a"></div><div class="at"><strong>Cornell竞争激烈</strong> — 虽然是Ivy中最友好转学校，录取率仍仅10-15%</div></div><div class="ai"><div class="ad ad-r"></div><div class="at"><strong>F-1签证限制</strong> — 同加州路线，每学期最多1门在线课</div></div></div></div>
+  </div>
+
+  <div class="spanel" id="us-2">
+    <div class="blk"><div class="blk-t"><span class="bi bi-g">⑪</span>CC省钱组合技</div><p>配合路线①②使用。通过AP、CLEP和跨校选课组合，纽约路线可额外节省3-5万人民币。</p></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-g">↓</span>三大省钱策略</div><div class="tpg"><div class="tp"><div class="tw">出国前 · AP</div><div class="txw">在中国考4-5门AP（$98/门，中国有考点），到校后直接抵学分。加州和纽约路线均可用。</div><div class="tsv">节省 ¥2-4万</div></div><div class="tp"><div class="tw">CC期间 · CLEP</div><div class="txw">仅限纽约路线。SUNY CC接受CLEP（最多30学分），$90/门，暑假可集中考。</div><div class="tsv">节省 ¥1-3万</div></div><div class="tp"><div class="tw">暑假 · 跨校选课</div><div class="txw">暑假去更便宜的CC跨校选课。纽约/加州内陆CC学费比沿海低很多。</div><div class="tsv">节省 ¥1-2万</div></div></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-r">!</span>注意事项</div><div class="al"><div class="ai"><div class="ad ad-r"></div><div class="at"><strong>UC不接受CLEP</strong> — 加州和纽约路线的关键区别。加州路线只能用AP省钱。</div></div><div class="ai"><div class="ad ad-r"></div><div class="at"><strong>F-1在线课限制</strong> — 每学期最多1门在线课，其余必须面授。CLEP不受此限制（是考试不是课程）。</div></div><div class="ai"><div class="ad ad-a"></div><div class="at"><strong>跨校选课需提前确认</strong> — 确保跨校学分能被主校和目标转学校接受。</div></div></div></div>
+  </div>
+</div>
+
+<!-- ═══ ONLINE ═══ -->
+<div class="view" id="v-online">
+  <div class="vh"><div class="over">Pathways ③④</div><h2>全程在线路线</h2><p>不出境、费用最低。适合边工作边读或预算极有限。注意：留服不可认证。</p></div>
+  <div class="stabs"><div class="stab active" onclick="stab(this,'online')">Sophia → ASU Online</div><div class="stab" onclick="stab(this,'online')">UoL 在线 BSc</div></div>
+
+  <div class="spanel active" id="online-0">
+    <div class="blk"><div class="blk-t"><span class="bi bi-p">③</span>Sophia / Study.com → ASU Online</div><p>Sophia $99/月刷通识学分（70+课程，ACE推荐），修完后转入ASU/SNHU/WGU完成学位。Study.com可搭配使用（含upper-division课程）。学位证不标注Online，适合边工作边读、外企就业。</p></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-p">◇</span>平台对比</div><div class="sg"><div class="sc"><div class="sn">Sophia Learning</div><div class="sa">sophia.org</div><div class="sd">$99/月不限课程数量，ACE推荐，100+合作校。主要覆盖通识课程（lower-division）。适合快速刷学分。</div></div><div class="sc"><div class="sn">Study.com</div><div class="sa">study.com</div><div class="sd">$199/月，含upper-division课程，覆盖面更广。可用于补充Sophia缺少的高级课程。ACE推荐。</div></div><div class="sc"><div class="sn">ASU Online</div><div class="sa">Arizona State University</div><div class="sd">QS ~220，接受Sophia/Study.com学分。学位证不标注Online。100+本科专业可选。</div></div><div class="sc"><div class="sn">SNHU / WGU</div><div class="sa">备选完成校</div><div class="sd">Southern New Hampshire / Western Governors，费用更低的备选项，同样接受转学分。</div></div></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-g">→</span>操作步骤</div><div class="steps"><div class="step"><div class="sl"><div class="sd2"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 1</div><div class="stt">在Sophia刷通识学分</div><div class="sdt"><ul><li>注册Sophia（$99/月），无入学门槛</li><li>选择ASU对应的通识课程</li><li>自定节奏，快的话3-6个月刷完30+学分</li><li>用ASU Transfer Guide确认课程对等</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 2</div><div class="stt">Study.com补充高级课程（可选）</div><div class="sdt"><ul><li>Sophia缺少的upper-division课程可在Study.com完成</li><li>$199/月，按需使用</li><li>同样用ASU Transfer Guide确认</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 3</div><div class="stt">转入ASU Online完成学位</div><div class="sdt"><ul><li>申请ASU Online（托福61+或Duolingo 85+）</li><li>转入已修学分，完成剩余课程</li><li>学位证不标注Online</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div></div><div class="sb"><div class="slb">STEP 4</div><div class="stt">毕业</div><div class="sdt"><ul><li>获得ASU正规本科学位</li><li>全程不出境，总费约12-18万人民币</li></ul></div></div></div></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-a">$</span>费用明细</div><div class="cw"><table class="ct"><thead><tr><th>项目</th><th>金额</th><th>备注</th></tr></thead><tbody><tr><td>Sophia学分（6个月）</td><td class="cv">约 $600</td><td>$99/月，刷完即停</td></tr><tr><td>Study.com补充（3个月）</td><td class="cv">约 $600</td><td>可选，按需使用</td></tr><tr><td>ASU Online剩余学费</td><td class="cv">$15,000 – $25,000</td><td>取决于转入学分数量</td></tr><tr class="cttl"><td>合计</td><td class="cv">约 $16,000 – $26,000</td><td>约 12-18万人民币</td></tr></tbody></table></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-r">!</span>关键注意事项</div><div class="al"><div class="ai"><div class="ad ad-r"></div><div class="at"><strong>留服不认证</strong> — 全程在线无出入境记录，无法做留服学历认证。考公、进国企需留服的同学慎选。</div></div><div class="ai"><div class="ad ad-a"></div><div class="at"><strong>适用人群有限</strong> — 最适合外企就业、自由职业、创业者，或不需要留服认证的场景。</div></div><div class="ai"><div class="ad ad-a"></div><div class="at"><strong>确认学分对等</strong> — 在Sophia/Study.com选课前，务必查ASU Transfer Guide确认课程可转。</div></div></div></div>
+  </div>
+
+  <div class="spanel" id="online-1">
+    <div class="blk"><div class="blk-t"><span class="bi bi-p">④</span>UoL 在线 BSc（LSE 设计课程）</div><p>伦敦大学（University of London）在线学位，由LSE设计课程和考核，颁发UoL学位（注意：不是LSE学位）。专业包含国际关系、会计金融、经济学、商管等。3-6年弹性学制，总费仅约15万。可参加伦敦毕业典礼。</p></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-p">◇</span>可选专业</div><div class="sg"><div class="sc"><div class="sn">BSc International Relations</div><div class="sa">国际关系</div><div class="sd">LSE设计课程，政治学+国际事务方向</div></div><div class="sc"><div class="sn">BSc Accounting & Finance</div><div class="sa">会计金融</div><div class="sd">LSE设计课程，职业导向强</div></div><div class="sc"><div class="sn">BSc Economics</div><div class="sa">经济学</div><div class="sd">LSE设计课程，数理要求较高</div></div><div class="sc"><div class="sn">BSc Business & Management</div><div class="sa">商管</div><div class="sd">LSE设计课程，适合商科背景</div></div></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-g">→</span>操作步骤</div><div class="steps"><div class="step"><div class="sl"><div class="sd2"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 1</div><div class="stt">申请入学</div><div class="sdt"><ul><li>通过UoL官网申请，无需UCAS</li><li>部分专业要求数学背景</li><li>每年多个入学窗口</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 2</div><div class="stt">在线学习3-6年</div><div class="sdt"><ul><li>全程在线，自定节奏</li><li>LSE教授录制的视频课程</li><li>每年参加线下考试（全球考点，含中国）</li><li>可选择全日制（3年）或兼读（最长6年）</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div></div><div class="sb"><div class="slb">STEP 3</div><div class="stt">毕业</div><div class="sdt"><ul><li>获得UoL正规学位（QS ~250）</li><li>可参加伦敦毕业典礼</li><li>海牙认证可证明学位真实性</li></ul></div></div></div></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-a">$</span>费用明细</div><div class="cw"><table class="ct"><thead><tr><th>项目</th><th>金额</th><th>备注</th></tr></thead><tbody><tr><td>UoL学费（全程）</td><td class="cv">约 £12,000 – £15,000</td><td>按模块付费，3-6年</td></tr><tr><td>考试费</td><td class="cv">约 £500 – £1,000</td><td>每年线下考试</td></tr><tr class="cttl"><td>合计</td><td class="cv">约 £13,000 – £16,000</td><td>约 12-15万人民币</td></tr></tbody></table></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-r">!</span>关键注意事项</div><div class="al"><div class="ai"><div class="ad ad-r"></div><div class="at"><strong>留服不认证</strong> — 同路线③，全程在线无法做留服认证。</div></div><div class="ai"><div class="ad ad-a"></div><div class="at"><strong>是UoL学位，不是LSE学位</strong> — 虽然课程由LSE设计，但学位证颁发方是University of London。</div></div><div class="ai"><div class="ad ad-a"></div><div class="at"><strong>需要线下考试</strong> — 每年需到考点参加笔试（中国有考点），不是纯在线。</div></div></div></div>
+  </div>
+</div>
+
+<!-- ═══ UK ═══ -->
+<div class="view" id="v-uk">
+  <div class="vh"><div class="over">Pathways ⑤⑥⑦</div><h2>英国/澳洲 Top-up 路线</h2><p>在线拿Level 5资格 → 英澳大学Top-up最后1-2年，费用适中。</p></div>
+  <div class="stabs"><div class="stab active" onclick="stab(this,'uk')">SQA → UQ</div><div class="stab" onclick="stab(this,'uk')">OTHM → Top-up → 硕士</div><div class="stab" onclick="stab(this,'uk')">OTHM → Top-up</div></div>
+
+  <div class="spanel active" id="uk-0">
+    <div class="blk"><div class="blk-t"><span class="bi bi-r">⑤</span>SQA HND → 昆士兰大学 Top-up</div><p>在线SQA仅£2,500（通过IIMT Studies，仅4个工科专业），然后进入UQ大二读2年。信息差打法，但UQ是否接受在线SQA尚未大规模验证，风险较高。</p></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-g">→</span>操作步骤</div><div class="steps"><div class="step"><div class="sl"><div class="sd2"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 1</div><div class="stt">注册在线SQA HND</div><div class="sdt"><ul><li>通过IIMT Studies注册（£2,500，约2.3万人民币）</li><li>仅4个工科专业可选</li><li>在线学习约2年</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 2（关键）</div><div class="stt">拿UQ书面确认</div><div class="sdt"><ul><li>务必在注册SQA前联系UQ Admissions</li><li>确认在线SQA HND是否被UQ接受</li><li>拿到书面确认信再行动</li><li>没有书面确认 = 不要冒险</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 3</div><div class="stt">UQ大二入学，读2年</div><div class="sdt"><ul><li>入读UQ对应工科专业大二</li><li>完成大二+大三+honors year</li><li>拿到UQ学位（QS ~42）</li></ul></div></div></div></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-a">$</span>费用明细</div><div class="cw"><table class="ct"><thead><tr><th>项目</th><th>金额</th><th>备注</th></tr></thead><tbody><tr><td>在线SQA HND</td><td class="cv">约 £2,500</td><td>IIMT Studies，约2.3万RMB</td></tr><tr><td>UQ学费（2年）</td><td class="cv">约 AUD 80,000</td><td>工科国际生费率</td></tr><tr><td>澳洲生活费（2年）</td><td class="cv">约 AUD 40,000</td><td>布里斯班</td></tr><tr class="cttl"><td>合计</td><td class="cv">—</td><td>约 40万人民币</td></tr></tbody></table></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-r">!</span>关键注意事项</div><div class="al"><div class="ai"><div class="ad ad-r"></div><div class="at"><strong>必须先拿UQ书面确认</strong> — 这是信息差路线，UQ是否接受在线SQA尚未大规模验证。窗口期政策随时可能收紧。</div></div><div class="ai"><div class="ad ad-r"></div><div class="at"><strong>仅限工科</strong> — IIMT Studies的在线SQA仅4个工科方向，非工科生无法使用此路线。</div></div><div class="ai"><div class="ad ad-a"></div><div class="at"><strong>留服认证有条件</strong> — 需满足出入境天数要求。UQ的2年在校时长通常可满足。</div></div></div></div>
+  </div>
+
+  <div class="spanel" id="uk-1">
+    <div class="blk"><div class="blk-t"><span class="bi bi-r">⑥</span>OTHM → Top-up → 硕士（曲线进QS100）</div><p>性价比极高的曲线路线。在线OTHM L4+L5（1-2年，约2万）→ 英国Top-up本科1年 → 用本科学位申QS100一年制硕士。最终拿到QS50-100的硕士学位，留服可认证。</p></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-r">◇</span>学校路径</div><div class="sg"><div class="sc"><div class="sn">Top-up阶段</div><div class="sa">本科完成校</div><div class="sd">Anglia Ruskin / Derby / Bolton / Sunderland 等。QS排名500+，但学位正规，可用于申硕。</div></div><div class="sc"><div class="sn">硕士阶段</div><div class="sa">目标冲刺校</div><div class="sd">曼大 / 利兹 / 布里斯托 / 格拉斯哥 / 杜伦 等QS 50-100。一年制授课型硕士。</div></div></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-g">→</span>操作步骤</div><div class="steps"><div class="step"><div class="sl"><div class="sd2"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 1</div><div class="stt">在线OTHM Level 4 + Level 5</div><div class="sdt"><ul><li>在线完成OTHM L4（约6-12个月）</li><li>继续完成OTHM L5（约6-12个月）</li><li>总费约1.5-2万人民币</li><li>Ofqual监管，资格正规</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 2</div><div class="stt">英国大学Top-up 1年</div><div class="sdt"><ul><li>用OTHM L5申请英国大学Top-up最后一年</li><li>Anglia Ruskin / Derby / Bolton 等接受OTHM</li><li>学费约 £9,000-12,000</li><li>完成后拿到完整本科学位</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 3</div><div class="stt">申请QS100一年制硕士</div><div class="sdt"><ul><li>用Top-up本科学位+成绩申请</li><li>目标：曼大/利兹/布里斯托/杜伦等</li><li>一等或二等一学位是关键</li><li>硕士学费约 £20,000-28,000</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div></div><div class="sb"><div class="slb">STEP 4</div><div class="stt">硕士毕业</div><div class="sdt"><ul><li>拿到QS 50-100的硕士学位</li><li>留服可认证（有足够出入境记录）</li><li>总出境时长2-3年</li></ul></div></div></div></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-a">$</span>费用明细</div><div class="cw"><table class="ct"><thead><tr><th>阶段</th><th>费用</th><th>备注</th></tr></thead><tbody><tr><td>OTHM L4+L5（在线）</td><td class="cv">约 ¥1.5-2万</td><td>在线完成，1-2年</td></tr><tr><td>Top-up本科（英国1年）</td><td class="cv">约 ¥10-12万</td><td>学费+生活费</td></tr><tr><td>硕士（英国1年）</td><td class="cv">约 ¥20-25万</td><td>学费+生活费</td></tr><tr class="cttl"><td>合计</td><td class="cv">—</td><td>约 30-40万人民币</td></tr></tbody></table></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-r">!</span>关键注意事项</div><div class="al"><div class="ai"><div class="ad ad-a"></div><div class="at"><strong>Top-up本科排名低</strong> — 中间阶段学校QS 500+，但这是跳板，不是终点。关键是硕士阶段。</div></div><div class="ai"><div class="ad ad-a"></div><div class="at"><strong>Top-up成绩是关键</strong> — 申QS100硕士需要一等或二等一学位（70%+或60%+），Top-up期间必须努力。</div></div><div class="ai"><div class="ad ad-a"></div><div class="at"><strong>确认OTHM被目标校接受</strong> — 不是所有大学都接受OTHM Top-up，提前联系Admissions确认。</div></div></div></div>
+  </div>
+
+  <div class="spanel" id="uk-2">
+    <div class="blk"><div class="blk-t"><span class="bi bi-r">⑦</span>OTHM → Top-up（最快最省）</div><p>最快约2年拿到正规本科学位，仅需出境1年。在线OTHM L5（6-12月，约1.5万）→ 英国大学Top-up最后1年。总费15-20万。排名虽500+，但学位真实正规。</p></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-g">→</span>操作步骤</div><div class="steps"><div class="step"><div class="sl"><div class="sd2"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 1</div><div class="stt">在线OTHM Level 5</div><div class="sdt"><ul><li>在线完成OTHM L5（6-12个月）</li><li>费用约 ¥1.5万</li><li>如已有相关基础，可跳过L4直接L5</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 2</div><div class="stt">英国大学Top-up 1年</div><div class="sdt"><ul><li>学费约 £9,000-12,000</li><li>Anglia Ruskin / Derby / Bolton / Sunderland 等</li><li>完成后拿到完整本科学位</li></ul></div></div></div></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-a">$</span>费用明细</div><div class="cw"><table class="ct"><thead><tr><th>项目</th><th>费用</th><th>备注</th></tr></thead><tbody><tr><td>OTHM L5（在线）</td><td class="cv">约 ¥1.5万</td><td>6-12个月</td></tr><tr><td>Top-up学费+生活费</td><td class="cv">约 ¥13-18万</td><td>英国1年</td></tr><tr class="cttl"><td>合计</td><td class="cv">—</td><td>约 15-20万人民币</td></tr></tbody></table></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-r">!</span>关键注意事项</div><div class="al"><div class="ai"><div class="ad ad-r"></div><div class="at"><strong>留服认证卡边界</strong> — 仅1年出境，刚好卡留服180天要求。确保实际在英天数满足要求。</div></div><div class="ai"><div class="ad ad-a"></div><div class="at"><strong>学校排名较低</strong> — QS 500+，如果看重排名，建议选路线⑥继续读硕士。</div></div></div></div>
+  </div>
+</div>
+
+<!-- ═══ CN ═══ -->
+<div class="view" id="v-cn">
+  <div class="vh"><div class="over">Pathways ⑧⑨⑩</div><h2>中外合作办学</h2><p>计划外自主招生，不看高考成绩。务必确认教育部备案。</p></div>
+  <div class="stabs"><div class="stab active" onclick="stab(this,'cn')">SQA 3+1</div><div class="stab" onclick="stab(this,'cn')">2+2 合作</div><div class="stab" onclick="stab(this,'cn')">4+0 合作</div></div>
+
+  <div class="spanel active" id="cn-0">
+    <div class="blk"><div class="blk-t"><span class="bi bi-a">⑧</span>SQA 3+1 合作办学（最成熟稳妥）</div><p>国内3年SQA课程 → 英国大学最后1年。中留服备案项目，认证有保障。不看高考成绩，自主考试录取（英语笔试+面试）。是中外合作办学中最成熟、风险最低的路线。</p></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-a">◇</span>开设院校</div><div class="sg"><div class="sc"><div class="sn">中央财经大学</div><div class="sa">CUFE</div><div class="sd">金融/会计方向，国内SQA项目标杆之一</div></div><div class="sc"><div class="sn">北京理工大学</div><div class="sa">BIT</div><div class="sd">工科/商科方向，211院校背景</div></div><div class="sc"><div class="sn">四川大学</div><div class="sa">SCU</div><div class="sd">西南地区最强SQA项目</div></div><div class="sc"><div class="sn">广东财经大学</div><div class="sa">GDUFE</div><div class="sd">华南地区，商科方向</div></div></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-g">→</span>操作步骤</div><div class="steps"><div class="step"><div class="sl"><div class="sd2"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 1</div><div class="stt">报名参加自主招生考试</div><div class="sdt"><ul><li>不看高考成绩，自主考试录取</li><li>考试内容：英语笔试+面试</li><li>每年6-8月报名，9月入学</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 2</div><div class="stt">国内3年SQA课程</div><div class="sdt"><ul><li>在合作院校内完成SQA HND课程</li><li>全英文授课</li><li>国内学费约 ¥5-8万/年</li><li>同时准备雅思（一般要求6.0+）</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 3</div><div class="stt">英国大学最后1年</div><div class="sdt"><ul><li>对接英国合作大学完成Top-up</li><li>学费约 £9,000-15,000</li><li>拿到英国大学完整学位</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div></div><div class="sb"><div class="slb">STEP 4</div><div class="stt">留服认证</div><div class="sdt"><ul><li>中留服备案项目，认证有保障</li><li>回国后做学历认证</li></ul></div></div></div></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-a">$</span>费用明细</div><div class="cw"><table class="ct"><thead><tr><th>项目</th><th>费用</th><th>备注</th></tr></thead><tbody><tr><td>国内学费（3年）</td><td class="cv">约 ¥15-24万</td><td>¥5-8万/年</td></tr><tr><td>英国学费+生活费（1年）</td><td class="cv">约 ¥15-25万</td><td>取决于城市和学校</td></tr><tr class="cttl"><td>合计</td><td class="cv">—</td><td>约 33-50万人民币</td></tr></tbody></table></div></div>
+  </div>
+
+  <div class="spanel" id="cn-1">
+    <div class="blk"><div class="blk-t"><span class="bi bi-a">⑨</span>2+2 合作办学</div><p>国内2年 → 国外合作大学2年。对接院校QS 50-550，取决于合作校和GPA。自主招生，不看高考。需确认在教育部备案名单内。</p></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-a">◇</span>开设院校</div><div class="sg"><div class="sc"><div class="sn">中国传媒大学</div><div class="sa">CUC</div><div class="sd">传媒/艺术方向，对接英美澳多校</div></div><div class="sc"><div class="sn">南京理工大学</div><div class="sa">NJUST</div><div class="sd">工科方向，211院校</div></div><div class="sc"><div class="sn">暨南大学</div><div class="sa">JNU</div><div class="sd">华南地区，综合类方向</div></div></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-g">→</span>操作步骤</div><div class="steps"><div class="step"><div class="sl"><div class="sd2"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 1</div><div class="stt">报名自主招生</div><div class="sdt"><ul><li>不看高考成绩，自主录取</li><li>英语笔试+面试</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 2</div><div class="stt">国内2年学习</div><div class="sdt"><ul><li>在合作院校完成前两年课程</li><li>学分需被国外合作校认可</li><li>准备语言考试（雅思/托福）</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 3</div><div class="stt">国外2年完成学位</div><div class="sdt"><ul><li>进入对接大学完成后两年</li><li>GPA好的可对接QS排名更高的校</li><li>拿到国外大学完整学位</li></ul></div></div></div></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-a">$</span>费用明细</div><div class="cw"><table class="ct"><thead><tr><th>项目</th><th>费用</th><th>备注</th></tr></thead><tbody><tr><td>国内学费（2年）</td><td class="cv">约 ¥10-16万</td><td>¥5-8万/年</td></tr><tr><td>国外学费+生活费（2年）</td><td class="cv">约 ¥30-55万</td><td>取决于国家和学校</td></tr><tr class="cttl"><td>合计</td><td class="cv">—</td><td>约 42-70万人民币</td></tr></tbody></table></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-r">!</span>注意事项</div><div class="al"><div class="ai"><div class="ad ad-r"></div><div class="at"><strong>必须在教育部备案</strong> — 在 crs.jsj.edu.cn 查项目是否备案。不在名单 = 无法留服认证。</div></div><div class="ai"><div class="ad ad-a"></div><div class="at"><strong>对接校质量差异大</strong> — QS 50到QS 550都有，取决于你的GPA和具体合作协议。</div></div></div></div>
+  </div>
+
+  <div class="spanel" id="cn-2">
+    <div class="blk"><div class="blk-t"><span class="bi bi-a">⑩</span>4+0 合作办学（全程不出国）</div><p>国内4年拿国外学位，完全不出境。但700+个项目中能留服认证的仅几个！必须在 crs.jsj.edu.cn 查教育部备案。非备案项目 = 无法留服认证。</p></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-a">◇</span>已知有备案的项目</div><div class="sg"><div class="sc"><div class="sn">中国农业大学</div><div class="sa">CAU</div><div class="sd">与科罗拉多大学合作，国际经济与贸易专业</div></div><div class="sc"><div class="sn">北京理工大学</div><div class="sa">BIT</div><div class="sd">与犹他州立大学合作，信息技术专业</div></div><div class="sc"><div class="sn">上海理工大学</div><div class="sa">USST</div><div class="sd">与多所英国大学合作，工程方向</div></div><div class="sc"><div class="sn">上海大学悉尼工商学院</div><div class="sa">SILC</div><div class="sd">与悉尼科技大学合作，商科方向</div></div></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-g">→</span>操作步骤</div><div class="steps"><div class="step"><div class="sl"><div class="sd2"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 1</div><div class="stt">确认项目在教育部备案</div><div class="sdt"><ul><li>在 crs.jsj.edu.cn 搜索项目</li><li>确认项目类型、颁发学位、备案状态</li><li>不在备案名单 = 无法认证，不要报名</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 2</div><div class="stt">报名录取</div><div class="sdt"><ul><li>部分项目看高考成绩，部分自主招生</li><li>具体要求因项目而异</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div><div class="ss"></div></div><div class="sb"><div class="slb">STEP 3</div><div class="stt">国内4年学习</div><div class="sdt"><ul><li>在国内合作院校完成全部课程</li><li>部分课程由外方教授授课</li><li>不需出境</li></ul></div></div></div><div class="step"><div class="sl"><div class="sd2 h"></div></div><div class="sb"><div class="slb">STEP 4</div><div class="stt">拿学位 + 留服认证</div><div class="sdt"><ul><li>获得国外合作大学学位</li><li>备案项目可做留服认证</li></ul></div></div></div></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-a">$</span>费用明细</div><div class="cw"><table class="ct"><thead><tr><th>项目</th><th>费用</th><th>备注</th></tr></thead><tbody><tr><td>国内学费（4年）</td><td class="cv">约 ¥24-40万</td><td>¥6-10万/年</td></tr><tr><td>生活费</td><td class="cv">国内标准</td><td>不需出境，节省大量费用</td></tr><tr class="cttl"><td>合计</td><td class="cv">—</td><td>约 24-40万人民币</td></tr></tbody></table></div></div>
+    <div class="blk"><div class="blk-t"><span class="bi bi-r">!</span>关键注意事项</div><div class="al"><div class="ai"><div class="ad ad-r"></div><div class="at"><strong>700+项目中能认证的仅几个</strong> — 绝大多数4+0项目无法留服认证。必须在 crs.jsj.edu.cn 确认备案。</div></div><div class="ai"><div class="ad ad-r"></div><div class="at"><strong>警惕"国际本科"陷阱</strong> — 非SQA的"国际本科"可能注册的是专科学籍，而非本科。务必确认学籍类型。</div></div><div class="ai"><div class="ad ad-a"></div><div class="at"><strong>学校排名较低</strong> — 合作外方大学一般QS 500+，如果介意排名，考虑其他路线。</div></div></div></div>
+  </div>
+</div>
+
+<!-- RECOMMEND -->
+<div class="view" id="v-rec">
+  <div class="vh"><div class="over">Recommendations</div><h2>按需求推荐路线</h2><p>根据预算、目标、出境意愿选择。</p></div>
+  <div class="rg">
+    <div class="rec-c"><div class="rec-i">💰</div><div class="rec-t"><h4>预算最低 + 不需留服</h4><p>全程不出境，12-18万搞定</p><span class="rr">→ ③ Sophia→ASU 或 ④ UoL在线</span></div></div>
+    <div class="rec-c"><div class="rec-i">📜</div><div class="rec-t"><h4>预算最低 + 需要留服</h4><p>30-40万曲线进QS100硕士</p><span class="rr">→ ⑥ OTHM→Top-up→硕士</span></div></div>
+    <div class="rec-c"><div class="rec-i">🏆</div><div class="rec-t"><h4>冲QS前50学位</h4><p>CC转学UCB/Cornell，或SQA→UQ</p><span class="rr">→ ①② CC路线 或 ⑤ SQA→UQ</span></div></div>
+    <div class="rec-c"><div class="rec-i">🏠</div><div class="rec-t"><h4>不出国 + 要留服</h4><p>24-40万，必须确认教育部备案</p><span class="rr">→ ⑩ 4+0合作办学</span></div></div>
+    <div class="rec-c"><div class="rec-i">📝</div><div class="rec-t"><h4>高考差 / 没参加高考</h4><p>自主招生不看高考，CC也不需</p><span class="rr">→ ⑧ SQA 3+1 或 ①② CC</span></div></div>
+    <div class="rec-c"><div class="rec-i">⏱</div><div class="rec-t"><h4>时间最短拿学位</h4><p>最快约2年拿正规本科学位</p><span class="rr">→ ⑦ OTHM→Top-up</span></div></div>
+    <div class="rec-c"><div class="rec-i">💼</div><div class="rec-t"><h4>边工作边读学位</h4><p>全在线弹性学制，不影响工作</p><span class="rr">→ ③ Sophia→ASU 或 ④ UoL</span></div></div>
+    <div class="rec-c"><div class="rec-i">🎓</div><div class="rec-t"><h4>最终拿QS100硕士</h4><p>先便宜拿本科，再申曼大/利兹</p><span class="rr">→ ⑥ OTHM→Top-up→硕士</span></div></div>
+  </div>
+</div>
+
+<!-- GLOSSARY -->
+<div class="view" id="v-gloss">
+  <div class="vh"><div class="over">Glossary</div><h2>关键术语速查</h2><p>核心术语中英文对照。</p></div>
+  <div class="gg">
+    <div class="gi"><div class="gm">CC</div><div class="gf">Community College</div><div class="gd">美国两年制社区大学，学费低，可转四年制大学</div></div>
+    <div class="gi"><div class="gm">SQA</div><div class="gf">Scottish Qualifications Authority</div><div class="gd">苏格兰政府资格认证局，颁发HND等资格</div></div>
+    <div class="gi"><div class="gm">HND</div><div class="gf">Higher National Diploma</div><div class="gd">英国Level 5资格，等同本科大二水平</div></div>
+    <div class="gi"><div class="gm">OTHM</div><div class="gf">Ofqual监管颁证机构</div><div class="gd">提供Level 3-8在线资格，可Top-up到大学</div></div>
+    <div class="gi"><div class="gm">Top-up</div><div class="gf">Top-up Degree</div><div class="gd">用HND/L5直接进大学最后一年拿完整学位</div></div>
+    <div class="gi"><div class="gm">留服</div><div class="gf">教育部留学服务中心</div><div class="gd">中国唯一海外学历认证机构，考公/国企必需</div></div>
+    <div class="gi"><div class="gm">TAG</div><div class="gf">Transfer Admission Guarantee</div><div class="gd">UC保录协议（6校，不含UCB/UCLA）</div></div>
+    <div class="gi"><div class="gm">CLEP</div><div class="gf">College-Level Examination Program</div><div class="gd">大学水平考试，通过获学分，仅纽约路线可用</div></div>
+    <div class="gi"><div class="gm">AP</div><div class="gf">Advanced Placement</div><div class="gd">美国大学先修考试，中国有考点，$98/门</div></div>
+    <div class="gi"><div class="gm">F-1</div><div class="gf">F-1 Student Visa</div><div class="gd">美国学生签证，每学期最多1门网课</div></div>
+    <div class="gi"><div class="gm">Sophia</div><div class="gf">Sophia Learning</div><div class="gd">在线学分平台，$99/月，ACE推荐，100+合作校</div></div>
+    <div class="gi"><div class="gm">Ofqual</div><div class="gf">Office of Qualifications & Exams Regulation</div><div class="gd">英格兰资格与考试监管局</div></div>
+  </div>
+</div>
+
+<!-- WARNINGS -->
+<div class="view" id="v-warn">
+  <div class="vh"><div class="over">Critical Reminders</div><h2>三条核心提醒</h2><p>每条路线都有关键风险点，务必提前确认。</p></div>
+  <div class="wg">
+    <div class="wc"><div class="wn">01</div><h4>留服认证看出入境记录</h4><p>纯在线学位无法认证。留服中心是中国唯一海外学历认证机构，考公/国企必需。选择在线路线前务必确认是否需要留服。</p></div>
+    <div class="wc"><div class="wn">02</div><h4>中外合作办学查教育部备案</h4><p>必须在 crs.jsj.edu.cn 查备案。不在名单 = 无法认证。700+个4+0项目中能认证的仅几个。非SQA的"国际本科"可能注册专科学籍。</p></div>
+    <div class="wc"><div class="wn">03</div><h4>Top-up路线先拿书面确认</h4><p>SQA/OTHM Top-up务必先拿目标大学 Admissions 书面确认再行动。窗口期政策可能收紧，尤其SQA→UQ这类信息差路线。</p></div>
+  </div>
+</div>
+
+</div>
+
+<footer><p>海外升学路线规划 · <a href="https://github.com" target="_blank">Nalukea</a> · 2026 · 开源共建 · CC BY-NC-SA 4.0</p></footer>
+
+<script>
+function go(v, el) {
+  document.querySelectorAll('.top-tab').forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+  else {
+    document.querySelectorAll('#topTabs .top-tab').forEach(t => { if(t.dataset.v===v) t.classList.add('active'); });
+  }
+  document.querySelectorAll('.view').forEach(x => x.classList.remove('active'));
+  const t = document.getElementById('v-'+v);
+  if(t){t.style.animation='none';t.offsetHeight;t.style.animation='';t.classList.add('active')}
+  window.scrollTo(0,0);
+}
+function stab(el, group) {
+  const tabs = el.parentElement.querySelectorAll('.stab');
+  let idx = 0;
+  tabs.forEach((t,i) => {t.classList.remove('active');if(t===el)idx=i});
+  el.classList.add('active');
+  const view = el.closest('.view');
+  const panels = view.querySelectorAll('.spanel');
+  panels.forEach((p,i) => {p.classList.remove('active');if(i===idx){p.style.animation='none';p.offsetHeight;p.style.animation='';p.classList.add('active')}});
+}
+function toggleMob(){document.getElementById('mobDrop').classList.toggle('open')}
+</script>
+</body>
+</html>
