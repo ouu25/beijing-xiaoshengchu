@@ -1,0 +1,1369 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>英语练习 · 五年级下</title>
+<style>
+:root {
+  --bg: #fdf6ec;
+  --card: #ffffff;
+  --ink: #2d3142;
+  --muted: #7a8290;
+  --accent: #ff8c42;
+  --accent2: #4ecdc4;
+  --accent3: #6c8eef;
+  --good: #4cb963;
+  --bad:  #e76f51;
+  --shadow: 0 4px 16px rgba(0,0,0,.08);
+  --radius: 18px;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Rounded", "PingFang SC", "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+input { user-select: text; -webkit-user-select: text; font-family: inherit; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+/* layout */
+.app { max-width: 900px; margin: 0 auto; padding: 16px 20px 80px; }
+.topbar {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 4px 18px;
+}
+.topbar h1 {
+  flex: 1; margin: 0; font-size: 22px; font-weight: 700; letter-spacing: .3px;
+}
+.topbar .who {
+  background: var(--card); padding: 8px 14px; border-radius: 999px;
+  box-shadow: var(--shadow); font-size: 15px; font-weight: 600;
+  display: flex; align-items: center; gap: 8px;
+}
+.topbar .who .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+.topbar .back { font-size: 26px; padding: 4px 10px; border-radius: 12px; }
+.topbar .back:active { background: rgba(0,0,0,.06); }
+
+/* profiles */
+.profiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; }
+.profile-card {
+  background: var(--card); border-radius: var(--radius); padding: 28px 20px;
+  box-shadow: var(--shadow); text-align: center; transition: transform .12s;
+}
+.profile-card:active { transform: scale(.96); }
+.profile-card .avatar {
+  width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 14px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 36px; font-weight: 700;
+}
+.profile-card .name { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.profile-card .stat { font-size: 14px; color: var(--muted); }
+.profile-card.add .avatar { background: #e8ecf3; color: #9aa3b2; }
+.profile-card .del {
+  position: absolute; top: 10px; right: 12px; font-size: 18px;
+  color: var(--muted); padding: 4px 8px; border-radius: 8px;
+}
+.profile-card { position: relative; }
+
+/* home modules */
+.modules { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+@media (max-width: 700px) { .modules { grid-template-columns: 1fr; } }
+.module {
+  background: var(--card); border-radius: var(--radius); padding: 26px 20px;
+  box-shadow: var(--shadow); text-align: left; transition: transform .12s;
+  display: flex; flex-direction: column; gap: 6px; min-height: 150px;
+}
+.module:active { transform: scale(.98); }
+.module .emo { font-size: 36px; }
+.module .ttl { font-size: 20px; font-weight: 700; }
+.module .sub { font-size: 14px; color: var(--muted); }
+.module.a { border-top: 4px solid var(--accent); }
+.module.b { border-top: 4px solid var(--accent2); }
+.module.c { border-top: 4px solid var(--accent3); }
+
+/* unit picker */
+.units { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; }
+.unit-btn {
+  background: var(--card); border-radius: var(--radius); padding: 22px 16px;
+  box-shadow: var(--shadow); font-size: 18px; font-weight: 700; text-align: left;
+  transition: transform .12s;
+}
+.unit-btn:active { transform: scale(.96); }
+.unit-btn .small { font-size: 13px; color: var(--muted); font-weight: 500; display: block; margin-top: 4px; }
+.unit-btn .bar { height: 6px; background: #eee; border-radius: 3px; margin-top: 10px; overflow: hidden; }
+.unit-btn .bar > i { display: block; height: 100%; background: var(--good); width: 0%; }
+
+/* flashcard */
+.fc-wrap {
+  display: flex; flex-direction: column; align-items: center; gap: 18px;
+  padding: 10px;
+}
+.fc-progress { font-size: 14px; color: var(--muted); }
+.fc-card {
+  width: 100%; max-width: 520px; aspect-ratio: 3 / 2;
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 20px; gap: 10px;
+  transition: transform .25s;
+}
+.fc-card .w { font-size: 44px; font-weight: 700; }
+.fc-card .ipa { font-size: 22px; color: var(--accent3); font-family: "Lucida Grande", "Charis SIL", serif; }
+.fc-card .zh { font-size: 26px; font-weight: 600; color: #c45a35; }
+.fc-card .play { font-size: 32px; padding: 6px 14px; border-radius: 999px; background: #fff4ea; }
+.fc-card.flip { transform: rotateY(0); }
+.fc-actions { display: flex; gap: 14px; margin-top: 4px; }
+.btn {
+  padding: 14px 26px; border-radius: 14px; font-size: 17px; font-weight: 600;
+  background: var(--card); box-shadow: var(--shadow); min-width: 100px;
+}
+.btn.primary { background: var(--accent3); color: white; }
+.btn.good { background: var(--good); color: white; }
+.btn.warn { background: var(--accent); color: white; }
+.btn.ghost { background: transparent; box-shadow: none; color: var(--muted); }
+.btn:active { transform: scale(.96); }
+
+/* sentence list */
+.sent-list { display: flex; flex-direction: column; gap: 12px; }
+.sent {
+  background: var(--card); border-radius: var(--radius); padding: 18px 18px;
+  box-shadow: var(--shadow); display: flex; gap: 14px; align-items: flex-start;
+}
+.sent .play {
+  background: var(--accent2); color: white; min-width: 50px; height: 50px;
+  border-radius: 50%; font-size: 22px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.sent .play.slow { background: #b4e5e0; color: var(--accent2); font-size: 16px; font-weight: 700; }
+.sent .body { flex: 1; }
+.sent .en { font-size: 19px; font-weight: 500; }
+.sent .zh { font-size: 15px; color: var(--muted); margin-top: 6px; display: none; }
+.sent.show .zh { display: block; }
+.sent .toggle { font-size: 13px; color: var(--accent3); margin-top: 6px; font-weight: 600; }
+
+/* spelling */
+.sp-wrap {
+  display: flex; flex-direction: column; align-items: center; gap: 18px;
+  max-width: 600px; margin: 0 auto;
+}
+.sp-progress { font-size: 14px; color: var(--muted); }
+.sp-card {
+  width: 100%; background: var(--card); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 28px 24px;
+  display: flex; flex-direction: column; align-items: center; gap: 18px;
+}
+.sp-tag { font-size: 13px; color: var(--accent3); font-weight: 700; letter-spacing: 1px; }
+.sp-prompt { font-size: 32px; font-weight: 700; text-align: center; min-height: 50px; }
+.sp-prompt .play { font-size: 48px; }
+.sp-prompt .blanks { letter-spacing: 8px; font-family: "SF Mono", Menlo, monospace; }
+.sp-input {
+  width: 100%; max-width: 420px; min-height: 72px; padding: 18px 22px; font-size: 28px;
+  border: 2px solid #e8ecf3; border-radius: 14px; background: #fafbfd;
+  text-align: center; letter-spacing: 4px; font-weight: 600;
+  outline: none; transition: border-color .12s;
+}
+@media (pointer: coarse) { .sp-input { min-height: 96px; font-size: 32px; } }
+.pencil-hint {
+  display: none; align-items: center; gap: 6px;
+  font-size: 13px; color: var(--muted); margin-top: 10px;
+  background: #fff4ea; padding: 6px 12px; border-radius: 999px;
+}
+@media (pointer: coarse) { .pencil-hint { display: inline-flex; } }
+.sp-input:focus { border-color: var(--accent3); }
+.sp-input.ok { border-color: var(--good); background: #ecf8ef; }
+.sp-input.bad { border-color: var(--bad); background: #fdecea; }
+.sp-feedback { font-size: 18px; min-height: 28px; font-weight: 600; }
+.sp-feedback.ok { color: var(--good); }
+.sp-feedback.bad { color: var(--bad); }
+
+/* scrambled letters */
+.scramble-target {
+  display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+  min-height: 60px; padding: 12px; background: #fafbfd; border-radius: 12px;
+  width: 100%; min-width: 280px;
+}
+.scramble-pool { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.letter-tile {
+  width: 48px; height: 56px; background: var(--accent3); color: white;
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  font-size: 24px; font-weight: 700; box-shadow: var(--shadow);
+  transition: transform .12s;
+}
+.letter-tile:active { transform: scale(.92); }
+.letter-tile.empty { background: #e8ecf3; box-shadow: none; }
+.letter-tile.placed { background: var(--accent2); }
+
+/* end summary */
+.summary {
+  background: var(--card); border-radius: var(--radius); padding: 26px;
+  box-shadow: var(--shadow); text-align: center;
+}
+.summary .big { font-size: 48px; font-weight: 800; color: var(--accent); }
+.summary .lbl { color: var(--muted); margin-bottom: 18px; }
+
+/* modal */
+.modal-bg {
+  position: fixed; inset: 0; background: rgba(0,0,0,.4); display: flex;
+  align-items: center; justify-content: center; padding: 20px; z-index: 100;
+}
+.modal {
+  background: var(--card); border-radius: var(--radius); padding: 24px;
+  box-shadow: var(--shadow); width: 100%; max-width: 360px;
+}
+.modal h2 { margin: 0 0 14px; font-size: 20px; }
+.modal input {
+  width: 100%; padding: 12px 14px; font-size: 18px; border-radius: 12px;
+  border: 2px solid #e8ecf3; outline: none; margin-bottom: 14px;
+}
+.modal input:focus { border-color: var(--accent3); }
+.modal-row { display: flex; gap: 10px; justify-content: flex-end; }
+
+/* badge on module */
+.module .badge {
+  position: absolute; top: 12px; right: 12px;
+  background: var(--bad); color: white; font-size: 13px; font-weight: 700;
+  padding: 2px 9px; border-radius: 999px; min-width: 22px; text-align: center;
+}
+.module { position: relative; }
+
+/* sentence dictation diff */
+.diff-row { display: flex; flex-wrap: wrap; gap: 6px; font-size: 20px; font-weight: 500; padding: 8px 0; }
+.diff-row .w { padding: 2px 6px; border-radius: 6px; }
+.diff-row .w.ok { background: #ecf8ef; color: var(--good); }
+.diff-row .w.bad { background: #fdecea; color: var(--bad); text-decoration: line-through; }
+.diff-row .w.miss { background: #fff4ea; color: var(--accent); border: 1px dashed var(--accent); }
+
+.dict-textarea {
+  width: 100%; min-height: 140px; padding: 16px 18px; font-size: 22px;
+  border: 2px solid #e8ecf3; border-radius: 14px; background: #fafbfd;
+  outline: none; font-family: inherit; line-height: 1.6; resize: vertical;
+}
+@media (pointer: coarse) { .dict-textarea { min-height: 200px; font-size: 26px; line-height: 1.7; } }
+.dict-textarea:focus { border-color: var(--accent3); }
+
+/* error notebook list */
+.err-item {
+  background: var(--card); border-radius: var(--radius); padding: 16px 18px;
+  box-shadow: var(--shadow); display: flex; align-items: center; gap: 14px;
+}
+.err-item .box-tag {
+  background: #fff4ea; color: var(--accent); padding: 4px 10px; border-radius: 999px;
+  font-size: 13px; font-weight: 700;
+}
+.err-item .body { flex: 1; }
+.err-item .body .top { font-size: 17px; font-weight: 600; }
+.err-item .body .sub { font-size: 13px; color: var(--muted); margin-top: 3px; }
+
+/* nav row in flashcard */
+.fc-nav { display: flex; align-items: center; gap: 12px; }
+.fc-nav .nav-btn {
+  width: 56px; height: 56px; border-radius: 50%; background: var(--card);
+  box-shadow: var(--shadow); font-size: 24px;
+}
+.fc-nav .nav-btn:active { transform: scale(.92); }
+.fc-nav .nav-btn:disabled { opacity: .3; }
+
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div class="app" id="app"></div>
+
+<script>
+// ============ DATA ============
+const WORDS = [
+  // Unit 1
+  { unit:1, word:"must", ipa:"/mʌst/", zh:"必须" },
+  { unit:1, word:"sir", ipa:"/sɜː(r)/", zh:"先生" },
+  { unit:1, word:"inside", ipa:"/ɪnˈsaɪd/", zh:"在……里" },
+  { unit:1, word:"scare", ipa:"/skeə(r)/", zh:"惊吓；使害怕" },
+  { unit:1, word:"password", ipa:"/ˈpɑːswɜːd/", zh:"密码" },
+  { unit:1, word:"line", ipa:"/laɪn/", zh:"队伍；行列；线条" },
+  { unit:1, word:"wait", ipa:"/weɪt/", zh:"等候" },
+  { unit:1, word:"guard", ipa:"/ɡɑːd/", zh:"门卫；看守" },
+  // Unit 2
+  { unit:2, word:"stand", ipa:"/stænd/", zh:"站立" },
+  { unit:2, word:"shout", ipa:"/ʃaʊt/", zh:"大声呼叫；喊（叫）" },
+  { unit:2, word:"smoke", ipa:"/sməʊk/", zh:"烟" },
+  { unit:2, word:"flash", ipa:"/flæʃ/", zh:"闪光灯" },
+  { unit:2, word:"open", ipa:"/ˈəʊpən/", zh:"开放；打开" },
+  { unit:2, word:"return", ipa:"/rɪˈtɜːn/", zh:"归还；回去" },
+  { unit:2, word:"borrow", ipa:"/ˈbɒrəʊ/", zh:"借；借用" },
+  { unit:2, word:"write", ipa:"/raɪt/", zh:"书写；写字" },
+  { unit:2, word:"along", ipa:"/əˈlɒŋ/", zh:"沿着；顺着" },
+  { unit:2, word:"street", ipa:"/striːt/", zh:"大街；街道" },
+  { unit:2, word:"station", ipa:"/ˈsteɪʃn/", zh:"局；所；站" },
+  { unit:2, word:"next", ipa:"/nekst/", zh:"紧邻；紧接着" },
+  { unit:2, word:"far", ipa:"/fɑː(r)/", zh:"远的；遥远的" },
+  { unit:2, word:"cinema", ipa:"/ˈsɪnəmə/", zh:"电影院" },
+  { unit:2, word:"between", ipa:"/bɪˈtwiːn/", zh:"在……中间" },
+  { unit:2, word:"city", ipa:"/ˈsɪti/", zh:"都市；城市" },
+  { unit:2, word:"behind", ipa:"/bɪˈhaɪnd/", zh:"在……的后面" },
+  { unit:2, word:"left", ipa:"/left/", zh:"向左；左边" },
+  { unit:2, word:"teach", ipa:"/tiːtʃ/", zh:"讲授" },
+  { unit:2, word:"litter", ipa:"/ˈlɪtə(r)/", zh:"垃圾；废弃物" },
+  { unit:2, word:"recycle", ipa:"/ˌriːˈsaɪkl/", zh:"回收利用；再利用" },
+  { unit:2, word:"taxi", ipa:"/ˈtæksi/", zh:"出租汽车" },
+  { unit:2, word:"traffic", ipa:"/ˈtræfɪk/", zh:"交通" },
+  { unit:2, word:"direct", ipa:"/dəˈrekt/", zh:"指挥；指路" },
+  { unit:2, word:"artist", ipa:"/ˈɑːtɪst/", zh:"艺术家；画家" },
+  { unit:2, word:"Ms", ipa:"/mɪz/", zh:"（用于一女子的姓名前）女士" },
+  { unit:2, word:"scientist", ipa:"/ˈsaɪəntɪst/", zh:"科学家" },
+  { unit:2, word:"volunteer", ipa:"/ˌvɒlənˈtɪə(r)/", zh:"志愿者" },
+  { unit:2, word:"live", ipa:"/lɪv/", zh:"住；居住" },
+  { unit:2, word:"train", ipa:"/treɪn/", zh:"火车；列车" },
+  { unit:2, word:"lost", ipa:"/lɒst/", zh:"迷路的；迷失" },
+  { unit:2, word:"sign", ipa:"/saɪn/", zh:"指示牌；标志" },
+  { unit:2, word:"note", ipa:"/nəʊt/", zh:"笔记；便条" },
+  { unit:2, word:"foreign", ipa:"/ˈfɒrən/", zh:"外国的" },
+  { unit:2, word:"visitor", ipa:"/ˈvɪzɪtə(r)/", zh:"游客；参观者" },
+  // Unit 3
+  { unit:3, word:"January", ipa:"/ˈdʒænjuəri/", zh:"一月" },
+  { unit:3, word:"February", ipa:"/ˈfebruəri/", zh:"二月" },
+  { unit:3, word:"skate", ipa:"/skeɪt/", zh:"溜冰" },
+  { unit:3, word:"holiday", ipa:"/ˈhɒlədeɪ/", zh:"假期" },
+  { unit:3, word:"March", ipa:"/mɑːtʃ/", zh:"三月" },
+  { unit:3, word:"April", ipa:"/ˈeɪprəl/", zh:"四月" },
+  { unit:3, word:"May", ipa:"/meɪ/", zh:"五月" },
+  { unit:3, word:"June", ipa:"/dʒuːn/", zh:"六月" },
+  { unit:3, word:"party", ipa:"/ˈpɑːti/", zh:"聚会；派对" },
+  { unit:3, word:"celebrate", ipa:"/ˈselɪbreɪt/", zh:"庆祝；庆贺" },
+  { unit:3, word:"ice", ipa:"/aɪs/", zh:"冰；冰块；冰场" },
+  { unit:3, word:"Labour Day", ipa:"/ˈleɪbə(r) deɪ/", zh:"劳动节" },
+  { unit:3, word:"Dragon Boat Festival", ipa:"/ˈdræɡən bəʊt ˈfestɪvl/", zh:"端午节" },
+  { unit:3, word:"CPC Founding Day", ipa:"", zh:"中国共产党建党纪念日" },
+  { unit:3, word:"PLA Day", ipa:"", zh:"中国人民解放军建军节" },
+  { unit:3, word:"National Day", ipa:"/ˈnæʃnəl deɪ/", zh:"国庆节" },
+  { unit:3, word:"July", ipa:"/dʒuˈlaɪ/", zh:"七月" },
+  { unit:3, word:"August", ipa:"/ˈɔːɡəst/", zh:"八月" },
+  { unit:3, word:"September", ipa:"/sepˈtembə(r)/", zh:"九月" },
+  { unit:3, word:"October", ipa:"/ɒkˈtəʊbə(r)/", zh:"十月" },
+  { unit:3, word:"November", ipa:"/nəʊˈvembə(r)/", zh:"十一月" },
+  { unit:3, word:"December", ipa:"/dɪˈsembə(r)/", zh:"十二月" },
+  { unit:3, word:"Christmas", ipa:"/ˈkrɪsməs/", zh:"圣诞节" },
+  { unit:3, word:"turkey", ipa:"/ˈtɜːki/", zh:"火鸡" },
+  { unit:3, word:"country", ipa:"/ˈkʌntri/", zh:"国家" },
+  { unit:3, word:"sit", ipa:"/sɪt/", zh:"坐" },
+  { unit:3, word:"beside", ipa:"/bɪˈsaɪd/", zh:"在旁边" },
+  { unit:3, word:"west", ipa:"/west/", zh:"西方" },
+  { unit:3, word:"cup", ipa:"/kʌp/", zh:"一杯（的量）；杯子" },
+  { unit:3, word:"sunshine", ipa:"/ˈsʌnʃaɪn/", zh:"阳光" },
+  { unit:3, word:"ago", ipa:"/əˈɡəʊ/", zh:"以前" },
+  { unit:3, word:"catch", ipa:"/kætʃ/", zh:"捕获；抓住" },
+  // Unit 4
+  { unit:4, word:"hometown", ipa:"/ˈhəʊmtaʊn/", zh:"家乡" },
+  { unit:4, word:"its", ipa:"/ɪts/", zh:"它的" },
+  { unit:4, word:"common", ipa:"/ˈkɒmən/", zh:"共同的" },
+  { unit:4, word:"beach", ipa:"/biːtʃ/", zh:"海滩" },
+  { unit:4, word:"desert", ipa:"/ˈdezət/", zh:"沙漠；荒漠" },
+  { unit:4, word:"grassland", ipa:"/ˈɡrɑːslænd/", zh:"草原；草场" },
+  { unit:4, word:"special", ipa:"/ˈspeʃl/", zh:"特别的；特殊的" },
+  { unit:4, word:"wild", ipa:"/waɪld/", zh:"野生的；自然生长的" },
+  { unit:4, word:"kangaroo", ipa:"/ˌkæŋɡəˈruː/", zh:"袋鼠" },
+  { unit:4, word:"koala", ipa:"/kəʊˈɑːlə/", zh:"考拉" },
+  { unit:4, word:"wish", ipa:"/wɪʃ/", zh:"希望（做某事）" },
+  { unit:4, word:"could", ipa:"/kʊd/", zh:"可以；可能" },
+  { unit:4, word:"high", ipa:"/haɪ/", zh:"高的" },
+  { unit:4, word:"island", ipa:"/ˈaɪlənd/", zh:"岛；岛屿" },
+  // Unit 5
+  { unit:5, word:"travel", ipa:"/ˈtrævl/", zh:"旅行；从一处到另一处" },
+  { unit:5, word:"feel like", ipa:"/fiːl laɪk/", zh:"感觉像" },
+  { unit:5, word:"middle", ipa:"/ˈmɪdl/", zh:"中间；中央" },
+  { unit:5, word:"painting", ipa:"/ˈpeɪntɪŋ/", zh:"油画；绘画" },
+  { unit:5, word:"pyramid", ipa:"/ˈpɪrəmɪd/", zh:"（古埃及的）金字塔" },
+  { unit:5, word:"ride", ipa:"/raɪd/", zh:"骑；驾驶" },
+  { unit:5, word:"camel", ipa:"/ˈkæml/", zh:"骆驼" },
+  { unit:5, word:"even", ipa:"/ˈiːvn/", zh:"（强调出乎意料）甚至；连；即使" },
+  { unit:5, word:"Confucius", ipa:"/kənˈfjuːʃəs/", zh:"孔子" },
+  { unit:5, word:"Beijing opera", ipa:"/beɪˈdʒɪŋ ˈɒprə/", zh:"京剧" },
+  { unit:5, word:"Mount Taishan", ipa:"/maʊnt taɪˈʃɑːn/", zh:"泰山" },
+  { unit:5, word:"India", ipa:"/ˈɪndiə/", zh:"印度" },
+  { unit:5, word:"Italy", ipa:"/ˈɪtəli/", zh:"意大利" },
+  { unit:5, word:"Britain", ipa:"/ˈbrɪtn/", zh:"不列颠（包括英格兰、苏格兰及威尔士）" },
+  { unit:5, word:"Cairo", ipa:"/ˈkaɪrəʊ/", zh:"开罗" },
+  { unit:5, word:"Hawaii", ipa:"/həˈwaɪi/", zh:"夏威夷" },
+  { unit:5, word:"early", ipa:"/ˈɜːli/", zh:"提前的；早到的" },
+  { unit:5, word:"underground", ipa:"/ˌʌndəˈɡraʊnd/", zh:"地铁" },
+  { unit:5, word:"bike", ipa:"/baɪk/", zh:"自行车；脚踏车" },
+  { unit:5, word:"foot", ipa:"/fʊt/", zh:"（人或动物的）脚，足" },
+  { unit:5, word:"on foot", ipa:"/ɒn fʊt/", zh:"步行" },
+  { unit:5, word:"plane", ipa:"/pleɪn/", zh:"飞机" },
+  { unit:5, word:"ship", ipa:"/ʃɪp/", zh:"（大）船；舰" },
+  // Unit 6
+  { unit:6, word:"hurt", ipa:"/hɜːt/", zh:"（使）疼痛、痛苦、受伤" },
+  { unit:6, word:"environment", ipa:"/ɪnˈvaɪrənmənt/", zh:"自然环境" },
+  { unit:6, word:"tip", ipa:"/tɪp/", zh:"实用的提示；窍门" },
+  { unit:6, word:"health", ipa:"/helθ/", zh:"健康" },
+  { unit:6, word:"carry", ipa:"/ˈkæri/", zh:"运送；携带" },
+  { unit:6, word:"finally", ipa:"/ˈfaɪnəli/", zh:"最后；终于" },
+  { unit:6, word:"suggest", ipa:"/səˈdʒest/", zh:"建议；提议" },
+  { unit:6, word:"everyday", ipa:"/ˈevrideɪ/", zh:"每天的；日常的" },
+  { unit:6, word:"Internet", ipa:"/ˈɪntənet/", zh:"互联网；因特网" },
+  { unit:6, word:"seafood", ipa:"/ˈsiːfuːd/", zh:"海鲜" },
+  { unit:6, word:"maybe", ipa:"/ˈmeɪbi/", zh:"（不确定）大概，或许，可能" },
+  { unit:6, word:"join", ipa:"/dʒɔɪn/", zh:"参与；加入" },
+  { unit:6, word:"hill", ipa:"/hɪl/", zh:"山丘；小山" },
+  { unit:6, word:"explore", ipa:"/ɪkˈsplɔː(r)/", zh:"探索" },
+  { unit:6, word:"culture", ipa:"/ˈkʌltʃə(r)/", zh:"文化" },
+  { unit:6, word:"hot pot", ipa:"/hɒt pɒt/", zh:"火锅" },
+  { unit:6, word:"tour", ipa:"/tʊə(r)/", zh:"旅行；旅游" },
+  { unit:6, word:"local", ipa:"/ˈləʊkl/", zh:"当地的；本地的" },
+  { unit:6, word:"history", ipa:"/ˈhɪstri/", zh:"历史" },
+  { unit:6, word:"plan", ipa:"/plæn/", zh:"计划；打算" },
+  { unit:6, word:"app", ipa:"/æp/", zh:"应用软件" },
+  { unit:6, word:"information", ipa:"/ˌɪnfəˈmeɪʃn/", zh:"消息；信息" },
+  { unit:6, word:"blog", ipa:"/blɒɡ/", zh:"博客" },
+  { unit:6, word:"magazine", ipa:"/ˌmæɡəˈziːn/", zh:"杂志" },
+  { unit:6, word:"northeast", ipa:"/ˌnɔːθˈiːst/", zh:"东北方" },
+  { unit:6, word:"building", ipa:"/ˈbɪldɪŋ/", zh:"建筑物；房子" },
+  { unit:6, word:"palace", ipa:"/ˈpæləs/", zh:"王宫；宫殿" },
+  { unit:6, word:"stone", ipa:"/stəʊn/", zh:"石头；岩石" },
+  { unit:6, word:"last", ipa:"/lɑːst/", zh:"最后的；末尾的" },
+];
+
+const SENTENCES = [
+  // Unit 1
+  { unit:1, en:"Listen carefully: You must stay in the bus. Don't go outside.", zh:"请认真听：你们必须呆在车上，不要出去。" },
+  { unit:1, en:"Yes, sir. Can we touch the animals?", zh:"好的，先生。我们能摸动物吗？" },
+  { unit:1, en:"No. Don't touch the animals. You must keep your hands inside the bus.", zh:"不可以。不要触摸动物。你们必须手放在车内。" },
+  { unit:1, en:"What's the guard doing?", zh:"那位保安在干什么？" },
+  { unit:1, en:"He's telling people what to do.", zh:"他在告诉人们该做什么。" },
+  { unit:1, en:"Is he coming over here?", zh:"他是朝这边走来吗？" },
+  { unit:1, en:"Yes, he is.", zh:"是的，他是。" },
+  // Unit 2
+  { unit:2, en:"Is there a bookshop near here?", zh:"附近有书店吗？" },
+  { unit:2, en:"Yes, there is. Walk along this street. Turn right at the police station. The bookshop is on your right.", zh:"是的，附近有。沿着这条街走。在警察局右拐。书店在你的右侧。" },
+  { unit:2, en:"Is there also a library near here?", zh:"附近也有图书馆吗？" },
+  { unit:2, en:"No, there isn't.", zh:"不，附近没有。" },
+  { unit:2, en:"What does she teach?", zh:"她教什么？" },
+  { unit:2, en:"She teaches maths.", zh:"她教数学。" },
+  { unit:2, en:"Who's Mr Zhang? What does he do?", zh:"张先生是谁？他做什么工作？" },
+  { unit:2, en:"He's a street cleaner.", zh:"他是街道清洁工。" },
+  // Unit 3
+  { unit:3, en:"Which season do you like the best, children?", zh:"孩子们，你们最喜欢哪个季节？" },
+  { unit:3, en:"I like spring the best. The weather is nice. I often fly a kite with my father in the park.", zh:"我最喜欢春天。春天天气真好。我经常和爸爸在公园里放风筝。" },
+  { unit:3, en:"Class, what's the best time of year?", zh:"同学们，一年中最好的时节是什么时候？" },
+  { unit:3, en:"I think it's autumn.", zh:"我认为是秋天。" },
+  { unit:3, en:"When's Dongzhi?", zh:"冬至在什么时候？" },
+  // Unit 4
+  { unit:4, en:"What are you going to do?", zh:"你打算做什么？" },
+  { unit:4, en:"I'm going to visit my grandparents.", zh:"我打算去看望我祖父母。" },
+  // Unit 5
+  { unit:5, en:"How do you come to school?", zh:"你怎么来上学？" },
+  { unit:5, en:"I often come by bus.", zh:"我经常乘公共汽车来。" },
+  { unit:5, en:"Where are you going?", zh:"你要去哪里？" },
+  { unit:5, en:"I'm going to my dance class.", zh:"我要去我的舞蹈课。" },
+  { unit:5, en:"Are you going by bus?", zh:"你坐公共汽车去吗？" },
+  // Unit 6
+  { unit:6, en:"Where are you going in the summer holidays, Zhang Peng?", zh:"张鹏，暑假你要去哪？" },
+  { unit:6, en:"I'm going to Dalian with my family.", zh:"我要和家人一起去大连。" },
+  { unit:6, en:"When are you going to Dalian?", zh:"你什么时候去大连？" },
+  { unit:6, en:"In July.", zh:"在七月。" },
+  { unit:6, en:"How can we make a good travel plan?", zh:"我们怎么制订一个好的旅游计划？" },
+  { unit:6, en:"Well, first, we need to choose where to go.", zh:"嗯，首先，我们要选择去哪里。" },
+  { unit:6, en:"Then we need to choose how to get there.", zh:"然后，我们要选择怎样到那里。" },
+  { unit:6, en:"Next, we should look for hotels.", zh:"下一步，我们要找旅馆。" },
+  { unit:6, en:"Finally, we should find out about the weather.", zh:"最后，我们要查一查天气。" },
+  // Unit 7
+  { unit:7, en:"Who's your hometown famous for?", zh:"你的家乡因谁出名？" },
+  { unit:7, en:"It's the home of Confucius.", zh:"它是孔子的故乡。" },
+  { unit:7, en:"What are some other famous places in China?", zh:"中国还有哪些其他名胜古迹？" },
+  { unit:7, en:"China has many famous places. Sanya is famous for its pandas.", zh:"中国有许多名胜古迹。三亚因熊猫闻名。" },
+  { unit:7, en:"What makes Australia special?", zh:"是什么使澳大利亚特别？" },
+  { unit:7, en:"The good weather and beautiful beaches.", zh:"好天气和美丽的海滩。" },
+];
+
+const UNITS = [1,2,3,4,5,6];
+
+// ============ STATE & STORAGE ============
+const STORAGE = {
+  profiles: () => JSON.parse(localStorage.getItem("ep:profiles") || "[]"),
+  setProfiles: (p) => localStorage.setItem("ep:profiles", JSON.stringify(p)),
+  current: () => localStorage.getItem("ep:current") || "",
+  setCurrent: (n) => localStorage.setItem("ep:current", n),
+  score: (name) => JSON.parse(localStorage.getItem("ep:score:" + name) || "{}"),
+  setScore: (name, s) => localStorage.setItem("ep:score:" + name, JSON.stringify(s)),
+  quizSize: () => localStorage.getItem("ep:quizSize") || "all",
+  setQuizSize: (v) => localStorage.setItem("ep:quizSize", v),
+  delProfile: (name) => {
+    localStorage.removeItem("ep:score:" + name);
+    const ps = STORAGE.profiles().filter(p => p !== name);
+    STORAGE.setProfiles(ps);
+    if (STORAGE.current() === name) STORAGE.setCurrent("");
+  }
+};
+
+function bumpScore(word, delta) {
+  const name = STORAGE.current();
+  if (!name) return;
+  const s = STORAGE.score(name);
+  s[word] = Math.max(-5, Math.min(10, (s[word] || 0) + delta));
+  STORAGE.setScore(name, s);
+}
+
+// ============ ERROR NOTEBOOK (Leitner spaced repetition) ============
+const SRS_INTERVALS_DAYS = [0, 1, 2, 4, 7, 14]; // box 1..5, +30 for box 6 (mastered)
+const DAY_MS = 24 * 60 * 60 * 1000;
+function getWrong() {
+  const name = STORAGE.current();
+  return JSON.parse(localStorage.getItem("ep:wrong:" + name) || "{}");
+}
+function setWrong(w) {
+  const name = STORAGE.current();
+  localStorage.setItem("ep:wrong:" + name, JSON.stringify(w));
+}
+function srsKey(kind, id) { return kind + ":" + id; }
+// kind: "word" | "sent"; id: word string or "u<n>-<i>" for sentences
+function addWrong(kind, id, displayText, hint) {
+  const w = getWrong();
+  const k = srsKey(kind, id);
+  const now = Date.now();
+  if (w[k]) {
+    w[k].box = 1;
+    w[k].dueAt = now;
+    w[k].wrongCount = (w[k].wrongCount || 0) + 1;
+  } else {
+    w[k] = { kind, id, text: displayText, hint, box: 1, dueAt: now, wrongCount: 1, addedAt: now };
+  }
+  setWrong(w);
+}
+function srsRight(kind, id) {
+  const w = getWrong();
+  const k = srsKey(kind, id);
+  if (!w[k]) return;
+  w[k].box = Math.min(6, w[k].box + 1);
+  if (w[k].box >= 6) { delete w[k]; }
+  else { w[k].dueAt = Date.now() + SRS_INTERVALS_DAYS[w[k].box] * DAY_MS; }
+  setWrong(w);
+}
+function srsWrong(kind, id) {
+  const w = getWrong();
+  const k = srsKey(kind, id);
+  if (!w[k]) return;
+  w[k].box = 1;
+  w[k].dueAt = Date.now();
+  w[k].wrongCount = (w[k].wrongCount || 0) + 1;
+  setWrong(w);
+}
+function dueItems() {
+  const w = getWrong();
+  const now = Date.now();
+  return Object.values(w).filter(it => it.dueAt <= now)
+    .sort((a, b) => a.dueAt - b.dueAt);
+}
+function totalWrong() { return Object.keys(getWrong()).length; }
+
+function unitProgress(unit) {
+  const name = STORAGE.current();
+  if (!name) return 0;
+  const s = STORAGE.score(name);
+  const words = WORDS.filter(w => w.unit === unit);
+  if (!words.length) return 0;
+  const known = words.filter(w => (s[w.word] || 0) >= 3).length;
+  return Math.round(known / words.length * 100);
+}
+
+// ============ TTS ============
+let voiceCache = null;
+function pickVoice() {
+  if (voiceCache) return voiceCache;
+  const vs = speechSynthesis.getVoices();
+  voiceCache = vs.find(v => v.lang.startsWith("en-GB")) ||
+               vs.find(v => v.lang.startsWith("en-US")) ||
+               vs.find(v => v.lang.startsWith("en")) || null;
+  return voiceCache;
+}
+if ("speechSynthesis" in window) {
+  speechSynthesis.onvoiceschanged = () => { voiceCache = null; pickVoice(); };
+}
+function speak(text, rate = 1) {
+  if (!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const v = pickVoice();
+  if (v) u.voice = v;
+  u.lang = v ? v.lang : "en-GB";
+  u.rate = rate;
+  u.pitch = 1;
+  speechSynthesis.speak(u);
+}
+
+// ============ ROUTER ============
+let view = { name: "profiles", params: {} };
+function go(name, params = {}) { view = { name, params }; render(); }
+
+function render() {
+  const app = document.getElementById("app");
+  app.innerHTML = "";
+  const fn = VIEWS[view.name] || VIEWS.profiles;
+  fn(app, view.params);
+}
+
+// ============ VIEW: PROFILES ============
+const VIEWS = {};
+VIEWS.profiles = (app) => {
+  const profiles = STORAGE.profiles();
+  app.innerHTML = `
+    <div class="topbar"><h1>选择练习者</h1></div>
+    <div class="profiles" id="ps"></div>
+  `;
+  const ps = document.getElementById("ps");
+  profiles.forEach(name => {
+    const score = STORAGE.score(name);
+    const known = Object.values(score).filter(v => v >= 3).length;
+    const card = document.createElement("button");
+    card.className = "profile-card";
+    card.innerHTML = `
+      <span class="del" data-del="${name}">×</span>
+      <div class="avatar">${name.slice(0,1).toUpperCase()}</div>
+      <div class="name">${name}</div>
+      <div class="stat">熟练单词 ${known}/${WORDS.length}</div>
+    `;
+    card.addEventListener("click", (e) => {
+      if (e.target.dataset.del) {
+        if (confirm(`删除 ${name} 的所有记录？`)) { STORAGE.delProfile(name); render(); }
+        return;
+      }
+      STORAGE.setCurrent(name);
+      go("home");
+    });
+    ps.appendChild(card);
+  });
+  const add = document.createElement("button");
+  add.className = "profile-card add";
+  add.innerHTML = `<div class="avatar">+</div><div class="name">新建</div><div class="stat">添加一个名字</div>`;
+  add.addEventListener("click", () => openNameModal());
+  ps.appendChild(add);
+};
+
+function openNameModal() {
+  const bg = document.createElement("div");
+  bg.className = "modal-bg";
+  bg.innerHTML = `
+    <div class="modal">
+      <h2>新建练习者</h2>
+      <input id="nameIn" placeholder="名字，例如 哥哥 / 弟弟" maxlength="12" autofocus>
+      <div class="modal-row">
+        <button class="btn ghost" id="cancelBtn">取消</button>
+        <button class="btn primary" id="okBtn">添加</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(bg);
+  const input = bg.querySelector("#nameIn");
+  setTimeout(() => input.focus(), 50);
+  bg.querySelector("#cancelBtn").onclick = () => bg.remove();
+  bg.querySelector("#okBtn").onclick = () => {
+    const v = input.value.trim();
+    if (!v) return;
+    const ps = STORAGE.profiles();
+    if (!ps.includes(v)) { ps.push(v); STORAGE.setProfiles(ps); }
+    bg.remove();
+    render();
+  };
+  input.onkeydown = (e) => { if (e.key === "Enter") bg.querySelector("#okBtn").click(); };
+}
+
+// ============ VIEW: HOME ============
+VIEWS.home = (app) => {
+  const me = STORAGE.current();
+  const dueCount = dueItems().length;
+  const totalErr = totalWrong();
+  app.innerHTML = `
+    <div class="topbar">
+      <button class="back" id="back">‹</button>
+      <h1>选个练习</h1>
+      <button class="who" id="who"><span class="dot"></span>${me}</button>
+    </div>
+    <div class="modules">
+      <button class="module a" data-go="units-flash">
+        <div class="emo">📚</div>
+        <div class="ttl">背单词</div>
+        <div class="sub">单词卡片，翻面看音标和意思</div>
+      </button>
+      <button class="module b" data-go="units-sent">
+        <div class="emo">🗣️</div>
+        <div class="ttl">听句子</div>
+        <div class="sub">点播放，跟读，看翻译</div>
+      </button>
+      <button class="module c" data-go="units-spell">
+        <div class="emo">✏️</div>
+        <div class="ttl">拼写练习</div>
+        <div class="sub">听写、中译英、字母排序、填空</div>
+      </button>
+      <button class="module a" data-go="units-dict">
+        <div class="emo">📝</div>
+        <div class="ttl">句子默写</div>
+        <div class="sub">听句子写下来，按词比对</div>
+      </button>
+      <button class="module b" data-go="errors">
+        ${dueCount > 0 ? `<span class="badge">${dueCount}</span>` : ""}
+        <div class="emo">🔁</div>
+        <div class="ttl">错题本</div>
+        <div class="sub">${totalErr === 0 ? "暂时没有错题" : `共 ${totalErr} 题 · 今天到期 ${dueCount}`}</div>
+      </button>
+    </div>
+  `;
+  document.getElementById("back").onclick = () => go("profiles");
+  document.getElementById("who").onclick = () => go("profiles");
+  app.querySelectorAll("[data-go]").forEach(b => b.onclick = () => go(b.dataset.go));
+};
+
+// ============ VIEW: UNIT PICKER ============
+function unitPicker(app, kind, title) {
+  const me = STORAGE.current();
+  const showProgress = kind === "flash" || kind === "spell";
+  const showSize = kind === "spell";
+  const curSize = STORAGE.quizSize();
+  app.innerHTML = `
+    <div class="topbar">
+      <button class="back" id="back">‹</button>
+      <h1>${title}</h1>
+      <button class="who" id="who"><span class="dot"></span>${me}</button>
+    </div>
+    ${showSize ? `
+      <div style="padding: 0 18px 8px; display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+        <span style="font-size:14px;color:var(--muted);margin-right:4px;">每轮题量：</span>
+        ${["10","20","all"].map(v => `
+          <button class="size-pill" data-size="${v}" style="
+            padding:6px 14px; border-radius:999px; font-size:14px; font-weight:600;
+            background:${curSize===v ? "var(--accent3)" : "var(--card)"};
+            color:${curSize===v ? "white" : "var(--text)"};
+            box-shadow: var(--shadow);
+          ">${v === "all" ? "全部覆盖" : v + " 题"}</button>
+        `).join("")}
+      </div>
+    ` : ""}
+    <div class="units" id="units"></div>
+  `;
+  document.getElementById("back").onclick = () => go("home");
+  document.getElementById("who").onclick = () => go("profiles");
+  if (showSize) {
+    app.querySelectorAll(".size-pill").forEach(b => b.onclick = () => {
+      STORAGE.setQuizSize(b.dataset.size);
+      unitPicker(app, kind, title);
+    });
+  }
+  const wrap = document.getElementById("units");
+  const isSent = (kind === "sent" || kind === "dict");
+  const dataset = isSent ? SENTENCES : WORDS;
+  const availUnits = [...new Set(dataset.map(d => d.unit))].sort();
+  availUnits.forEach(u => {
+    const count = dataset.filter(d => d.unit === u).length;
+    const pct = showProgress ? unitProgress(u) : null;
+    const btn = document.createElement("button");
+    btn.className = "unit-btn";
+    btn.innerHTML = `
+      Unit ${u}
+      <span class="small">${count} ${isSent ? "句" : "词"}${showProgress ? ` · ${pct}%` : ""}</span>
+      ${showProgress ? `<div class="bar"><i style="width:${pct}%"></i></div>` : ""}
+    `;
+    btn.onclick = () => go(kind, { unit: u });
+    wrap.appendChild(btn);
+  });
+  if (!isSent) {
+    const btn = document.createElement("button");
+    btn.className = "unit-btn";
+    btn.style.background = "#fff4ea";
+    btn.innerHTML = `全部 Unit<span class="small">${WORDS.length} 词混合练</span>`;
+    btn.onclick = () => go(kind, { unit: 0 });
+    wrap.appendChild(btn);
+  }
+}
+VIEWS["units-flash"] = (app) => unitPicker(app, "flash", "背单词 · 选 Unit");
+VIEWS["units-sent"]  = (app) => unitPicker(app, "sent",  "听句子 · 选 Unit");
+VIEWS["units-spell"] = (app) => unitPicker(app, "spell", "拼写练习 · 选 Unit");
+VIEWS["units-dict"]  = (app) => unitPicker(app, "dict",  "句子默写 · 选 Unit");
+
+// ============ VIEW: FLASHCARDS ============
+VIEWS.flash = (app, { unit }) => {
+  const me = STORAGE.current();
+  const score = STORAGE.score(me);
+  let pool = WORDS.filter(w => unit === 0 || w.unit === unit).slice();
+  // sort: less-known first, but shuffled within same score
+  pool.sort((a, b) => (score[a.word] || 0) - (score[b.word] || 0) + (Math.random() - .5) * .1);
+  let idx = 0;
+  let flipped = false;
+
+  function frame() {
+    if (idx >= pool.length) return showDone();
+    const w = pool[idx];
+    app.innerHTML = `
+      <div class="topbar">
+        <button class="back" id="back">‹</button>
+        <h1>背单词 ${unit ? "· Unit " + unit : ""}</h1>
+        <button class="who" id="who"><span class="dot"></span>${me}</button>
+      </div>
+      <div class="fc-wrap">
+        <div class="fc-progress">${idx + 1} / ${pool.length}</div>
+        <div class="fc-card" id="card">
+          <div class="w">${w.word}</div>
+          <div class="ipa">${w.ipa}</div>
+          <button class="play" id="play">🔊</button>
+          ${flipped ? `<div class="zh">${w.zh}</div>` : `<div class="zh" style="opacity:.2">点卡片看意思</div>`}
+        </div>
+        <div class="fc-actions">
+          <button class="btn warn" id="hard">再练</button>
+          <button class="btn good" id="easy">认识</button>
+        </div>
+      </div>
+    `;
+    document.getElementById("back").onclick = () => go("units-flash");
+    document.getElementById("who").onclick = () => go("profiles");
+    document.getElementById("card").onclick = (e) => {
+      if (e.target.id === "play") return;
+      flipped = !flipped; frame();
+    };
+    document.getElementById("play").onclick = (e) => { e.stopPropagation(); speak(w.word); };
+    document.getElementById("hard").onclick = () => {
+      bumpScore(w.word, -1);
+      addWrong("word", w.word, w.word, w.zh);
+      idx++; flipped = false; frame();
+    };
+    document.getElementById("easy").onclick = () => {
+      bumpScore(w.word, +1);
+      srsRight("word", w.word);
+      idx++; flipped = false; frame();
+    };
+    // auto-speak on entry
+    speak(w.word);
+  }
+  function showDone() {
+    app.innerHTML = `
+      <div class="topbar">
+        <button class="back" id="back">‹</button>
+        <h1>完成！</h1>
+        <button class="who" id="who"><span class="dot"></span>${me}</button>
+      </div>
+      <div class="summary">
+        <div class="big">🎉</div>
+        <div class="lbl">这一轮过完了，${pool.length} 个词</div>
+        <button class="btn primary" id="again">再来一轮</button>
+        <button class="btn ghost" id="home">回首页</button>
+      </div>
+    `;
+    document.getElementById("back").onclick = () => go("units-flash");
+    document.getElementById("who").onclick = () => go("profiles");
+    document.getElementById("again").onclick = () => { idx = 0; flipped = false; frame(); };
+    document.getElementById("home").onclick = () => go("home");
+  }
+  frame();
+};
+
+// ============ VIEW: SENTENCES ============
+VIEWS.sent = (app, { unit }) => {
+  const me = STORAGE.current();
+  const items = SENTENCES.filter(s => s.unit === unit);
+  app.innerHTML = `
+    <div class="topbar">
+      <button class="back" id="back">‹</button>
+      <h1>听句子 · Unit ${unit}</h1>
+      <button class="who" id="who"><span class="dot"></span>${me}</button>
+    </div>
+    <div class="sent-list" id="list"></div>
+  `;
+  document.getElementById("back").onclick = () => go("units-sent");
+  document.getElementById("who").onclick = () => go("profiles");
+  const list = document.getElementById("list");
+  items.forEach((s, i) => {
+    const el = document.createElement("div");
+    el.className = "sent";
+    el.innerHTML = `
+      <button class="play" data-rate="1">▶</button>
+      <button class="play slow" data-rate="0.6">慢</button>
+      <div class="body">
+        <div class="en">${s.en}</div>
+        <div class="toggle">显示中文 ▾</div>
+        <div class="zh">${s.zh}</div>
+      </div>
+    `;
+    el.querySelectorAll(".play").forEach(b => {
+      b.onclick = () => speak(s.en, parseFloat(b.dataset.rate));
+    });
+    el.querySelector(".toggle").onclick = () => {
+      el.classList.toggle("show");
+      el.querySelector(".toggle").textContent = el.classList.contains("show") ? "隐藏中文 ▴" : "显示中文 ▾";
+    };
+    list.appendChild(el);
+  });
+};
+
+// ============ VIEW: SPELLING ============
+VIEWS.spell = (app, { unit }) => {
+  const me = STORAGE.current();
+  const score = STORAGE.score(me);
+  // pool: only words made of letters (and simple multi-words)
+  let pool = WORDS.filter(w => (unit === 0 || w.unit === unit) && /^[A-Za-z][A-Za-z\s]*$/.test(w.word));
+  // priority: less-known words first
+  pool.sort((a, b) => (score[a.word] || 0) - (score[b.word] || 0) + (Math.random() - .5) * .3);
+  const sizePref = STORAGE.quizSize();
+  let cap;
+  if (sizePref === "all") cap = pool.length;
+  else cap = Math.min(parseInt(sizePref, 10) || 10, pool.length);
+  const items = pool.slice(0, cap);
+  if (items.length === 0) {
+    app.innerHTML = `<div class="topbar"><button class="back" onclick="go('units-spell')">‹</button><h1>没题可练</h1></div>`;
+    return;
+  }
+  // assign random mode per item
+  const MODES = ["dictate", "zh2en", "scramble", "fill"];
+  items.forEach(it => { it._mode = MODES[Math.floor(Math.random() * MODES.length)]; });
+  let idx = 0, correct = 0;
+
+  function frame() {
+    if (idx >= items.length) return showDone();
+    const it = items[idx];
+    const m = it._mode;
+    let promptHtml = "", tag = "";
+    if (m === "dictate") {
+      tag = "🎧 听写";
+      promptHtml = `<button class="play" id="play" style="background:transparent;font-size:64px;">🔊</button><div style="font-size:14px;color:var(--muted)">点喇叭听单词</div>`;
+    } else if (m === "zh2en") {
+      tag = "🀄️ 中译英";
+      promptHtml = `<div>${it.zh}</div>`;
+    } else if (m === "scramble") {
+      tag = "🔤 字母排序";
+      // handled below specially
+    } else if (m === "fill") {
+      tag = "➖ 填空";
+      const ws = it.word;
+      const blanks = ws.split("").map((c, i) => {
+        if (c === " ") return " ";
+        // hide ~40% of letters
+        return Math.random() < 0.45 ? `_` : c;
+      }).join("");
+      promptHtml = `<div class="blanks">${blanks}</div><div style="font-size:14px;color:var(--muted)">${it.zh}</div>`;
+    }
+
+    if (m === "scramble") {
+      // scramble UI
+      const letters = it.word.split("");
+      const shuffled = letters.slice().sort(() => Math.random() - .5);
+      app.innerHTML = `
+        <div class="topbar">
+          <button class="back" id="back">‹</button>
+          <h1>拼写 ${unit ? "· U" + unit : ""}</h1>
+          <button class="who" id="who"><span class="dot"></span>${me}</button>
+        </div>
+        <div class="sp-wrap">
+          <div class="sp-progress">${idx + 1} / ${items.length} · ✅ ${correct}</div>
+          <div class="sp-card">
+            <div class="sp-tag">${tag}</div>
+            <div style="font-size:18px;color:var(--muted)">${it.zh}</div>
+            <div class="scramble-target" id="target"></div>
+            <div class="scramble-pool" id="pool"></div>
+            <div class="sp-feedback" id="fb"></div>
+            <button class="btn ghost" id="reset">重置</button>
+          </div>
+          <button class="btn primary" id="check">检查</button>
+        </div>
+      `;
+      document.getElementById("back").onclick = () => go("units-spell");
+      document.getElementById("who").onclick = () => go("profiles");
+      const target = document.getElementById("target");
+      const pool = document.getElementById("pool");
+      const placed = []; // array of {letter, fromIdx}
+      const used = new Array(shuffled.length).fill(false);
+
+      function renderScr() {
+        target.innerHTML = "";
+        const slotCount = letters.length;
+        for (let i = 0; i < slotCount; i++) {
+          const t = document.createElement("button");
+          t.className = "letter-tile " + (placed[i] ? "placed" : "empty");
+          t.textContent = placed[i] ? placed[i].letter : "";
+          t.onclick = () => {
+            if (placed[i]) {
+              used[placed[i].fromIdx] = false;
+              placed[i] = null;
+              renderScr();
+            }
+          };
+          target.appendChild(t);
+        }
+        pool.innerHTML = "";
+        shuffled.forEach((ltr, i) => {
+          if (used[i]) return;
+          const t = document.createElement("button");
+          t.className = "letter-tile";
+          t.textContent = ltr;
+          t.onclick = () => {
+            const empty = placed.findIndex(p => !p);
+            const firstEmpty = empty === -1 ? placed.length : empty;
+            if (firstEmpty < letters.length) {
+              placed[firstEmpty] = { letter: ltr, fromIdx: i };
+              used[i] = true;
+              renderScr();
+            }
+          };
+          pool.appendChild(t);
+        });
+      }
+      renderScr();
+      document.getElementById("reset").onclick = () => {
+        for (let i = 0; i < placed.length; i++) placed[i] = null;
+        for (let i = 0; i < used.length; i++) used[i] = false;
+        renderScr();
+        document.getElementById("fb").className = "sp-feedback"; document.getElementById("fb").textContent = "";
+      };
+      document.getElementById("check").onclick = () => {
+        const ans = placed.map(p => p ? p.letter : "_").join("");
+        const fb = document.getElementById("fb");
+        if (ans === it.word) {
+          fb.className = "sp-feedback ok"; fb.textContent = "✓ 对啦！";
+          bumpScore(it.word, +1); correct++;
+          srsRight("word", it.word);
+          setTimeout(() => { idx++; frame(); }, 800);
+        } else {
+          fb.className = "sp-feedback bad"; fb.textContent = `✗ 是 ${it.word}`;
+          bumpScore(it.word, -1);
+          addWrong("word", it.word, it.word, it.zh);
+          setTimeout(() => { idx++; frame(); }, 1600);
+        }
+      };
+      return;
+    }
+
+    // text input modes
+    app.innerHTML = `
+      <div class="topbar">
+        <button class="back" id="back">‹</button>
+        <h1>拼写 ${unit ? "· U" + unit : ""}</h1>
+        <button class="who" id="who"><span class="dot"></span>${me}</button>
+      </div>
+      <div class="sp-wrap">
+        <div class="sp-progress">${idx + 1} / ${items.length} · ✅ ${correct}</div>
+        <div class="sp-card">
+          <div class="sp-tag">${tag}</div>
+          <div class="sp-prompt">${promptHtml}</div>
+          <input class="sp-input" id="in" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="拼出来">
+          <div class="pencil-hint">✏️ 可以用 Apple Pencil 直接在框里写</div>
+          <div class="sp-feedback" id="fb"></div>
+        </div>
+        <button class="btn primary" id="check">检查</button>
+      </div>
+    `;
+    document.getElementById("back").onclick = () => go("units-spell");
+    document.getElementById("who").onclick = () => go("profiles");
+    const input = document.getElementById("in");
+    const fb = document.getElementById("fb");
+    setTimeout(() => input.focus(), 80);
+    if (m === "dictate") {
+      document.getElementById("play").onclick = () => speak(it.word);
+      setTimeout(() => speak(it.word), 250);
+    }
+    function doCheck() {
+      const ans = input.value.trim().toLowerCase();
+      const correctAns = it.word.toLowerCase();
+      if (ans === correctAns) {
+        input.classList.add("ok"); fb.className = "sp-feedback ok"; fb.textContent = "✓ 对啦！";
+        bumpScore(it.word, +1); correct++;
+        srsRight("word", it.word);
+        setTimeout(() => { idx++; frame(); }, 800);
+      } else if (ans === "") {
+        fb.className = "sp-feedback bad"; fb.textContent = "先写点东西嘛 :)";
+      } else {
+        input.classList.add("bad"); fb.className = "sp-feedback bad"; fb.textContent = `✗ 是 ${it.word}`;
+        bumpScore(it.word, -1);
+        addWrong("word", it.word, it.word, it.zh);
+        setTimeout(() => { idx++; frame(); }, 1800);
+      }
+    }
+    input.onkeydown = (e) => { if (e.key === "Enter") doCheck(); };
+    document.getElementById("check").onclick = doCheck;
+  }
+  function showDone() {
+    const pct = Math.round(correct / items.length * 100);
+    app.innerHTML = `
+      <div class="topbar">
+        <button class="back" id="back">‹</button>
+        <h1>完成！</h1>
+        <button class="who" id="who"><span class="dot"></span>${me}</button>
+      </div>
+      <div class="summary">
+        <div class="big">${correct} / ${items.length}</div>
+        <div class="lbl">正确率 ${pct}% ${pct >= 80 ? "🌟 真棒！" : pct >= 60 ? "👍 继续加油" : "💪 多练几遍"}</div>
+        <button class="btn primary" id="again">再来一组</button>
+        <button class="btn ghost" id="home">回首页</button>
+      </div>
+    `;
+    document.getElementById("back").onclick = () => go("units-spell");
+    document.getElementById("who").onclick = () => go("profiles");
+    document.getElementById("again").onclick = () => go("spell", { unit });
+    document.getElementById("home").onclick = () => go("home");
+  }
+  frame();
+};
+
+// ============ VIEW: SENTENCE DICTATION ============
+function tokenize(s) {
+  return s.toLowerCase().replace(/[^a-z0-9'\s]/g, " ").split(/\s+/).filter(Boolean);
+}
+// word-level LCS diff → array of {word, status: ok|miss|bad}
+function diffWords(expected, actual) {
+  const E = tokenize(expected), A = tokenize(actual);
+  const n = E.length, m = A.length;
+  const dp = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+  for (let i = 1; i <= n; i++) for (let j = 1; j <= m; j++) {
+    dp[i][j] = E[i-1] === A[j-1] ? dp[i-1][j-1] + 1 : Math.max(dp[i-1][j], dp[i][j-1]);
+  }
+  const out = [];
+  let i = n, j = m;
+  const ops = [];
+  while (i > 0 && j > 0) {
+    if (E[i-1] === A[j-1]) { ops.push({ word: E[i-1], status: "ok" }); i--; j--; }
+    else if (dp[i-1][j] >= dp[i][j-1]) { ops.push({ word: E[i-1], status: "miss" }); i--; }
+    else { ops.push({ word: A[j-1], status: "bad" }); j--; }
+  }
+  while (i > 0) { ops.push({ word: E[i-1], status: "miss" }); i--; }
+  while (j > 0) { ops.push({ word: A[j-1], status: "bad" }); j--; }
+  return ops.reverse();
+}
+function sentId(unit, idx) { return "u" + unit + "-" + idx; }
+
+VIEWS.dict = (app, { unit }) => {
+  const me = STORAGE.current();
+  const all = SENTENCES.filter(s => s.unit === unit);
+  const items = all.map((s, i) => ({ ...s, _id: sentId(unit, all.indexOf(s)), _origIdx: i }));
+  if (items.length === 0) {
+    app.innerHTML = `<div class="topbar"><button class="back" id="back">‹</button><h1>没句子可练</h1></div>`;
+    document.getElementById("back").onclick = () => go("units-dict");
+    return;
+  }
+  let idx = 0, correct = 0;
+
+  function frame() {
+    if (idx >= items.length) return showDone();
+    const s = items[idx];
+    app.innerHTML = `
+      <div class="topbar">
+        <button class="back" id="back">‹</button>
+        <h1>句子默写 · U${unit}</h1>
+        <button class="who" id="who"><span class="dot"></span>${me}</button>
+      </div>
+      <div class="sp-wrap">
+        <div class="sp-progress">${idx + 1} / ${items.length} · ✅ ${correct}</div>
+        <div class="sp-card">
+          <div class="sp-tag">🎧 听句子写下来</div>
+          <div style="display:flex; gap:10px; justify-content:center; margin:6px 0 14px;">
+            <button class="play" id="play" style="background:transparent;font-size:48px;">🔊</button>
+            <button class="play slow" id="slow" data-rate="0.6">慢速</button>
+          </div>
+          <textarea class="dict-textarea" id="in" placeholder="听了之后写在这里…"></textarea>
+          <div class="pencil-hint">✏️ 可以用 Apple Pencil 直接在框里写整句</div>
+          <div id="result"></div>
+        </div>
+        <button class="btn primary" id="check">检查</button>
+      </div>
+    `;
+    document.getElementById("back").onclick = () => go("units-dict");
+    document.getElementById("who").onclick = () => go("profiles");
+    document.getElementById("play").onclick = () => speak(s.en, 1);
+    document.getElementById("slow").onclick = () => speak(s.en, 0.6);
+    setTimeout(() => speak(s.en, 1), 300);
+    const input = document.getElementById("in");
+    setTimeout(() => input.focus(), 80);
+    document.getElementById("check").onclick = () => {
+      const ans = input.value.trim();
+      if (!ans) return;
+      const diff = diffWords(s.en, ans);
+      const allOk = diff.every(d => d.status === "ok");
+      const html = `
+        <div class="diff-row">${diff.map(d => `<span class="w ${d.status}">${d.word}</span>`).join("")}</div>
+        <div style="font-size:14px;color:var(--muted);margin-top:6px;">原句：${s.en}</div>
+        <div style="font-size:14px;color:var(--muted);">${s.zh}</div>
+        <div style="margin-top:14px;display:flex;gap:10px;">
+          <button class="btn ghost" id="replay">🔊 再听一遍</button>
+          <button class="btn primary" id="next">${idx + 1 >= items.length ? "完成" : "下一题"}</button>
+        </div>
+      `;
+      document.getElementById("result").innerHTML = html;
+      if (allOk) {
+        correct++;
+        srsRight("sent", s._id);
+      } else {
+        addWrong("sent", s._id, s.en, s.zh);
+      }
+      document.getElementById("replay").onclick = () => speak(s.en, 0.8);
+      document.getElementById("next").onclick = () => { idx++; frame(); };
+    };
+  }
+  function showDone() {
+    const pct = Math.round(correct / items.length * 100);
+    app.innerHTML = `
+      <div class="topbar">
+        <button class="back" id="back">‹</button>
+        <h1>完成！</h1>
+        <button class="who" id="who"><span class="dot"></span>${me}</button>
+      </div>
+      <div class="summary">
+        <div class="big">${correct} / ${items.length}</div>
+        <div class="lbl">正确率 ${pct}% ${pct >= 80 ? "🌟" : pct >= 60 ? "👍" : "💪"}</div>
+        <button class="btn primary" id="again">再来一组</button>
+        <button class="btn ghost" id="home">回首页</button>
+      </div>
+    `;
+    document.getElementById("back").onclick = () => go("units-dict");
+    document.getElementById("who").onclick = () => go("profiles");
+    document.getElementById("again").onclick = () => go("dict", { unit });
+    document.getElementById("home").onclick = () => go("home");
+  }
+  frame();
+};
+
+// ============ VIEW: ERROR NOTEBOOK ============
+VIEWS.errors = (app) => {
+  const me = STORAGE.current();
+  const due = dueItems();
+  const all = Object.values(getWrong()).sort((a, b) => a.dueAt - b.dueAt);
+
+  if (all.length === 0) {
+    app.innerHTML = `
+      <div class="topbar">
+        <button class="back" id="back">‹</button>
+        <h1>错题本</h1>
+        <button class="who" id="who"><span class="dot"></span>${me}</button>
+      </div>
+      <div class="summary">
+        <div class="big">✨</div>
+        <div class="lbl">还没有错题，好厉害！</div>
+        <button class="btn ghost" id="home">回首页</button>
+      </div>
+    `;
+    document.getElementById("back").onclick = () => go("home");
+    document.getElementById("who").onclick = () => go("profiles");
+    document.getElementById("home").onclick = () => go("home");
+    return;
+  }
+
+  if (due.length > 0) return reviewMode(due);
+  return listMode(all);
+
+  function reviewMode(queue) {
+    let i = 0, right = 0;
+    function showItem() {
+      if (i >= queue.length) return doneReview();
+      const it = queue[i];
+      const isWord = it.kind === "word";
+      app.innerHTML = `
+        <div class="topbar">
+          <button class="back" id="back">‹</button>
+          <h1>错题复习</h1>
+          <button class="who" id="who"><span class="dot"></span>${me}</button>
+        </div>
+        <div class="sp-wrap">
+          <div class="sp-progress">${i + 1} / ${queue.length} · 第 ${it.box} 盒</div>
+          <div class="sp-card">
+            <div class="sp-tag">${isWord ? "🔤 还记得这个词吗" : "🗣️ 听句子默写"}</div>
+            ${isWord
+              ? `<div style="font-size:34px;font-weight:700;margin:14px 0;">${it.hint || ""}</div>
+                 <div style="font-size:14px;color:var(--muted);">先想一想英文怎么写</div>`
+              : `<div style="display:flex;gap:10px;justify-content:center;margin:10px 0;">
+                   <button class="play" id="play" style="background:transparent;font-size:48px;">🔊</button>
+                   <button class="play slow" id="slow">慢速</button>
+                 </div>
+                 <div style="font-size:14px;color:var(--muted);">${it.hint || ""}</div>`
+            }
+            <div id="reveal" class="hidden" style="margin-top:14px;font-size:24px;font-weight:600;color:var(--accent3);">${it.text}</div>
+            <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+              <button class="btn ghost" id="show">显示答案</button>
+              <button class="btn warn" id="no">还不会</button>
+              <button class="btn good" id="yes">会了</button>
+            </div>
+          </div>
+        </div>
+      `;
+      document.getElementById("back").onclick = () => go("home");
+      document.getElementById("who").onclick = () => go("profiles");
+      if (!isWord) {
+        document.getElementById("play").onclick = () => speak(it.text, 1);
+        document.getElementById("slow").onclick = () => speak(it.text, 0.6);
+        setTimeout(() => speak(it.text, 1), 300);
+      } else {
+        setTimeout(() => speak(it.text, 1), 200);
+      }
+      document.getElementById("show").onclick = () => {
+        document.getElementById("reveal").classList.remove("hidden");
+        if (isWord) speak(it.text, 1);
+      };
+      document.getElementById("yes").onclick = () => { srsRight(it.kind, it.id); right++; i++; showItem(); };
+      document.getElementById("no").onclick  = () => { srsWrong(it.kind, it.id);            i++; showItem(); };
+    }
+    function doneReview() {
+      app.innerHTML = `
+        <div class="topbar">
+          <button class="back" id="back">‹</button>
+          <h1>复习完成</h1>
+          <button class="who" id="who"><span class="dot"></span>${me}</button>
+        </div>
+        <div class="summary">
+          <div class="big">${right} / ${queue.length}</div>
+          <div class="lbl">今天的错题都过完啦</div>
+          <button class="btn primary" id="home">回首页</button>
+          <button class="btn ghost" id="list">看全部错题</button>
+        </div>
+      `;
+      document.getElementById("back").onclick = () => go("home");
+      document.getElementById("who").onclick = () => go("profiles");
+      document.getElementById("home").onclick = () => go("home");
+      document.getElementById("list").onclick = () => listMode(Object.values(getWrong()).sort((a, b) => a.dueAt - b.dueAt));
+    }
+    showItem();
+  }
+
+  function listMode(items) {
+    app.innerHTML = `
+      <div class="topbar">
+        <button class="back" id="back">‹</button>
+        <h1>错题本 · 共 ${items.length}</h1>
+        <button class="who" id="who"><span class="dot"></span>${me}</button>
+      </div>
+      <div class="sent-list" id="list" style="padding:0 18px 24px;"></div>
+    `;
+    document.getElementById("back").onclick = () => go("home");
+    document.getElementById("who").onclick = () => go("profiles");
+    const wrap = document.getElementById("list");
+    if (items.length === 0) {
+      wrap.innerHTML = `<div style="text-align:center;color:var(--muted);padding:40px 0;">没有错题</div>`;
+      return;
+    }
+    items.forEach(it => {
+      const dueIn = Math.ceil((it.dueAt - Date.now()) / DAY_MS);
+      const dueLabel = dueIn <= 0 ? "今天到期" : `${dueIn} 天后`;
+      const el = document.createElement("div");
+      el.className = "err-item";
+      el.innerHTML = `
+        <div class="box-tag">第 ${it.box} 盒</div>
+        <div class="body">
+          <div class="top">${it.text}</div>
+          <div class="sub">${it.hint || ""} · 错 ${it.wrongCount} 次 · ${dueLabel}</div>
+        </div>
+        <button class="play" data-play="1" style="background:transparent;font-size:24px;">🔊</button>
+      `;
+      el.querySelector("[data-play]").onclick = () => speak(it.text, 0.9);
+      wrap.appendChild(el);
+    });
+  }
+};
+
+// ============ BOOT ============
+// init voices (Safari needs a tick)
+if ("speechSynthesis" in window) {
+  speechSynthesis.getVoices();
+  setTimeout(() => speechSynthesis.getVoices(), 200);
+}
+// auto-resume last profile? no — always show picker so twins don't practice as wrong person
+if (STORAGE.current() && STORAGE.profiles().includes(STORAGE.current())) {
+  // still show profile picker by default for safety
+}
+render();
+</script>
+</body>
+</html>
