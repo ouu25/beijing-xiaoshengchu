@@ -664,65 +664,86 @@ function speak(text, rate = 1) {
 }
 
 function openVoicePicker() {
-  const voices = listEnVoices();
-  const cur = pickVoice();
   const bg = document.createElement("div");
   bg.className = "modal-bg";
-  bg.innerHTML = `
-    <div class="modal" style="max-width:420px;">
-      <h2>选择语音</h2>
-      <div style="max-height:50vh; overflow:auto; margin: 8px -4px;">
-        ${voices.length === 0 ? `<div style="color:var(--muted);padding:14px;">设备还没加载英文语音，稍等一下再开。</div>` : ""}
-        ${voices.map((v, i) => `
-          <button class="voice-row" data-uri="${v.voiceURI}" style="
-            width:100%; text-align:left; padding:12px 14px; margin:4px 0;
-            background:${v.voiceURI===cur?.voiceURI ? "#fff4ea" : "var(--card)"};
-            border-radius:12px; box-shadow: var(--shadow);
-            display:flex; justify-content:space-between; align-items:center; gap:10px;
-          ">
-            <div>
-              <div style="font-weight:600;">${v.name}</div>
-              <div style="font-size:12px;color:var(--muted);">${v.lang}${v.localService ? " · 本地" : " · 在线"}${i === 0 ? " · 推荐" : ""}</div>
-            </div>
-            <button class="play" data-try="${i}" style="background:transparent;font-size:22px;">🔊</button>
-          </button>
-        `).join("")}
-      </div>
-      <div style="font-size:12px;color:var(--muted);margin:8px 4px 12px;">
-        iPad / iPhone: 设置 → 辅助功能 → 朗读内容 → 声音 → 英文 → 下载「Siri」或「增强」语音，效果显著更好。
-      </div>
-      <div class="modal-row">
-        <button class="btn ghost" id="resetBtn">恢复推荐</button>
-        <button class="btn primary" id="closeBtn">完成</button>
-      </div>
-    </div>
-  `;
   document.body.appendChild(bg);
-  bg.querySelectorAll(".voice-row").forEach(row => {
-    row.onclick = (e) => {
-      if (e.target.dataset.try !== undefined) {
-        e.stopPropagation();
-        const idx = parseInt(e.target.dataset.try, 10);
-        const v = voices[idx];
-        speechSynthesis.cancel();
-        const u = new SpeechSynthesisUtterance("Hello! Let's read together.");
-        u.voice = v; u.lang = v.lang; u.rate = 0.95;
-        speechSynthesis.speak(u);
-        return;
-      }
-      localStorage.setItem("ep:voiceURI", row.dataset.uri);
+
+  function renderList() {
+    const voices = listEnVoices();
+    const allCount = speechSynthesis.getVoices().length;
+    const cur = pickVoice();
+    bg.innerHTML = `
+      <div class="modal" style="max-width:460px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <h2 style="margin:0;">选择语音</h2>
+          <button class="btn ghost" id="refreshBtn" style="padding:6px 12px;font-size:13px;">🔄 刷新</button>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin:6px 0;">检测到 ${voices.length} 个英文语音 / 设备共 ${allCount} 个</div>
+        <div style="max-height:48vh; overflow:auto; margin: 8px -4px;">
+          ${voices.length === 0 ? `<div style="color:var(--muted);padding:14px;">还没检测到英文语音。下载完增强语音包后点上面🔄刷新，或整个刷新页面。</div>` : ""}
+          ${voices.map((v, i) => {
+            const isEnh = /enhanced|premium|natural|neural/i.test(v.name + " " + (v.voiceURI||""));
+            return `
+            <button class="voice-row" data-uri="${v.voiceURI}" style="
+              width:100%; text-align:left; padding:12px 14px; margin:4px 0;
+              background:${v.voiceURI===cur?.voiceURI ? "#fff4ea" : "var(--card)"};
+              border-radius:12px; box-shadow: var(--shadow);
+              display:flex; justify-content:space-between; align-items:center; gap:10px;
+            ">
+              <div>
+                <div style="font-weight:600;">${v.name} ${isEnh?'<span style="color:var(--good);font-size:12px;">✦增强</span>':''}</div>
+                <div style="font-size:12px;color:var(--muted);">${v.lang}${v.localService ? " · 本地" : " · 在线"}${i === 0 ? " · 推荐" : ""}</div>
+              </div>
+              <button class="play" data-try="${i}" style="background:transparent;font-size:22px;">🔊</button>
+            </button>
+          `;}).join("")}
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin:8px 4px 12px;line-height:1.5;">
+          没看到 Enhanced？下载完语音包后 iOS 不会立刻通知网页，需要<b>关掉这个 Safari 标签页重新打开</b>页面才会显示。<br>
+          Siri 语音 Apple 不开放给网页，只能下「Daniel/Samantha/Ava (Enhanced)」这种。
+        </div>
+        <div class="modal-row">
+          <button class="btn ghost" id="resetBtn">恢复推荐</button>
+          <button class="btn primary" id="closeBtn">完成</button>
+        </div>
+      </div>
+    `;
+    bg.querySelectorAll(".voice-row").forEach(row => {
+      row.onclick = (e) => {
+        if (e.target.dataset.try !== undefined) {
+          e.stopPropagation();
+          const idx = parseInt(e.target.dataset.try, 10);
+          const v = voices[idx];
+          speechSynthesis.cancel();
+          setTimeout(() => {
+            const u = new SpeechSynthesisUtterance("Hello! Let's read together.");
+            u.voice = v; u.lang = v.lang; u.rate = 0.95;
+            speechSynthesis.speak(u);
+          }, 60);
+          return;
+        }
+        localStorage.setItem("ep:voiceURI", row.dataset.uri);
+        voiceCache = null;
+        renderList();
+      };
+    });
+    bg.querySelector("#refreshBtn").onclick = () => {
       voiceCache = null;
-      bg.querySelectorAll(".voice-row").forEach(r => {
-        r.style.background = r.dataset.uri === row.dataset.uri ? "#fff4ea" : "var(--card)";
-      });
+      // Touch the API to trigger re-fetch on some browsers
+      speechSynthesis.getVoices();
+      setTimeout(renderList, 200);
     };
-  });
-  bg.querySelector("#resetBtn").onclick = () => {
-    localStorage.removeItem("ep:voiceURI");
-    voiceCache = null;
-    bg.remove();
-  };
-  bg.querySelector("#closeBtn").onclick = () => bg.remove();
+    bg.querySelector("#resetBtn").onclick = () => {
+      localStorage.removeItem("ep:voiceURI");
+      voiceCache = null;
+      bg.remove();
+    };
+    bg.querySelector("#closeBtn").onclick = () => bg.remove();
+  }
+  renderList();
+  // Re-render if voices change while modal is open
+  const handler = () => { if (document.body.contains(bg)) renderList(); };
+  speechSynthesis.addEventListener?.("voiceschanged", handler);
 }
 
 // ============ ROUTER ============
