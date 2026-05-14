@@ -572,27 +572,157 @@ function unitProgress(unit) {
 
 // ============ TTS ============
 let voiceCache = null;
+// Quality keywords (case-insensitive substring match against name + voiceURI)
+const QUALITY_HINTS = [
+  { re: /neural|wavenet|natural|premium|enhanced|siri/i, score: 1000 },
+  { re: /\(enhanced\)|\(premium\)/i, score: 1200 },
+];
+// Known-good Apple / Google English voice names (clear & natural)
+const GOOD_NAMES = ["Samantha","Karen","Daniel","Moira","Tessa","Serena","Allison","Ava","Susan","Kate","Oliver","Stephanie","Aaron","Nicky","Evan","Joelle","Zoe","Isha","Arthur","Martha","Jamie"];
+// Joke / low-quality Apple voices to penalize
+const BAD_NAMES = ["Albert","Bad News","Bahh","Bells","Boing","Bubbles","Cellos","Deranged","Fred","Good News","Hysterical","Jester","Junior","Kathy","Organ","Pipe","Princess","Ralph","Trinoids","Whisper","Zarvox","Wobble","Superstar","Grandma","Grandpa","Rocko","Reed","Shelley","Sandy","Eddy","Flo"];
+
+function scoreVoice(v) {
+  if (!/^en/i.test(v.lang)) return -Infinity;
+  let s = 0;
+  const blob = (v.name + " " + (v.voiceURI || "")).toLowerCase();
+  QUALITY_HINTS.forEach(h => { if (h.re.test(blob)) s += h.score; });
+  if (GOOD_NAMES.some(n => v.name.startsWith(n))) s += 300;
+  if (BAD_NAMES.some(n => v.name.startsWith(n))) s -= 800;
+  if (/^en-GB/i.test(v.lang)) s += 60;
+  else if (/^en-US/i.test(v.lang)) s += 40;
+  else if (/^en-AU/i.test(v.lang)) s += 30;
+  if (v.localService) s += 20;
+  if (v.default) s += 5;
+  // Microsoft web-based voices on Edge tend to be robotic unless they have "Natural" suffix
+  if (/microsoft/i.test(blob) && !/natural/i.test(blob)) s -= 200;
+  return s;
+}
+
+function listEnVoices() {
+  return speechSynthesis.getVoices()
+    .filter(v => /^en/i.test(v.lang))
+    .map(v => ({ v, score: scoreVoice(v) }))
+    .sort((a, b) => b.score - a.score)
+    .map(x => x.v);
+}
+
 function pickVoice() {
   if (voiceCache) return voiceCache;
+  const saved = localStorage.getItem("ep:voiceURI");
   const vs = speechSynthesis.getVoices();
-  voiceCache = vs.find(v => v.lang.startsWith("en-GB")) ||
-               vs.find(v => v.lang.startsWith("en-US")) ||
-               vs.find(v => v.lang.startsWith("en")) || null;
+  if (saved) {
+    const hit = vs.find(v => v.voiceURI === saved);
+    if (hit) { voiceCache = hit; return hit; }
+  }
+  voiceCache = listEnVoices()[0] || null;
   return voiceCache;
 }
+
 if ("speechSynthesis" in window) {
   speechSynthesis.onvoiceschanged = () => { voiceCache = null; pickVoice(); };
 }
+
+// iOS Safari needs a user-gesture-triggered speak() to unlock the engine.
+// We fire a silent utterance on the first touch/click to prime it.
+let speechUnlocked = false;
+function unlockSpeech() {
+  if (speechUnlocked || !("speechSynthesis" in window)) return;
+  speechUnlocked = true;
+  try {
+    const u = new SpeechSynthesisUtterance(" ");
+    u.volume = 0;
+    speechSynthesis.speak(u);
+  } catch (e) {}
+}
+if ("speechSynthesis" in window) {
+  document.addEventListener("touchstart", unlockSpeech, { once: true, passive: true });
+  document.addEventListener("click", unlockSpeech, { once: true });
+  document.addEventListener("pointerdown", unlockSpeech, { once: true });
+}
+
 function speak(text, rate = 1) {
   if (!("speechSynthesis" in window)) return;
-  speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  const v = pickVoice();
-  if (v) u.voice = v;
-  u.lang = v ? v.lang : "en-GB";
-  u.rate = rate;
-  u.pitch = 1;
-  speechSynthesis.speak(u);
+  unlockSpeech();
+  const fire = () => {
+    const u = new SpeechSynthesisUtterance(text);
+    const v = pickVoice();
+    if (v) u.voice = v;
+    u.lang = v ? v.lang : "en-GB";
+    // Slightly slower default reads more clearly for kids
+    u.rate = rate * 0.95;
+    u.pitch = 1.02;
+    speechSynthesis.speak(u);
+  };
+  // On iOS, cancel() immediately followed by speak() can silently drop the second call.
+  if (speechSynthesis.speaking || speechSynthesis.pending) {
+    speechSynthesis.cancel();
+    setTimeout(fire, 80);
+  } else {
+    fire();
+  }
+}
+
+function openVoicePicker() {
+  const voices = listEnVoices();
+  const cur = pickVoice();
+  const bg = document.createElement("div");
+  bg.className = "modal-bg";
+  bg.innerHTML = `
+    <div class="modal" style="max-width:420px;">
+      <h2>选择语音</h2>
+      <div style="max-height:50vh; overflow:auto; margin: 8px -4px;">
+        ${voices.length === 0 ? `<div style="color:var(--muted);padding:14px;">设备还没加载英文语音，稍等一下再开。</div>` : ""}
+        ${voices.map((v, i) => `
+          <button class="voice-row" data-uri="${v.voiceURI}" style="
+            width:100%; text-align:left; padding:12px 14px; margin:4px 0;
+            background:${v.voiceURI===cur?.voiceURI ? "#fff4ea" : "var(--card)"};
+            border-radius:12px; box-shadow: var(--shadow);
+            display:flex; justify-content:space-between; align-items:center; gap:10px;
+          ">
+            <div>
+              <div style="font-weight:600;">${v.name}</div>
+              <div style="font-size:12px;color:var(--muted);">${v.lang}${v.localService ? " · 本地" : " · 在线"}${i === 0 ? " · 推荐" : ""}</div>
+            </div>
+            <button class="play" data-try="${i}" style="background:transparent;font-size:22px;">🔊</button>
+          </button>
+        `).join("")}
+      </div>
+      <div style="font-size:12px;color:var(--muted);margin:8px 4px 12px;">
+        iPad / iPhone: 设置 → 辅助功能 → 朗读内容 → 声音 → 英文 → 下载「Siri」或「增强」语音，效果显著更好。
+      </div>
+      <div class="modal-row">
+        <button class="btn ghost" id="resetBtn">恢复推荐</button>
+        <button class="btn primary" id="closeBtn">完成</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(bg);
+  bg.querySelectorAll(".voice-row").forEach(row => {
+    row.onclick = (e) => {
+      if (e.target.dataset.try !== undefined) {
+        e.stopPropagation();
+        const idx = parseInt(e.target.dataset.try, 10);
+        const v = voices[idx];
+        speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance("Hello! Let's read together.");
+        u.voice = v; u.lang = v.lang; u.rate = 0.95;
+        speechSynthesis.speak(u);
+        return;
+      }
+      localStorage.setItem("ep:voiceURI", row.dataset.uri);
+      voiceCache = null;
+      bg.querySelectorAll(".voice-row").forEach(r => {
+        r.style.background = r.dataset.uri === row.dataset.uri ? "#fff4ea" : "var(--card)";
+      });
+    };
+  });
+  bg.querySelector("#resetBtn").onclick = () => {
+    localStorage.removeItem("ep:voiceURI");
+    voiceCache = null;
+    bg.remove();
+  };
+  bg.querySelector("#closeBtn").onclick = () => bg.remove();
 }
 
 // ============ ROUTER ============
@@ -680,7 +810,10 @@ VIEWS.home = (app) => {
     <div class="topbar">
       <button class="back" id="back">‹</button>
       <h1>选个练习</h1>
-      <button class="who" id="who"><span class="dot"></span>${me}</button>
+      <div style="display:flex; gap:6px; align-items:center;">
+        <button class="who" id="voiceBtn" title="语音设置" style="padding:0 12px;">🔊</button>
+        <button class="who" id="who"><span class="dot"></span>${me}</button>
+      </div>
     </div>
     <div class="modules">
       <button class="module a" data-go="units-flash">
@@ -713,6 +846,7 @@ VIEWS.home = (app) => {
   `;
   document.getElementById("back").onclick = () => go("profiles");
   document.getElementById("who").onclick = () => go("profiles");
+  document.getElementById("voiceBtn").onclick = () => openVoicePicker();
   app.querySelectorAll("[data-go]").forEach(b => b.onclick = () => go(b.dataset.go));
 };
 
