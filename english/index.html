@@ -471,13 +471,6 @@ const SENTENCES = [
   { unit:6, en:"Then we need to choose how to get there.", zh:"然后，我们要选择怎样到那里。" },
   { unit:6, en:"Next, we should look for hotels.", zh:"下一步，我们要找旅馆。" },
   { unit:6, en:"Finally, we should find out about the weather.", zh:"最后，我们要查一查天气。" },
-  // Unit 7
-  { unit:7, en:"Who's your hometown famous for?", zh:"你的家乡因谁出名？" },
-  { unit:7, en:"It's the home of Confucius.", zh:"它是孔子的故乡。" },
-  { unit:7, en:"What are some other famous places in China?", zh:"中国还有哪些其他名胜古迹？" },
-  { unit:7, en:"China has many famous places. Sanya is famous for its pandas.", zh:"中国有许多名胜古迹。三亚因熊猫闻名。" },
-  { unit:7, en:"What makes Australia special?", zh:"是什么使澳大利亚特别？" },
-  { unit:7, en:"The good weather and beautiful beaches.", zh:"好天气和美丽的海滩。" },
 ];
 
 const UNITS = [1,2,3,4,5,6];
@@ -863,6 +856,11 @@ VIEWS.home = (app) => {
         <div class="ttl">错题本</div>
         <div class="sub">${totalErr === 0 ? "暂时没有错题" : `共 ${totalErr} 题 · 今天到期 ${dueCount}`}</div>
       </button>
+      <button class="module c" data-go="mastered">
+        <div class="emo">🏆</div>
+        <div class="ttl">已掌握</div>
+        <div class="sub">看看背过、已认识的单词</div>
+      </button>
     </div>
   `;
   document.getElementById("back").onclick = () => go("profiles");
@@ -909,7 +907,7 @@ function unitPicker(app, kind, title) {
   const wrap = document.getElementById("units");
   const isSent = (kind === "sent" || kind === "dict");
   const dataset = isSent ? SENTENCES : WORDS;
-  const availUnits = [...new Set(dataset.map(d => d.unit))].sort();
+  const availUnits = [...new Set(dataset.map(d => d.unit))].filter(u => UNITS.includes(u)).sort();
   availUnits.forEach(u => {
     const count = dataset.filter(d => d.unit === u).length;
     const pct = showProgress ? unitProgress(u) : null;
@@ -1401,6 +1399,11 @@ VIEWS.errors = (app) => {
   if (due.length > 0) return reviewMode(due);
   return listMode(all);
 
+  function startPractice(items) {
+    if (!items.length) return;
+    return reviewMode(items.slice());
+  }
+
   function reviewMode(queue) {
     let i = 0, right = 0;
     function showItem() {
@@ -1480,10 +1483,18 @@ VIEWS.errors = (app) => {
         <h1>错题本 · 共 ${items.length}</h1>
         <button class="who" id="who"><span class="dot"></span>${me}</button>
       </div>
+      ${items.length > 0 ? `
+        <div style="padding:0 18px 12px;">
+          <button class="btn primary" id="practiceAll" style="width:100%;">🔁 全部重练 (${items.length})</button>
+        </div>
+      ` : ""}
       <div class="sent-list" id="list" style="padding:0 18px 24px;"></div>
     `;
     document.getElementById("back").onclick = () => go("home");
     document.getElementById("who").onclick = () => go("profiles");
+    if (items.length > 0) {
+      document.getElementById("practiceAll").onclick = () => startPractice(items);
+    }
     const wrap = document.getElementById("list");
     if (items.length === 0) {
       wrap.innerHTML = `<div style="text-align:center;color:var(--muted);padding:40px 0;">没有错题</div>`;
@@ -1500,12 +1511,64 @@ VIEWS.errors = (app) => {
           <div class="top">${it.text}</div>
           <div class="sub">${it.hint || ""} · 错 ${it.wrongCount} 次 · ${dueLabel}</div>
         </div>
-        <button class="play" data-play="1" style="background:transparent;font-size:24px;">🔊</button>
+        <button class="play" data-play="1" style="background:transparent;font-size:22px;">🔊</button>
+        <button class="play" data-practice="1" style="background:transparent;font-size:22px;" title="单独练这条">✍️</button>
       `;
       el.querySelector("[data-play]").onclick = () => speak(it.text, 0.9);
+      el.querySelector("[data-practice]").onclick = () => startPractice([it]);
       wrap.appendChild(el);
     });
   }
+};
+
+// ============ VIEW: MASTERED WORDS ============
+VIEWS.mastered = (app) => {
+  const me = STORAGE.current();
+  const score = STORAGE.score(me);
+  const masteredByUnit = {};
+  UNITS.forEach(u => { masteredByUnit[u] = []; });
+  WORDS.forEach(w => {
+    if ((score[w.word] || 0) >= 3 && masteredByUnit[w.unit]) {
+      masteredByUnit[w.unit].push(w);
+    }
+  });
+  const total = Object.values(masteredByUnit).reduce((s, arr) => s + arr.length, 0);
+  app.innerHTML = `
+    <div class="topbar">
+      <button class="back" id="back">‹</button>
+      <h1>已掌握 · 共 ${total} 词</h1>
+      <button class="who" id="who"><span class="dot"></span>${me}</button>
+    </div>
+    <div class="sent-list" id="list" style="padding:0 18px 24px;"></div>
+  `;
+  document.getElementById("back").onclick = () => go("home");
+  document.getElementById("who").onclick = () => go("profiles");
+  const wrap = document.getElementById("list");
+  if (total === 0) {
+    wrap.innerHTML = `<div style="text-align:center;color:var(--muted);padding:40px 0;">还没有已掌握的词，去背单词试试 →</div>`;
+    return;
+  }
+  UNITS.forEach(u => {
+    const arr = masteredByUnit[u];
+    if (!arr.length) return;
+    const header = document.createElement("div");
+    header.style.cssText = "font-weight:700;margin:14px 0 8px;color:var(--muted);font-size:14px;";
+    header.textContent = `Unit ${u} · ${arr.length} 词`;
+    wrap.appendChild(header);
+    arr.forEach(w => {
+      const el = document.createElement("div");
+      el.className = "err-item";
+      el.innerHTML = `
+        <div class="body">
+          <div class="top">${w.word}</div>
+          <div class="sub">${w.ipa} · ${w.zh}</div>
+        </div>
+        <button class="play" data-play="1" style="background:transparent;font-size:22px;">🔊</button>
+      `;
+      el.querySelector("[data-play]").onclick = () => speak(w.word, 0.9);
+      wrap.appendChild(el);
+    });
+  });
 };
 
 // ============ BOOT ============
