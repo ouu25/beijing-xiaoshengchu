@@ -1405,11 +1405,13 @@ VIEWS.errors = (app) => {
   }
 
   function reviewMode(queue) {
-    let i = 0, right = 0;
+    let i = 0, right = 0, retries = 0;
+    const total = queue.length;
     function showItem() {
       if (i >= queue.length) return doneReview();
       const it = queue[i];
       const isWord = it.kind === "word";
+      const remaining = queue.length - i;
       app.innerHTML = `
         <div class="topbar">
           <button class="back" id="back">‹</button>
@@ -1417,7 +1419,7 @@ VIEWS.errors = (app) => {
           <button class="who" id="who"><span class="dot"></span>${me}</button>
         </div>
         <div class="sp-wrap">
-          <div class="sp-progress">${i + 1} / ${queue.length} · 第 ${it.box} 盒</div>
+          <div class="sp-progress">剩 ${remaining} 题 · 已会 ${right}/${total}${retries ? ` · 回炉 ${retries}` : ""} · 第 ${it.box} 盒</div>
           <div class="sp-card">
             <div class="sp-tag">${isWord ? "🔤 还记得这个词吗" : "🗣️ 听句子默写"}</div>
             ${isWord
@@ -1452,7 +1454,15 @@ VIEWS.errors = (app) => {
         if (isWord) speak(it.text, 1);
       };
       document.getElementById("yes").onclick = () => { srsRight(it.kind, it.id); right++; i++; showItem(); };
-      document.getElementById("no").onclick  = () => { srsWrong(it.kind, it.id);            i++; showItem(); };
+      document.getElementById("no").onclick  = () => {
+        srsWrong(it.kind, it.id);
+        // 再放回队尾继续练，至少隔 2 题再考
+        const insertAt = Math.min(queue.length, i + 1 + Math.max(2, Math.floor((queue.length - i) / 2)));
+        queue.splice(insertAt, 0, it);
+        retries++;
+        i++;
+        showItem();
+      };
     }
     function doneReview() {
       app.innerHTML = `
@@ -1462,8 +1472,8 @@ VIEWS.errors = (app) => {
           <button class="who" id="who"><span class="dot"></span>${me}</button>
         </div>
         <div class="summary">
-          <div class="big">${right} / ${queue.length}</div>
-          <div class="lbl">今天的错题都过完啦</div>
+          <div class="big">${right} / ${total}</div>
+          <div class="lbl">这一轮都过完啦${retries ? `（回炉了 ${retries} 次）` : ""}</div>
           <button class="btn primary" id="home">回首页</button>
           <button class="btn ghost" id="list">看全部错题</button>
         </div>
